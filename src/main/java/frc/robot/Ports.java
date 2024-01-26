@@ -17,7 +17,6 @@ public class Ports {
     public class pSwerve {
         // Drive Motor, Steer Motor, Steer Encoder
         public static int[]
-
             pCAN_FL = { 1, 2, 1 },
             pCAN_FR = { 7, 8, 4 },
             pCAN_RL = { 9, 10, 5},
