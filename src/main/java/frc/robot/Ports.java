@@ -19,8 +19,8 @@ public class Ports {
         public static int[]
             pCAN_FL = { 0, 1, 0 },
             pCAN_FR = { 2, 3, 1 },
-            pCAN_RL = { 4, 5, 2 },
-            pCAN_RR = { 6, 7, 3 };
+            pCAN_RL = { 9, 10, 5 },
+            pCAN_RR = { 5, 6, 3 };
 
         public static int[]
             Trans2d_FL = {  1,  1 },
