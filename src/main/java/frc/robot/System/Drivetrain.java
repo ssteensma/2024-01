@@ -69,13 +69,13 @@ public class Drivetrain extends Subsystem {
         // RR_module.Display();
     }
 
-    public static void UpdateFieldRelative ( double vx, double vy, double vt ) {
+    public void UpdateFieldRelative ( double vx, double vy, double vt ) {
         Rotation2d    Rot2d  = Rotation2d.fromDegrees( Navigation.NavX.getYaw() );
         ChassisSpeeds Speeds = ChassisSpeeds.fromFieldRelativeSpeeds( vx, vy, vt, Rot2d );
         Update( Speeds );
     }
 
-    public static void UpdateRobotRelative ( double vx, double vy, double vt ) {
+    public void UpdateRobotRelative ( double vx, double vy, double vt ) {
         ChassisSpeeds Speeds = new ChassisSpeeds( vx, vy, vt );
         Update( Speeds );
     }

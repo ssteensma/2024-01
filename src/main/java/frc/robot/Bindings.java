@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Ports.pStick;
@@ -15,6 +16,16 @@ public class Bindings {
     }
 
     public static void DS_Scott() {
+        Shared.m_Drivetrain.setDefaultCommand( 
+            new RunCommand(
+                () -> Shared.m_Drivetrain.UpdateRobotRelative(
+                    DS.getLeftY(),
+                    DS.getLeftX(),
+                    DS.getRightX()
+                ), Shared.m_Drivetrain
+            )
+        );
+
         // DS.b().whileTrue(
         //     Shared.m_Subsystem.exampleMethodCommand()
         // );
