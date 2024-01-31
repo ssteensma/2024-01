@@ -9,7 +9,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports.pSwerve;
 
-public class Drivetrain {
+public class Drivetrain extends Subsystem {
    
     // CHASSIS SPEEDS
     public static ChassisSpeeds
