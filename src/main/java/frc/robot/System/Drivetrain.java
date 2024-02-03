@@ -9,14 +9,14 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports.pSwerve;
 
-public class Drivetrain extends Subsystem {
+public class Drivetrain {
    
     // CHASSIS SPEEDS
     public static ChassisSpeeds
         RobotSpeed;
 
     // SWERVE MODULES
-    public static SwerveModule
+    public static Wheel
         FL_module,
         FR_module,
         RL_module,
@@ -43,10 +43,10 @@ public class Drivetrain extends Subsystem {
         RobotSpeed = new ChassisSpeeds( 0, 0, 0 );
 
         // MODULE DEFINITIONS
-        FL_module = new SwerveModule( "FL", pSwerve.pCAN_FL );
-        FR_module = new SwerveModule( "FR", pSwerve.pCAN_FR );
-        RL_module = new SwerveModule( "RL", pSwerve.pCAN_RL );
-        RR_module = new SwerveModule( "RR", pSwerve.pCAN_RR );
+        FL_module = new Wheel( "FL", pSwerve.pCAN_FL );
+        FR_module = new Wheel( "FR", pSwerve.pCAN_FR );
+        RL_module = new Wheel( "RL", pSwerve.pCAN_RL );
+        RR_module = new Wheel( "RR", pSwerve.pCAN_RR );
 
         // TRANSLATION OBJECT
         FL_Trans2d = new Translation2d( pSwerve.Trans2d_FL[0], pSwerve.Trans2d_FL[1] );
@@ -69,13 +69,13 @@ public class Drivetrain extends Subsystem {
         // RR_module.Display();
     }
 
-    public void UpdateFieldRelative ( double vx, double vy, double vt ) {
+    public static void UpdateFieldRelative ( double vx, double vy, double vt ) {
         Rotation2d    Rot2d  = Rotation2d.fromDegrees( Navigation.NavX.getYaw() );
         ChassisSpeeds Speeds = ChassisSpeeds.fromFieldRelativeSpeeds( vx, vy, vt, Rot2d );
         Update( Speeds );
     }
 
-    public void UpdateRobotRelative ( double vx, double vy, double vt ) {
+    public static void UpdateRobotRelative ( double vx, double vy, double vt ) {
         ChassisSpeeds Speeds = new ChassisSpeeds( vx, vy, vt );
         Update( Speeds );
     }
@@ -86,7 +86,7 @@ public class Drivetrain extends Subsystem {
         SwerveModuleState[] ModuleStates = Kinematics.toSwerveModuleStates( Speeds );
 
         // NORMALIZE WHEEL RATIOS IF ANY SPEED IS ABOVE SPECIFIED MAXIMUM
-        SwerveDriveKinematics.desaturateWheelSpeeds( ModuleStates, 0.5 );
+        SwerveDriveKinematics.desaturateWheelSpeeds( ModuleStates, 0.8 );
 
         // UPDATE ROBOT SPEEDS
         RobotSpeed = Kinematics.toChassisSpeeds( ModuleStates );

@@ -1,15 +1,19 @@
 package frc.robot.Mode;
 
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.System.Drivetrain;
+
+// import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Onabot {
 
-    public static void Initialize() {
+    // public static TalonFX FL_wheel;
 
+    public static void Initialize() {
+        Drivetrain.Initialize();
     }
 
     public static void Periodic() {
-        CommandScheduler.getInstance().run();
+        // CommandScheduler.getInstance().run();
     }
 
 }

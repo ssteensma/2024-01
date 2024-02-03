@@ -12,6 +12,7 @@ import frc.robot.Commands.Autos;
 public class RobotContainer {
 
   public RobotContainer() {
+    Shared.Initialize();
     Bindings.DoBindings();
   }
 

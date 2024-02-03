@@ -11,25 +11,25 @@ public class Bindings {
     public static CommandPS4Controller  MS = new CommandPS4Controller ( pStick.pUSM_Manip );
 
     public static void DoBindings() {
-        DS_Scott();
-        MS_Scott();
+        // DS_Scott();
+        // MS_Scott();
     }
 
-    public static void DS_Scott() {
-        Shared.m_Drivetrain.setDefaultCommand( 
-            new RunCommand(
-                () -> Shared.m_Drivetrain.UpdateRobotRelative(
-                    DS.getLeftY(),
-                    DS.getLeftX(),
-                    DS.getRightX()
-                ), Shared.m_Drivetrain
-            )
-        );
+    // public static void DS_Scott() {
+    //     Shared.m_Drivetrain.setDefaultCommand( 
+    //         new RunCommand(
+    //             () -> Shared.m_Drivetrain.UpdateRobotRelative(
+    //                 DS.getLeftY(),
+    //                 DS.getLeftX(),
+    //                 DS.getRightX()
+    //             ), Shared.m_Drivetrain
+    //         )
+    //     );
 
-        // DS.b().whileTrue(
-        //     Shared.m_Subsystem.exampleMethodCommand()
-        // );
-    }
+    //     // DS.b().whileTrue(
+    //     //     Shared.m_Subsystem.exampleMethodCommand()
+    //     // );
+    // }
 
     public static void MS_Scott() {
     }

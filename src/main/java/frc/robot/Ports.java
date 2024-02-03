@@ -23,10 +23,14 @@ public class Ports {
             pCAN_RR = { 5, 6, 3 };
 
         public static int[]
-            Trans2d_FL = {  1,  1 },
-            Trans2d_FR = { -1, -1 },
-            Trans2d_RL = { -1,  1 },
-            Trans2d_RR = {  1, -1 };
+            Trans2d_FL = {  1, -1 },
+            Trans2d_FR = {  1,  1 },
+            Trans2d_RL = { -1, -1 },
+            Trans2d_RR = { -1,  1 };
+            // Trans2d_FL = {  1,  1 },
+            // Trans2d_FR = {  1, -1 },
+            // Trans2d_RL = { -1,  1 },
+            // Trans2d_RR = { -1, -1 };
     }
 
 }
