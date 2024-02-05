@@ -27,7 +27,7 @@ public class Teleop {
         if ( Math.abs(Y) < 0.05 ) { Y = 0; }
         if ( Math.abs(Z) < 0.05 ) { Z = 0; }
 
-        Drivetrain.UpdateFieldRelative( X, Y, Z );
+        Drivetrain.UpdateRobotRelative( X, Y, Z );
 
         SmartDashboard.putNumber( "Forward", X );
         SmartDashboard.putNumber( "Horizontal", Y );
