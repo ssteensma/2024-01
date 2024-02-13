@@ -27,10 +27,6 @@ public class Ports {
             Trans2d_FR = {  1,  1 },
             Trans2d_RL = { -1, -1 },
             Trans2d_RR = { -1,  1 };
-            // Trans2d_FL = {  1,  1 },
-            // Trans2d_FR = {  1, -1 },
-            // Trans2d_RL = { -1,  1 },
-            // Trans2d_RR = { -1, -1 };
     }
 
 }
