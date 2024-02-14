@@ -5,7 +5,7 @@ public class Track {
     public static void Track_00 () {
         switch ( Stage.Number ) {
             case 0:
-                Autopilot.Stop();
+                Autopilot.TurnLeftAtSpeed( 0.20 );
                 Stage.WaitForDuration( 2.00 );
                 break;
 
@@ -14,13 +14,9 @@ public class Track {
                 break;
         }
     }
-    
+
     public static void Track_01 () {
         switch ( Stage.Number ) {
-            case 0:
-                Stage.WaitForDuration( 1.00 );
-                break;
-
             default:
                 Stage.Last();
                 break;
