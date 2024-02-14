@@ -50,11 +50,12 @@ public class Autopilot {
 	}
 
 	public static void DriveWest ( double Speed ) {
-		vx = 0; vy = +Speed; vt = 0;
+		vx = 0; vy = -Speed; vt = 0;
 	}
 
+	// TESTING NOW
 	public static void DriveEast ( double Speed ) {
-		vx = Speed; vy = -Speed; vt = 0;
+		vx = 0; vy = +Speed; vt = 0;
 	}
 
 //
@@ -113,6 +114,7 @@ public class Autopilot {
 // Stop sets the robot speed vector to zero. This is useful only in Autonomous
 // mode. It should not be used elsewhere.
 //
+	// TESTED
 	public static void Stop () {
 		vx = 0; vy = 0; vt = 0;
 	}
@@ -121,12 +123,14 @@ public class Autopilot {
 // These methods rotate the robot at a constant counter-clockwise speed and
 // clockwise speed respectively. This is only useful in Autonomous mode.
 //
+	// TESTED
 	public static void TurnLeftAtSpeed ( double Speed ) {
-		vx = 0; vy = 0; vt = +Speed;
+		vx = 0; vy = 0; vt = -Speed;
 	}
 
+	// TESTED
 	public static void TurnRightAtSpeed ( double Speed ) {
-		vx = 0; vy = 0; vt = -Speed;
+		vx = 0; vy = 0; vt = +Speed;
 	}
 
 	// public static void AdjustTurnSpeed( double Speed ) {

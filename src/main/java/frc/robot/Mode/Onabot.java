@@ -9,6 +9,7 @@ public class Onabot {
     // public static TalonFX FL_wheel;
 
     public static void Initialize() {
+        Autonomous.Initialize();
         Drivetrain.Initialize();
     }
 
