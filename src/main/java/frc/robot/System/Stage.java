@@ -95,7 +95,7 @@ public class Stage {
 		RR = Math.abs( RR );
 		
 		// TAKE AN AVERAGE FOR SIMPLICITY
-		return ( FL + FR + RL + RR ) * Settings.IN_PER_CLICK / 4;
+		return ( FL + FR + RL + RR ) * 2048 / 4;
 	}
 
 	public static void ResetOdometer () {
