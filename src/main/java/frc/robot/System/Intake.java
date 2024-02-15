@@ -23,4 +23,25 @@ public class Intake {
         Rgt.set( Power );
     }
 
+    public static void Display() {
+
+    }
+
+    public static void Fast() {
+        Power = 1.00;
+    }
+
+    public static void SetPower( double power ) {
+        Power = power;
+    }
+
+    public static void Slow() {
+        Power = 0.20;
+    }
+
+    public static void Stop() {
+        Power = 0;
+    }
+
+
 }

@@ -13,12 +13,18 @@ public class Autonomous {
     public static final String kDefault = "Nothing";
     public static final String kPath01  = "Path-01";
     public static final String kPath02  = "Path-02";
+    public static final String kPath03  = "Path-03";
+    public static final String kPath04  = "Path-04";
+    public static final String kPath05  = "Path-05";
     public static final SendableChooser<String> chooser = new SendableChooser<>();
 
     public static void Initialize () {
         chooser.setDefaultOption("Nothing", kDefault );
         chooser.setDefaultOption("Path 01", kPath01  );
         chooser.setDefaultOption("Path 02", kPath02  );
+        chooser.setDefaultOption("Path 03", kPath03  );
+        chooser.setDefaultOption("Path 04", kPath04  );
+        chooser.setDefaultOption("Path 05", kPath05  );
         SmartDashboard.putData  ("PATH",    chooser  );
  
         Stage.Initialize();
