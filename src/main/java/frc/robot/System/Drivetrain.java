@@ -37,27 +37,6 @@ public class Drivetrain {
     public static SwerveDriveOdometry
         Odometry;
 
-    public static void Initialize() {
-
-        // CHASSIS SPEEDS
-        RobotSpeed = new ChassisSpeeds( 0, 0, 0 );
-
-        // MODULE DEFINITIONS
-        FL_module = new Wheel( "FL", pSwerve.CAN_FL );
-        FR_module = new Wheel( "FR", pSwerve.CAN_FR );
-        RL_module = new Wheel( "RL", pSwerve.CAN_RL );
-        RR_module = new Wheel( "RR", pSwerve.CAN_RR );
-
-        // TRANSLATION OBJECT
-        FL_Trans2d = new Translation2d( pSwerve.Trans2d_FL[0], pSwerve.Trans2d_FL[1] );
-        FR_Trans2d = new Translation2d( pSwerve.Trans2d_FR[0], pSwerve.Trans2d_FR[1] );
-        RL_Trans2d = new Translation2d( pSwerve.Trans2d_RL[0], pSwerve.Trans2d_RL[1] );
-        RR_Trans2d = new Translation2d( pSwerve.Trans2d_RR[0], pSwerve.Trans2d_RR[1] );
-
-        // KINEMATICS OBJECT
-        Kinematics = new SwerveDriveKinematics( FL_Trans2d, FR_Trans2d, RL_Trans2d, RR_Trans2d );
-    }
-
     public static void Display () {
         SmartDashboard.putNumber("Robot-vx", RobotSpeed.vxMetersPerSecond     );
         SmartDashboard.putNumber("Robot-vy", RobotSpeed.vyMetersPerSecond     );
@@ -81,7 +60,27 @@ public class Drivetrain {
         SmartDashboard.putNumber( "FRx", average - FRx );
         SmartDashboard.putNumber( "RLx", average - RLx );
         SmartDashboard.putNumber( "RRx", average - RRx );
+    }
 
+    public static void Initialize() {
+
+        // CHASSIS SPEEDS
+        RobotSpeed = new ChassisSpeeds( 0, 0, 0 );
+
+        // MODULE DEFINITIONS
+        FL_module = new Wheel( "FL", pSwerve.CAN_FL );
+        FR_module = new Wheel( "FR", pSwerve.CAN_FR );
+        RL_module = new Wheel( "RL", pSwerve.CAN_RL );
+        RR_module = new Wheel( "RR", pSwerve.CAN_RR );
+
+        // TRANSLATION OBJECT
+        FL_Trans2d = new Translation2d( pSwerve.Trans2d_FL[0], pSwerve.Trans2d_FL[1] );
+        FR_Trans2d = new Translation2d( pSwerve.Trans2d_FR[0], pSwerve.Trans2d_FR[1] );
+        RL_Trans2d = new Translation2d( pSwerve.Trans2d_RL[0], pSwerve.Trans2d_RL[1] );
+        RR_Trans2d = new Translation2d( pSwerve.Trans2d_RR[0], pSwerve.Trans2d_RR[1] );
+
+        // KINEMATICS OBJECT
+        Kinematics = new SwerveDriveKinematics( FL_Trans2d, FR_Trans2d, RL_Trans2d, RR_Trans2d );
     }
 
     public static void UpdateFieldRelative ( double vx, double vy, double vt ) {
@@ -107,9 +106,10 @@ public class Drivetrain {
         RobotSpeed = Kinematics.toChassisSpeeds( ModuleStates );
 
         // UPDATE EACH MODULE
-        FL_module.Update( ModuleStates[0] );
-        FR_module.Update( ModuleStates[1] );
-        RL_module.Update( ModuleStates[2] );
-        RR_module.Update( ModuleStates[3] );
+        // Update Steer before Drive since steer may change the drive wheel direction
+        FL_module.UpdateSteer( ModuleStates[0] ); FL_module.UpdateDrive( ModuleStates[0] );
+        FR_module.UpdateSteer( ModuleStates[1] ); FR_module.UpdateDrive( ModuleStates[1] );
+        RL_module.UpdateSteer( ModuleStates[2] ); RL_module.UpdateDrive( ModuleStates[2] );
+        RR_module.UpdateSteer( ModuleStates[3] ); RR_module.UpdateDrive( ModuleStates[3] );
     }    
 }
