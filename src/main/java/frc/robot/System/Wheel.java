@@ -21,9 +21,9 @@ public class Wheel {
 
     public double
         OldPower,  NewPower,
-        DriveSP,   DrivePV , DriveDiff,
-        SteerSP,   SteerPV , SteerDiff, SteerRatio,
-        TurnAngle, TurnDir,  TurnMag;
+        DriveSP,   DrivePV, DriveDiff,
+        SteerSP,   SteerPV, SteerDiff, SteerRatio,
+        TurnAngle, TurnDir, TurnMag;
 
     public double
         reverse = 1;
@@ -67,23 +67,15 @@ public class Wheel {
     public void UpdateDrive ( SwerveModuleState state ) {
 
         // CURRENT POWER
-        OldPower = this.DriveMotor.getMotorVoltage().getValueAsDouble();
+        OldPower = DriveMotor.getMotorVoltage().getValueAsDouble();
 
         // CALCULATE DRIVE VALUES
         DriveSP = state.speedMetersPerSecond;                       // Set Point
         DrivePV = this.DriveMotor.getVelocity().getValueAsDouble(); // Process Value 
-
-        // 
-        DriveDiff = DriveSP - DrivePV;
-
-        // CALCULATE POWER DIFFERENTIAL
-        NewPower = OldPower + ( DriveDiff ) * 0.001;
-
-        // ENSURE NEW POWER IS WITHIN LIMITS
-        if ( NewPower > 1 ) { NewPower = 1; }
+        NewPower = OldPower + DriveDiff * 0.001;
 
         // SET MOTOR CONTROLLERS
-        DriveMotor.setVoltage( NewPower );
+        DriveMotor.setVoltage( NewPower * reverse );
     }
 
     public void UpdateSteer( SwerveModuleState state ) {
@@ -91,12 +83,7 @@ public class Wheel {
 
         // CALCULATE TURN VALUES
         SteerSP = state.angle.getDegrees(); // Set Point
-        SteerPV = GetDirection() * 360;     // Process Value
-
-        // SMALLEST ANGLE TO TURN: -180 to 180
-        SteerDiff = SteerSP - SteerPV;
-        TurnAngle = ( SteerDiff + 180 ) % 360 - 180;
-
+        SteerPV = GetDirection() * 360;
         TurnMag = Math.abs   ( TurnAngle );
         TurnDir = Math.signum( TurnAngle );
 
