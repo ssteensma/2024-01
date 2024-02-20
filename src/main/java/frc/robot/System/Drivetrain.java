@@ -43,10 +43,10 @@ public class Drivetrain {
         RobotSpeed = new ChassisSpeeds( 0, 0, 0 );
 
         // MODULE DEFINITIONS
-        FL_module = new Wheel( "FL", pSwerve.pCAN_FL );
-        FR_module = new Wheel( "FR", pSwerve.pCAN_FR );
-        RL_module = new Wheel( "RL", pSwerve.pCAN_RL );
-        RR_module = new Wheel( "RR", pSwerve.pCAN_RR );
+        FL_module = new Wheel( "FL", pSwerve.CAN_FL );
+        FR_module = new Wheel( "FR", pSwerve.CAN_FR );
+        RL_module = new Wheel( "RL", pSwerve.CAN_RL );
+        RR_module = new Wheel( "RR", pSwerve.CAN_RR );
 
         // TRANSLATION OBJECT
         FL_Trans2d = new Translation2d( pSwerve.Trans2d_FL[0], pSwerve.Trans2d_FL[1] );
@@ -63,10 +63,25 @@ public class Drivetrain {
         SmartDashboard.putNumber("Robot-vy", RobotSpeed.vyMetersPerSecond     );
         SmartDashboard.putNumber("Robot-vt", RobotSpeed.omegaRadiansPerSecond );
 
-        // FL_module.Display();
-        // FR_module.Display();
-        // RL_module.Display();
-        // RR_module.Display();
+        SmartDashboard.putNumber("Auton-D", Stage.GetDistanceIn() );
+        FL_module.Display();
+        FR_module.Display();
+        RL_module.Display();
+        RR_module.Display();
+
+        double FLx = FL_module.GetSpeed();
+        double FRx = FL_module.GetSpeed();
+        double RLx = RL_module.GetSpeed();
+        double RRx = RR_module.GetSpeed();
+
+        double average = ( FLx + FRx + RRx + FLx ) / 4;
+
+        SmartDashboard.putNumber( "Avg" , average );
+        SmartDashboard.putNumber( "FLx", average - FLx );
+        SmartDashboard.putNumber( "FRx", average - FRx );
+        SmartDashboard.putNumber( "RLx", average - RLx );
+        SmartDashboard.putNumber( "RRx", average - RRx );
+
     }
 
     public static void UpdateFieldRelative ( double vx, double vy, double vt ) {

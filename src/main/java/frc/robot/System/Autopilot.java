@@ -4,42 +4,19 @@ public class Autopilot {
 
 	public static double LastHeading = 0;
 
-	public static double vx = 0;
-	public static double vy = 0;
-	public static double vt = 0;
+	public static double vx = 0; // + North
+	public static double vy = 0; // + East
+	public static double vt = 0; // + Clockwise
 
 //
-// HeadingDiff is a simple method that calculates the angle difference
-// between the current and desired heading. This can be used anywhere.
+// 	ALTERNATE FORM FOR DRIVE CARTESIAN
 //
-	public static double HeadingDiff ( double SP ) {
-
-		// CALCULATE TURN VALUES
-        double PV = Navigation.GetDirection(); // Current state (Initial)
-            SP = ( SP + 360 ) % 360;           // Ensure SP is between 0 and 360
-            double diff = -( SP - PV );        // Why is this negated? Should setInverted have been used?
-
-        // SMALLEST ANGLE TO SWIVEL: -180 to 180
-        double minTurn = ( diff + 180 ) % 360 - 180;
-		return minTurn;
+	public static void DriveStraight ( double X, double Y ) {
+		vx = X; vy = Y; vt = 0;
 	}
 
 //
-// This is a simple method for driving somewhat straight without using
-// a gyroscope. There may be situations where it is good enough.
-//
-	public static void DriveSortaStraight ( double Vx, double Vy ) {
-		vx = Vx; vy = Vy; vt = 0;
-	}
-
-	// Consider turning this into a pseudo tank drive for purposes of 
-	// driving in a straigh line using the gyroscope.
-	public static void DriveStraight ( double Vx, double Vy ) {
-		vx = Vx; vy = Vy; vt = 0;
-	}
-
-//
-//
+// DRIVE BY CARDINAL COMPASS
 //
 	public static void DriveNorth ( double Speed ) {
 		vx = +Speed; vy = 0; vt = 0;
@@ -53,13 +30,27 @@ public class Autopilot {
 		vx = 0; vy = -Speed; vt = 0;
 	}
 
-	// TESTING NOW
 	public static void DriveEast ( double Speed ) {
 		vx = 0; vy = +Speed; vt = 0;
 	}
 
 //
+// DRIVE BY COMPONENTS
 //
+	public static void DriveCartesian( double X, double Y ) {
+		vx = X; vy = Y; vt = 0;
+	}
+
+	public static void DrivePolar( double Speed, double Degrees ) { 
+		double Radians = Math.toRadians( Degrees );
+		vx = Speed * Math.cos( Radians );
+		vy = Speed * Math.sin( Radians );
+		vt = 0;
+	}
+
+
+//
+// DRIVE BY COMPASS HALVES
 //
 	public static void DriveNorthWest ( double Speed ) {
 		double radians = Math.toRadians( 45 );
@@ -86,35 +77,9 @@ public class Autopilot {
 	}
 
 //
-// TurnToHeading sets the turn power variable in Autonomous mode to reach
-// the desired heading using the shortest wheek swivel.	
-//
-	public static void TurnToHeading ( double NewHeading ) {
-		double minTurn = HeadingDiff( NewHeading );
-		double turnMag = Math.abs   ( minTurn );
-		double turnDir = Math.signum( minTurn );
-
-        // MINIMIZE WHEEL SWIVEL: +120 becomes -60
-        if ( turnMag > 0 ) {
-            turnMag  = 180 - turnMag; // Turn smaller angle
-            turnDir *= -1;            // and reverse swivel
-        }
-
-        // DETERMINE POWER USING PSEUDO PID CONTROLLER
-        if      ( turnMag > 20 ) { vt = 0.20; }
-        else if ( turnMag > 10 ) { vt = 0.10; } 
-        else if ( turnMag >  1 ) { vt = 0.08; } 
-        else                     { vt = 0.00; }
-
-		LastHeading = NewHeading;
-		vx = 0; vy = 0; vt *= turnDir;
-	}
-
-//
 // Stop sets the robot speed vector to zero. This is useful only in Autonomous
 // mode. It should not be used elsewhere.
 //
-	// TESTED
 	public static void Stop () {
 		vx = 0; vy = 0; vt = 0;
 	}
@@ -132,14 +97,5 @@ public class Autopilot {
 	public static void TurnRightAtSpeed ( double Speed ) {
 		vx = 0; vy = 0; vt = +Speed;
 	}
-
-	// public static void AdjustTurnSpeed( double Speed ) {
-	// 	// double error = Speed - Navigation.GetTurnSpeed();
-	// 	// LastPowerT  += error * 0.0001;
-	// }
-
-	// public static void DriveStraight ( double Speed, double Heading ) {
-		
-	// }
     
 }

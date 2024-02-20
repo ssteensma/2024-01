@@ -24,15 +24,15 @@ public class Stage {
 	}
 
 	public static void Display () {
-		SmartDashboard.putNumber("Robot-Stage Number",   Number             );
-		SmartDashboard.putNumber("Robot-Stage Distance", GetDistance()      );
-		SmartDashboard.putNumber("Robot-Stage Time",     GetStageTime()     );
-		SmartDashboard.putNumber("Robot-Auton Time",     GetAutonDuration() );
+		SmartDashboard.putNumber("Robot-Stage Number",   Number          );
+		SmartDashboard.putNumber("Robot-Stage Distance", GetDistanceIn() );
+		SmartDashboard.putNumber("Robot-Stage Time",     GetStageTime()  );
+		SmartDashboard.putNumber("Robot-Auton Time",     GetAutonTime()  );
 	}
 
 //
 // The Next method advances to the next stage after storing Stage
-// information. The Last method stops 
+// information. The Last method stops everything.
 //
 	public static void Begin () {
 		Autopilot.Stop();
@@ -40,9 +40,9 @@ public class Stage {
 	}
 
 	public static void Next () {
+		StageDistance[Number] = GetDistanceIn();
+		StageTime    [Number] = GetStageTime();
 		if ( ReadyToAdvance == true ) {
-			StageDistance[Number] = GetDistance();
-			StageTime    [Number] = GetStageTime();
 			ResetOdometer();
 			StageStartTime = System.currentTimeMillis();
 			Number++;
@@ -65,7 +65,7 @@ public class Stage {
 // of time that the current stage or the entire auton process has been
 // executing.
 //
-	public static double GetAutonDuration () {
+	public static double GetAutonTime () {
 		return ( System.currentTimeMillis() - AutonStartTime ) / 1000.0;
 	}
 
@@ -82,7 +82,11 @@ public class Stage {
 //
 //
 //
-	public static double GetDistance () {
+
+	// CALIBRATION: 504129 CLICKS = 30 FEET = 360 INCHES
+	// 
+
+	public static double GetDistanceIn () {
 		double FL = Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble();
 		double FR = Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble();
 		double RL = Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble();
@@ -95,7 +99,7 @@ public class Stage {
 		RR = Math.abs( RR );
 		
 		// TAKE AN AVERAGE FOR SIMPLICITY
-		return ( FL + FR + RL + RR ) * 2048 / 4;
+		return ( FL + FR + RL + RR ) * 2048 / 4 / 1400;
 	}
 
 	public static void ResetOdometer () {
@@ -106,7 +110,7 @@ public class Stage {
 	}
 
 	public static void WaitForDistance ( double Distance ) {
-		if ( GetDistance() < Distance ) {
+		if ( GetDistanceIn() < Distance ) {
 			ReadyToAdvance = false;
 		}
 	}
@@ -114,12 +118,12 @@ public class Stage {
 //
 //
 //
-	public static void WaitForHeading ( double Heading, double Tolerance ) {
-		double diff = Autopilot.HeadingDiff( Heading );
-		if ( Math.abs( diff ) < Tolerance ) {
-			ReadyToAdvance = false;
-		}
-	}
+	// public static void WaitForHeading ( double Heading, double Tolerance ) {
+	// 	double diff = Autopilot.HeadingDiff( Heading );
+	// 	if ( Math.abs( diff ) < Tolerance ) {
+	// 		ReadyToAdvance = false;
+	// 	}
+	// }
 
 //
 // Second draft of code to be used in auton. Drive forward until we notice an incline.
@@ -166,6 +170,5 @@ public class Stage {
 //		}
 //	
 //	}
-	
-	
+
 }

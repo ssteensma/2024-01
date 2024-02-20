@@ -10,7 +10,7 @@ import frc.robot.System.Track;
 
 public class Autonomous {
 
-    public static final String kDefault = "Nothing";
+    public static final String kDefault = "Do Nothing";
     public static final String kPath01  = "Path-01";
     public static final String kPath02  = "Path-02";
     public static final String kPath03  = "Path-03";
@@ -19,7 +19,7 @@ public class Autonomous {
     public static final SendableChooser<String> chooser = new SendableChooser<>();
 
     public static void Initialize () {
-        chooser.setDefaultOption("Nothing", kDefault );
+        chooser.setDefaultOption("Do Nothing", kDefault );
         chooser.setDefaultOption("Path 01", kPath01  );
         chooser.setDefaultOption("Path 02", kPath02  );
         chooser.setDefaultOption("Path 03", kPath03  );
@@ -34,9 +34,9 @@ public class Autonomous {
         Stage.Begin();
 
         switch ( chooser.getSelected() ) {
-            case "Default" : Track.Track_00(); break;
-            case "Path-01" : Track.Track_01(); break;
-            case "Path-02" : Track.Track_02(); break;
+            case "Do Nothing" : Track.Track_00(); break;
+            case "Path-01"    : Track.Track_01(); break;
+            case "Path-02"    : Track.Track_02(); break;
         }
 
         Stage.Next();

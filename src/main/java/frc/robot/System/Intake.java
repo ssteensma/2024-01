@@ -1,6 +1,7 @@
 package frc.robot.System;
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports.pIntake;
 
 public class Intake {
@@ -9,11 +10,14 @@ public class Intake {
         Lft, Rgt;
 
     public static double
-        Power = 0;
+        Power = 0.00,
+        Slow  = 0.10,
+        Med   = 0.30,
+        Fast  = 0.50;
 
     public static void Initialize() {
-        Lft = new Spark( pIntake.pPWM_Lft );
-        Rgt = new Spark( pIntake.pPWM_Rgt );
+        Lft = new Spark( pIntake.PWM_Lft );
+        Rgt = new Spark( pIntake.PWM_Rgt );
 
         // Reverse one of the motors
     }
@@ -24,24 +28,11 @@ public class Intake {
     }
 
     public static void Display() {
-
+        SmartDashboard.putNumber( "Mech/Intake Power", Power );
     }
 
-    public static void Fast() {
-        Power = 1.00;
-    }
-
-    public static void SetPower( double power ) {
-        Power = power;
-    }
-
-    public static void Slow() {
-        Power = 0.20;
-    }
-
-    public static void Stop() {
-        Power = 0;
-    }
-
+    public static void Fast() { Power = Fast; }
+    public static void Slow() { Power = Slow; }
+    public static void Stop() { Power = 0.00; }
 
 }

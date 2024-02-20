@@ -19,6 +19,8 @@ public class Wheel {
     public TalonFX     SteerMotor;
     public CAN_Encoder SteerEncoder;
 
+    public double      reverse = 1;
+
     public TalonFXConfiguration cfg;
 
     public Wheel ( String ModuleName, int[] CAN_ID ) {
@@ -36,7 +38,10 @@ public class Wheel {
     
         // DEFINE AND CONGIRUE STEER ENCODER
         SteerEncoder = new CAN_Encoder( CAN_ID[2] );
+    }
 
+    public void Display() {
+        SmartDashboard.putNumber( ModuleName + "-Speed", DriveMotor.getVelocity().getValueAsDouble() );
     }
 
     public double GetDirection () {
@@ -58,52 +63,46 @@ public class Wheel {
         double PV = GetDirection() * 360;     // Process Value
 
         SmartDashboard.putNumber( ModuleName + "-PV", PV );
-
-        // NORMALIZE 0 TO 360
-        // SP = ( SP + 360 ) % 360;
-
         SmartDashboard.putNumber( ModuleName + "-SP", SP );
 
-        // SMALLEST ANGLE TO SWIVEL: -180 to 180
-        // double minTurn = SP - PV;
+        // SMALLEST ANGLE TO TURN: -180 to 180
         double a = SP - PV;
         double minTurn = ( a + 180 ) % 360 - 180;
 
         double turnMag = Math.abs   ( minTurn );
         double turnDir = Math.signum( minTurn );
 
+        if ( turnMag > 90 && turnMag <= 180 ) {
+            turnMag = 180 - turnMag;
+            reverse = -1;
+        }
+
         SmartDashboard.putNumber( ModuleName + "-Turn Mag"  , turnMag   );
 
-        // MINIMIZE WHEEL SWIVEL: +120 BECOMES -60
-        // if ( Math.abs(turnMag) > 90 ) {
-        //     turnMag = Math.abs(turnMag) - 180;
-        //     turnDir *= -1;
-        //     reverse *= -1;
-        // }
-
         // DETERMINE POWER USING PSEUDO PID CONTROLLER
-        double SteerRatio = 0;
+        double SteerRatio = Math.abs( turnMag ) / 80;
+        if ( SteerRatio > 0.50 ) { SteerRatio = 0.20; }
 
-        if      ( Math.abs(turnMag) > 20 ) { SteerRatio = 0.80; }
-        else if ( Math.abs(turnMag) > 10 ) { SteerRatio = 0.25; }
-        else if ( Math.abs(turnMag) >  5 ) { SteerRatio = 0.08; }
-        else if ( Math.abs(turnMag) >  1 ) { SteerRatio = Math.abs(turnMag) / 100; }
-        else                               { SteerRatio = 0.00; }
+        // if      ( Math.abs(turnMag) > 20 ) { SteerRatio = 0.80; }
+        // else if ( Math.abs(turnMag) > 10 ) { SteerRatio = 0.25; }
+        // else if ( Math.abs(turnMag) >  5 ) { SteerRatio = 0.08; }
+        // else if ( Math.abs(turnMag) >  1 ) { SteerRatio = Math.abs(turnMag) / 100; }
+        // else                               { SteerRatio = 0.00; }
 
-        SmartDashboard.putNumber( ModuleName + "-SteerRatio", SteerRatio );
-        SmartDashboard.putNumber( ModuleName + "-Turn Dir"  , turnDir   );
+        SmartDashboard.putNumber( "Swerve/" + ModuleName + "-SteerRatio", SteerRatio );
+        SmartDashboard.putNumber( "Swerve/" + ModuleName + "-Turn Dir"  , turnDir   );
 
-        SmartDashboard.putNumber( ModuleName + "-Absolute", SteerEncoder.GetDirection() );
+        SmartDashboard.putNumber( "Swerve/" + ModuleName + "-Absolute", SteerEncoder.GetDirection() );
 
         double Dpower = DriveRatio * 7 * reverse;
         double Spower = SteerRatio * 7 * turnDir;
 
-        SmartDashboard.putNumber( ModuleName + "-D_Power", Dpower );
-        SmartDashboard.putNumber( ModuleName + "-S_Power", Spower );
+        SmartDashboard.putNumber( "Swerve/" + ModuleName + "-D_Power", Dpower );
+        SmartDashboard.putNumber( "Swerve/" + ModuleName + "-S_Power", Spower * reverse );
 
         // SET MOTOR CONTROLLERS
         DriveMotor.setVoltage( Dpower );
-        SteerMotor.setVoltage( Spower );
+        SteerMotor.setVoltage( Spower * reverse );
     }
 
 }
