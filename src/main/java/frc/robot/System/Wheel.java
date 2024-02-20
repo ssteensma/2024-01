@@ -70,9 +70,16 @@ public class Wheel {
         OldPower = DriveMotor.getMotorVoltage().getValueAsDouble();
 
         // CALCULATE DRIVE VALUES
-        DriveSP = state.speedMetersPerSecond;                       // Set Point
-        DrivePV = this.DriveMotor.getVelocity().getValueAsDouble(); // Process Value 
-        NewPower = OldPower + DriveDiff * 0.001;
+        DriveSP = state.speedMetersPerSecond;                  // Set Point
+        DrivePV = DriveMotor.getVelocity().getValueAsDouble(); // Process Value 
+
+        DriveDiff = DriveSP - DrivePV;
+
+        NewPower = OldPower + DriveDiff * 0.5;
+
+        if ( ModuleName == "FL" ) {
+            System.out.println( ModuleName + " " + NewPower );
+        }
 
         // SET MOTOR CONTROLLERS
         DriveMotor.setVoltage( NewPower * reverse );
@@ -84,6 +91,9 @@ public class Wheel {
         // CALCULATE TURN VALUES
         SteerSP = state.angle.getDegrees(); // Set Point
         SteerPV = GetDirection() * 360;
+
+        TurnAngle = SteerSP - SteerPV;
+
         TurnMag = Math.abs   ( TurnAngle );
         TurnDir = Math.signum( TurnAngle );
 
@@ -94,11 +104,13 @@ public class Wheel {
         }
 
         // TURN POWER USING PSEUDO PID CONTROLLER
-        SteerRatio = Math.abs( TurnMag ) * 0.00125;
+        SteerRatio = Math.abs( TurnMag ) * 0.01;
         if ( SteerRatio > 0.50 ) { SteerRatio = 0.20; }
     
         // SET MOTOR CONTROLLERS
         SteerMotor.setVoltage( SteerRatio * 7 * TurnDir );
+
+        double VAL = SteerRatio * 7 * TurnDir;
     }
 
 }
