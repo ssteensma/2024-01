@@ -1,29 +1,33 @@
 package frc.robot.System;
 
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 public class Navigation {
     
-    public static AHRS NavX;
+    public static ADXRS450_Gyro NavX;
 
     public static void Initialize() {
-        NavX = new AHRS( SerialPort.Port.kMXP );
+        NavX = new ADXRS450_Gyro();
+        NavX.calibrate();
     }
 
-    public static void Display() {
-        SmartDashboard.putNumber( "DIR", GetDirection() );
+    public static void Periodic() {
     }
 
     public static double GetDirection() {
-        return GetYaw();
+        return ( GetYaw() + 360 ) % 360;
     }
 
-    public static void   Reset()    { NavX.reset();            }
+    public static void Calibrate() {
+        NavX.calibrate();
+    }
 
-    public static double GetPitch() { return +NavX.getPitch(); }
-    public static double GetRoll()  { return +NavX.getRoll();  }
-    public static double GetYaw()   { return -NavX.getYaw();   }
+    public static void Reset() {
+        NavX.reset();
+    }
+
+    // public static double GetPitch() { return +NavX.getPitch(); }
+    // public static double GetRoll()  { return +NavX.getRoll();  }
+    public static double GetYaw()   { return -NavX.getAngle();   }
 
 }

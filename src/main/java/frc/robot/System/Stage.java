@@ -1,174 +1,80 @@
 package frc.robot.System;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Mech.Mech;
 
 public class Stage {
 
-	public static double   AutonStartTime;
-	public static double   AutonFinalTime;
-	public static double   StageStartTime;
+	public static double
+		CurrentDist,
+		CurrentTime;
 	
-	public static int      Number;
-	public static boolean  ReadyToAdvance;	
-	public static double[] StageDistance = new double[10];
-	public static double[] StageTime     = new double[10];
+	public static int
+		MaxStages = 15,
+		Number;
 
-	public static double   NegTilt = 0;
-	public static double   PosTilt = 0;
-	
+	public static boolean
+		ReadyToAdvance;	
 
-	public static void Initialize () {
-		AutonStartTime = System.currentTimeMillis();
-		StageStartTime = AutonStartTime;
-		Number         = 0;
+	public static double[]
+		StageDist,
+		StageTime,
+		SystemDist = {},
+		SystemTime = {};
+
+	public static void Reset () {
+		Number    = 0;
+		ReadyToAdvance = true;
+		SystemTime = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		SystemDist = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
 	}
 
-	public static void Display () {
-		SmartDashboard.putNumber("Robot-Stage Number",   Number          );
-		SmartDashboard.putNumber("Robot-Stage Distance", GetDistanceIn() );
-		SmartDashboard.putNumber("Robot-Stage Time",     GetStageTime()  );
-		SmartDashboard.putNumber("Robot-Auton Time",     GetAutonTime()  );
-	}
+	public static double GetDist() { return Math.abs( Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble() * 2048 / 1320 ); }
+	public static double GetStageDist( int n ) { return Math.abs( SystemDist[ n ] - SystemDist[ n-1 ] ); }
 
-//
-// The Next method advances to the next stage after storing Stage
-// information. The Last method stops everything.
-//
+	public static double GetStageNumber() { return Number; }
+
+	public static double GetSystemTime() { return System.currentTimeMillis() / 1000; }
+	public static double GetAutonTime( int n ) { return SystemTime[ n ] - SystemTime[  0  ]; }
+	public static double GetStageTime( int n ) { return SystemTime[ n ] - SystemTime[ n-1 ]; }
+
 	public static void Begin () {
 		Autopilot.Stop();
-		ReadyToAdvance = true;
+		Mech.Stop();
+		ReadyToAdvance	= true;
+
+		SystemTime[ Number ] = System.currentTimeMillis() / 1000;
+		SystemDist[ Number ] = GetDist();
 	}
 
 	public static void Next () {
-		StageDistance[Number] = GetDistanceIn();
-		StageTime    [Number] = GetStageTime();
-		if ( ReadyToAdvance == true ) {
-			ResetOdometer();
-			StageStartTime = System.currentTimeMillis();
-			Number++;
-		}
+		if ( ReadyToAdvance == true ) { Number++; }
 	}
 
-	public static void Last () {
-		AutonFinalTime = System.currentTimeMillis();
-		ReadyToAdvance = false;
+	public static void Last()        { ReadyToAdvance = false; Autopilot.Stop(); }
+	public static void Fail()        { ReadyToAdvance = false; Autopilot.Stop(); }
+	public static void WaitForever() { ReadyToAdvance = false;                   }
+
+	public static void WaitForAprilTagX( double X, double Error ) {
+		if ( Math.abs( X - CamTarget.TX() ) > Error ) { ReadyToAdvance = false; }
 	}
 
-	public static void Fail () {
-		AutonFinalTime = System.currentTimeMillis();
-		ReadyToAdvance = false;
-		Number         = 100;
+	public static void WaitForAprilTagY( double Y, double Error ) {
+		if ( Math.abs( Y - CamTarget.TY() ) > Error ) { ReadyToAdvance = false; }
 	}
 
-//
-// Get...Time methods are is useful in auton mode to determine the amount
-// of time that the current stage or the entire auton process has been
-// executing.
-//
-	public static double GetAutonTime () {
-		return ( System.currentTimeMillis() - AutonStartTime ) / 1000.0;
+	public static void WaitForMinDistance( double Distance ) {
+		if ( GetStageDist( Number ) < Distance ) { ReadyToAdvance = false; }
 	}
 
-	public static double GetStageTime () {
-		return ( System.currentTimeMillis() - StageStartTime ) / 1000.0;
+	public static void WaitForMinDuration( double Duration ) {
+		if ( GetStageTime( Number ) < Duration ) { ReadyToAdvance = false; }
 	}
 
-	public static void WaitForDuration ( double Duration ) {
-		if ( GetStageTime() < Duration ) {
-			ReadyToAdvance = false;
-		}
+	public static void WaitForHeading( double Heading, double Error ) {
+		double Current = ( Navigation.GetDirection() + 360 ) % 360;
+		if ( Math.abs( Current - Heading ) > Error ) { ReadyToAdvance = false; }
 	}
-
-//
-//
-//
-
-	// CALIBRATION: 504129 CLICKS = 30 FEET = 360 INCHES
-	// 
-
-	public static double GetDistanceIn () {
-		double FL = Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble();
-		double FR = Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble();
-		double RL = Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble();
-		double RR = Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble();
-
-		// ABS SINCE SOME WHEELS GOING BACKWARD
-		FL = Math.abs( FL );
-		FR = Math.abs( FR );
-		RL = Math.abs( RL );
-		RR = Math.abs( RR );
-		
-		// TAKE AN AVERAGE FOR SIMPLICITY
-		return ( FL + FR + RL + RR ) * 2048 / 4 / 1400;
-	}
-
-	public static void ResetOdometer () {
-		Drivetrain.FL_module.DriveMotor.setPosition( 0 );
-		Drivetrain.FR_module.DriveMotor.setPosition( 0 );
-		Drivetrain.RL_module.DriveMotor.setPosition( 0 );
-		Drivetrain.RR_module.DriveMotor.setPosition( 0 );
-	}
-
-	public static void WaitForDistance ( double Distance ) {
-		if ( GetDistanceIn() < Distance ) {
-			ReadyToAdvance = false;
-		}
-	}
-
-//
-//
-//
-	// public static void WaitForHeading ( double Heading, double Tolerance ) {
-	// 	double diff = Autopilot.HeadingDiff( Heading );
-	// 	if ( Math.abs( diff ) < Tolerance ) {
-	// 		ReadyToAdvance = false;
-	// 	}
-	// }
-
-//
-// Second draft of code to be used in auton. Drive forward until we notice an incline.
-// At that point we advance stages and continue to drive forward until we notice a
-// balanced condition. It would be good to also have a maximum distance travelled for
-// each stage and fail if the condition is not met.
-//
-	public static void WaitForBalance ( double Tolerance ) {
-		double pitch = Navigation.GetPitch();
-		if ( Math.abs( pitch ) > Tolerance ) {
-			ReadyToAdvance = false;
-		}
-	}
-
-	public static void WaitForIncline ( double Angle ) {
-		double pitch = Navigation.GetPitch();
-		if ( Math.abs( pitch ) < Angle ) {
-			ReadyToAdvance = false;
-		}
-	}
-
-//
-//
-//
-	// public static void WaitForWheelAlignment ( double Angle ) {
-
-	// }
-	// public static void WaitForHeading ( double Heading, double Tolerance ) {
-
-	// }
-
-//	public static boolean WaitForHeading( double targetHeading, double tolerance ) {
-//		if ( Math.abs(Navigation.GetDelta(targetHeading)) < tolerance ) { return true; }
-//	}
-//	
-//
-//	public static boolean WaitForTarget( double tolerance ) {
-//		if ( Drivetrain.TargetMin<-tolerance || Drivetrain.TargetMax>tolerance ) {
-//			StillWorking = true;
-//			return true;
-//		}
-//		else {
-//			return false;
-//		}
-//	
-//	}
 
 }

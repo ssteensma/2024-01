@@ -2,8 +2,8 @@ package frc.robot.System;
 
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Hardware.CAN_Encoder;
 
+import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -12,7 +12,7 @@ public class Wheel {
     public String
         ModuleName;
 
-    public CAN_Encoder
+    public CANcoder
         SteerEncoder;
 
     public TalonFX
@@ -20,23 +20,16 @@ public class Wheel {
         SteerMotor;
 
     public double
-        OldPower,  NewPower,
-        DriveSP,   DrivePV, DriveDiff,
-        SteerSP,   SteerPV, SteerDiff, SteerRatio,
-        TurnAngle, TurnDir, TurnMag;
+        DrvSP, DrvPV, DrvPwr, DrvErr,
+        StrSP, StrPV, StrPwr, StrErr,
+        TurnAng, TurnDir, TurnMag;
 
     public double
-        reverse = 1;
+        reverse  = 1;
 
-    public void Display() {
-        PutNum( "DrvDif", DriveDiff );
-        PutNum( "StrDif", SteerDiff );
-        PutNum( "Power",  NewPower  );
-        PutNum( "Speed",  DriveMotor.getVelocity().getValueAsDouble() );
-    }
-
-    public void PutNum( String text, double value ) {
-        SmartDashboard.putNumber( ModuleName + "-" + text, value );
+    public void Reset() {
+        DrvPwr = 0; DrvSP = 0;
+        StrPwr = 0; StrSP = 0;
     }
 
     public Wheel ( String ModuleName, int[] CAN_ID ) {
@@ -53,64 +46,77 @@ public class Wheel {
         SteerMotor.setNeutralMode( NeutralModeValue.Brake );
     
         // DEFINE AND CONGIRUE STEER ENCODER
-        SteerEncoder = new CAN_Encoder( CAN_ID[2] );
+        SteerEncoder = new CANcoder( CAN_ID[2] );
     }
 
-    public double GetDirection () {
-        return SteerEncoder.GetDirection();
+    public double GetDirection() {
+        return SteerEncoder.getAbsolutePosition().getValueAsDouble() * 360;
     }
+
+    public double GetPower() { return DrvPwr; }
 
     public double GetSpeed () {
-        return Math.abs( DriveMotor.getVelocity().getValueAsDouble() );
+        return Math.abs( DriveMotor.getVelocity().getValueAsDouble() / 105 );
     }
 
     public void UpdateDrive ( SwerveModuleState state ) {
 
-        // CURRENT POWER
-        OldPower = DriveMotor.getMotorVoltage().getValueAsDouble();
+        DrvSP  = state.speedMetersPerSecond;
+        DrvPV  = Math.abs( DriveMotor.getVelocity().getValueAsDouble() / 105 );
 
-        // CALCULATE DRIVE VALUES
-        DriveSP = state.speedMetersPerSecond;                  // Set Point
-        DrivePV = DriveMotor.getVelocity().getValueAsDouble(); // Process Value 
+        // PID CONTROLLER
+        DrvErr =  DrvSP  - DrvPV;
 
-        DriveDiff = DriveSP - DrivePV;
+        double Factor = 0.10;
+        if ( Math.abs( DrvErr ) < 0.01 ) { Factor = 0.00002; }  
 
-        NewPower = OldPower + DriveDiff * 0.5;
+        DrvPwr += DrvErr * Factor;
 
-        if ( ModuleName == "FL" ) {
-            System.out.println( ModuleName + " " + NewPower );
+        SmartDashboard.putNumber( ModuleName + "NEW Drv SP", DrvSP );
+        SmartDashboard.putNumber( ModuleName + "NEW Drv PV", DrvPV );
+
+        if ( DrvSP == 0 ) { DrvPwr = 0; } 
+
+        if ( ModuleName == "RR" ) {
+            SmartDashboard.putNumber( ModuleName + "Drive Factor", Factor );
+            SmartDashboard.putNumber( ModuleName + "Drive Power", DrvPwr );
+            SmartDashboard.putNumber( ModuleName + "Drive Error", DrvErr );
+            SmartDashboard.putNumber( ModuleName + "Drive Reverse", reverse );
         }
 
-        // SET MOTOR CONTROLLERS
-        DriveMotor.setVoltage( NewPower * reverse );
+        DriveMotor.set( DrvPwr * reverse );
     }
 
     public void UpdateSteer( SwerveModuleState state ) {
         reverse = 1; // This variable impacts the DrivePower
 
-        // CALCULATE TURN VALUES
-        SteerSP = state.angle.getDegrees(); // Set Point
-        SteerPV = GetDirection() * 360;
+        StrSP  = state.angle.getDegrees();
+        StrPV  = GetDirection();    
 
-        TurnAngle = SteerSP - SteerPV;
+        TurnAng = ( StrSP + 360 - StrPV + 180 ) % 360 - 180;
+        TurnMag = Math.abs   ( TurnAng );
+        TurnDir = Math.signum( TurnAng );
 
-        TurnMag = Math.abs   ( TurnAngle );
-        TurnDir = Math.signum( TurnAngle );
+        if      ( TurnMag >=   0 && TurnMag <   90 ) { }
+        else if ( TurnMag >=  90 && TurnMag <= 180 ) { TurnMag = 180 - TurnMag; reverse = -1; }
+        else if ( TurnMag >= 180 && TurnMag <= 270 ) { TurnMag = TurnMag - 180; reverse = -1; }
+        else if ( TurnMag >= 270 && TurnMag <  360 ) { TurnMag = 360 - TurnMag; reverse = -1; }
+        else if ( TurnMag <    0 && TurnMag >= -90 ) { }
+        else if ( TurnMag <  -90 && TurnMag > -180 ) { TurnMag = 180 - TurnMag; reverse = -1; }
+        else if ( TurnMag == -180                  ) { TurnMag = 0;             reverse = -1; }
 
-        // TURN +60 INSTEAD OF -120 AND REVERSE DIRECTION 
-        if ( TurnMag > 90 && TurnMag <= 180 ) {
-            TurnMag = 180 - TurnMag;
-            reverse = -1;
-        }
+        // PID CONTROLLER
+        StrPwr = Math.abs( TurnMag ) * 0.01;
 
-        // TURN POWER USING PSEUDO PID CONTROLLER
-        SteerRatio = Math.abs( TurnMag ) * 0.01;
-        if ( SteerRatio > 0.50 ) { SteerRatio = 0.20; }
-    
-        // SET MOTOR CONTROLLERS
-        SteerMotor.setVoltage( SteerRatio * 7 * TurnDir );
+        if ( StrPwr < -0.35 ) { StrPwr = -0.35;  }
+        if ( StrPwr >  0.35 ) { StrPwr =  0.35;  }
 
-        double VAL = SteerRatio * 7 * TurnDir;
+            SmartDashboard.putNumber( ModuleName + "-TurnAng", TurnAng );
+            SmartDashboard.putNumber( ModuleName + "-TurnMag", TurnMag );
+            SmartDashboard.putNumber( ModuleName + "-TurnDir", TurnDir );
+            SmartDashboard.putNumber( ModuleName + "-Str Pwr", StrPwr  );
+
+        SteerMotor.set( StrPwr * TurnDir );
     }
 
 }

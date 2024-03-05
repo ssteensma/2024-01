@@ -6,7 +6,6 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports.pSwerve;
 
 public class Drivetrain {
@@ -37,30 +36,10 @@ public class Drivetrain {
     public static SwerveDriveOdometry
         Odometry;
 
-    public static void Display () {
-        SmartDashboard.putNumber("Robot-vx", RobotSpeed.vxMetersPerSecond     );
-        SmartDashboard.putNumber("Robot-vy", RobotSpeed.vyMetersPerSecond     );
-        SmartDashboard.putNumber("Robot-vt", RobotSpeed.omegaRadiansPerSecond );
-
-        SmartDashboard.putNumber("Auton-D", Stage.GetDistanceIn() );
-        FL_module.Display();
-        FR_module.Display();
-        RL_module.Display();
-        RR_module.Display();
-
-        double FLx = FL_module.GetSpeed();
-        double FRx = FL_module.GetSpeed();
-        double RLx = RL_module.GetSpeed();
-        double RRx = RR_module.GetSpeed();
-
-        double average = ( FLx + FRx + RRx + FLx ) / 4;
-
-        SmartDashboard.putNumber( "Avg" , average );
-        SmartDashboard.putNumber( "FLx", average - FLx );
-        SmartDashboard.putNumber( "FRx", average - FRx );
-        SmartDashboard.putNumber( "RLx", average - RLx );
-        SmartDashboard.putNumber( "RRx", average - RRx );
-    }
+    public static double
+		vx = 0, // + North
+		vy = 0, // + East
+		vt = 0; // + Clockwise
 
     public static void Initialize() {
 
@@ -83,8 +62,8 @@ public class Drivetrain {
         Kinematics = new SwerveDriveKinematics( FL_Trans2d, FR_Trans2d, RL_Trans2d, RR_Trans2d );
     }
 
-    public static void UpdateFieldRelative ( double vx, double vy, double vt ) {
-        Rotation2d    Rot2d  = Rotation2d.fromDegrees( Navigation.NavX.getYaw() );
+    public static void UpdateFieldRelative ( double vx, double vy, double vt) {
+        Rotation2d    Rot2d  = Rotation2d.fromDegrees( Navigation.GetYaw() );
         ChassisSpeeds Speeds = ChassisSpeeds.fromFieldRelativeSpeeds( vx, vy, vt, Rot2d );
         Update( Speeds );
     }
@@ -111,5 +90,12 @@ public class Drivetrain {
         FR_module.UpdateSteer( ModuleStates[1] ); FR_module.UpdateDrive( ModuleStates[1] );
         RL_module.UpdateSteer( ModuleStates[2] ); RL_module.UpdateDrive( ModuleStates[2] );
         RR_module.UpdateSteer( ModuleStates[3] ); RR_module.UpdateDrive( ModuleStates[3] );
-    }    
+    }
+    
+    public static void Reset() {
+        FL_module.Reset();
+        FR_module.Reset();
+        RL_module.Reset();
+        RR_module.Reset();
+    }
 }
