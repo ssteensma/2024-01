@@ -8,8 +8,8 @@ public class Track00 {
     public static void Periodic() {
         switch ( Stage.Number ) {
             case 0:
-                break;            
-        
+                break;
+
             default:
                 Stage.Last();
                 break;

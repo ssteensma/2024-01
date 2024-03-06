@@ -18,6 +18,7 @@ public class Onabot {
         Intake       .Initialize();
         CamIntake    .Initialize();
         CamTarget    .Initialize();
+        Climber      .Initialize();
         Mover        .Initialize();
         Roller       .Initialize();
         Shooter      .Initialize();
@@ -45,6 +46,7 @@ public class Onabot {
         Intake       .Periodic();
         CamIntake    .Periodic();
         CamTarget    .Periodic();
+        Climber      .Periodic();
         Mover        .Periodic();
         Navigation   .Periodic();
         Roller       .Periodic();
@@ -53,6 +55,7 @@ public class Onabot {
 
     public static void ResetMechanism() {
         Aimer         .Reset();
+        Climber       .Reset();
         Intake        .Reset();
         CamIntake     .Reset();
         CamTarget     .Reset();

@@ -2,7 +2,8 @@ package frc.robot.Auton;
 
 import frc.robot.System.*;
 
-// CROSS LINE
+// CROSS LINE ONLY
+// BATTERY AWAY FROM WALL
 
 public class Track01 {
 
@@ -12,18 +13,8 @@ public class Track01 {
                 break;
 
             case 1:
-                Autopilot.TurnLftAtSpeed( 0.10  );
-                Stage.WaitForHeading( 90, 4 );
-                break;
-
-            case 2:
-                Autopilot.Stop();
-                Stage.WaitForMinDuration( 2.00 );
-                break;
-            
-            case 3:
-                Autopilot.TurnLftAtSpeed( 0.10 );
-                Stage.WaitForHeading( 0, 4 );
+                Autopilot.DriveS( 0.20 );
+                Stage.WaitForMinDistance( 120 );
                 break;
 
             default:

@@ -40,6 +40,7 @@ public class Autopilot {
 // TRANSLATION MOVEMENT ONLY
 //
 	public static void TranslateN ( double Speed ) { Drivetrain.vx = -Speed; Drivetrain.vy = 0;      Drivetrain.vt = 0; }
+	public static void TranslateS ( double Speed ) { Drivetrain.vx = +Speed; Drivetrain.vy = 0;      Drivetrain.vt = 0; }
 	public static void TranslateW ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = -Speed; Drivetrain.vt = 0; }
 
 //

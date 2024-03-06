@@ -37,7 +37,8 @@ public class Teleop {
         } else if ( DS.getXButton() ) {
             Mech.ShootLo();
         } else if ( DS.getYButton() ) {
-            Mech.ShootHi();
+            Mover.Forward();
+            Shooter.Shoot( 1.00 );
         } else {
             Mech.Stop();
         }
@@ -45,6 +46,12 @@ public class Teleop {
         // RESET NAVIGATION
         if ( DS.getBackButton() ) {
             Navigation.Reset();
+        }
+
+        if ( DS.getStartButton() ) {
+            Climber.Climb( 1.00 );
+        } else {
+            Climber.Stop();
         }
 
         X *= 0.4;

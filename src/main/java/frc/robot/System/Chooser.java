@@ -5,6 +5,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Chooser {
 
+    public static final String[] pStart = {
+        "Red Wall",
+        "Red Left",
+        "Red Center",
+        "Red Right",
+        "Blue Wall",
+        "Blue Left",
+        "Blue Center",
+        "Blue Right"
+    };
+
     public static final String[] kPath = {
         "Do Nothing",
         "Path-01",

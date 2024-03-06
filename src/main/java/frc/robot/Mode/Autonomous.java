@@ -42,7 +42,7 @@ public class Autonomous {
             case "Path-00" : Track00.Periodic(); break;
             case "Path-01" : Track01.Periodic(); break;
             case "Path-02" : Track02.Periodic(); break;
-            // case "Path-03" : Track03.Periodic(); break;
+            case "Path-03" : Track03.Periodic(); break;
             case "Path-04" : Track04.Periodic(); break;
             case "Path-05" : Track05.Periodic(); break;
             case "Path-06" : Track06.Periodic(); break;
