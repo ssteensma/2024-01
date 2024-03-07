@@ -16,7 +16,7 @@ public class Track02 {
                 break;
 
             case 2:
-                Mover.Forward();
+                Mechanism.ShootHi();
                 Stage.WaitForMinDuration( 3.00 );
                 break;
 

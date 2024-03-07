@@ -48,12 +48,21 @@ public class Ports {
             CAN_RL = { 18, 17, 8 },
             CAN_FR = { 14, 13, 6 },
             CAN_FL = { 12, 11, 5 };
-            
+    
+        public static int
+            kWheelBase  = 29, // Front-to-back distance from wheel to wheel
+            kTrackWidth = 29; // Side-to-side width from wheel to wheel
+        
         public static int[]
-            Trans2d_FL = { -1, -1 },
-            Trans2d_FR = { -1,  1 },
-            Trans2d_RL = {  1, -1 },
-            Trans2d_RR = {  1,  1 };
+            Trans2d_FL = {  kWheelBase/2,  kTrackWidth/2 },
+            Trans2d_FR = {  kWheelBase/2, -kTrackWidth/2 },
+            Trans2d_RL = { -kWheelBase/2,  kTrackWidth/2 },
+            Trans2d_RR = { -kWheelBase/2, -kTrackWidth/2 };
+
+            // Trans2d_FL = { -1, -1 },
+            // Trans2d_FR = { -1,  1 },
+            // Trans2d_RL = {  1, -1 },
+            // Trans2d_RR = {  1,  1 };
 
     }
 }

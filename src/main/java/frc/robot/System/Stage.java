@@ -1,7 +1,5 @@
 package frc.robot.System;
 
-import frc.robot.Mech.Mechanism;
-
 public class Stage {
 
 	public static double
@@ -9,7 +7,7 @@ public class Stage {
 		CurrentTime;
 	
 	public static int
-		MaxStages = 15,
+		MaxStages = 25,
 		Number;
 
 	public static boolean
@@ -24,9 +22,8 @@ public class Stage {
 	public static void Reset () {
 		Number    = 0;
 		ReadyToAdvance = true;
-		SystemTime = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		SystemDist = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
+		SystemTime = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		SystemDist = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	}
 
 	public static double GetDist() { return Math.abs( Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble() * 2048 / 1320 ); }

@@ -31,14 +31,17 @@ public class Autonomous {
         SmartDashboard.putNumber( "Stage 3 Time",  Stage.GetStageTime( 3 ) );
         SmartDashboard.putNumber( "Stage 4 Time",  Stage.GetStageTime( 4 ) );
         SmartDashboard.putNumber( "Stage 5 Time",  Stage.GetStageTime( 5 ) );
-        SmartDashboard.putNumber( "Stage 6 Time",  Stage.GetStageTime( 6 ) );
-
+ 
         SmartDashboard.putNumber( "Stage 1 Dist",  Stage.GetStageDist( 1 ) );
         SmartDashboard.putNumber( "Stage 2 Dist",  Stage.GetStageDist( 2 ) );
         SmartDashboard.putNumber( "Stage 3 Dist",  Stage.GetStageDist( 3 ) );
         SmartDashboard.putNumber( "Stage 4 Dist",  Stage.GetStageDist( 4 ) );
         SmartDashboard.putNumber( "Stage 5 Dist",  Stage.GetStageDist( 5 ) );
-        SmartDashboard.putNumber( "Stage 6 Dist",  Stage.GetStageDist( 6 ) );
+ 
+        for ( int i=6; i<=15; i++ ) {
+            SmartDashboard.putNumber( "Stage " + i + " Time",  Stage.GetStageTime( i ) );
+            SmartDashboard.putNumber( "Stage " + i + " Dist",  Stage.GetStageDist( i ) );
+        }
 
         switch ( SelectedAuton ) {
             case "Path-00" : Track00.Periodic(); break;
@@ -46,11 +49,11 @@ public class Autonomous {
             case "Path-02" : Track02.Periodic(); break;
             case "Path-03" : Track03.Periodic(); break;
             case "Path-04" : Track04.Periodic(); break;
-            case "Path-05" : Track05.Periodic(); break;
-            case "Path-06" : Track06.Periodic(); break;
-            case "Path-07" : Track07.Periodic(); break;
-            case "Path-08" : Track08.Periodic(); break;
-            case "Path-09" : Track09.Periodic(); break;
+            case "Path-05" : x_Track05.Periodic(); break;
+            case "Path-06" : x_Track05.Periodic(); break;
+            case "Path-07" : x_Track07.Periodic(); break;
+            case "Path-08" : x_Track08.Periodic(); break;
+            case "Path-09" : x_Track09.Periodic(); break;
         }
 
         Stage.Next();

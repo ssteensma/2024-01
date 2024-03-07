@@ -1,6 +1,4 @@
-package frc.robot.Mech;
-
-import frc.robot.System.*;
+package frc.robot.System;
 
 public class Mechanism {
 

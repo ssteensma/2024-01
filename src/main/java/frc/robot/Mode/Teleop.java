@@ -2,7 +2,6 @@ package frc.robot.Mode;
 
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Mech.Mechanism;
 import frc.robot.Ports.pStick;
 import frc.robot.System.*;
 

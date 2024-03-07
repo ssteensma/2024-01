@@ -1,9 +1,8 @@
 package frc.robot.Auton;
 
-import frc.robot.Mech.Mechanism;
 import frc.robot.System.*;
 
-// FROM CENTER - SHOOT AND BACK UP
+// FROM CENTER - SHOOT AND BACK UP FROM CENTER
 
 public class Track03 {
     public static void Periodic() {
@@ -17,7 +16,7 @@ public class Track03 {
                 break;
 
             case 2:
-                Mechanism.ShootLo();
+                Mechanism.ShootHi();
                 Stage.WaitForMinDuration( 2.00 );
                 break;
 

@@ -1,10 +1,12 @@
 package frc.robot.System;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.Ports.pSwerve;
 
@@ -36,6 +38,9 @@ public class Drivetrain {
     public static SwerveDriveOdometry
         Odometry;
 
+    // ROBOT POSE OBJECT
+    public static Pose2d Pose;
+
     public static double
 		vx = 0, // + North
 		vy = 0, // + East
@@ -60,6 +65,36 @@ public class Drivetrain {
 
         // KINEMATICS OBJECT
         Kinematics = new SwerveDriveKinematics( FL_Trans2d, FR_Trans2d, RL_Trans2d, RR_Trans2d );
+
+        // ODOMETRY OBJECT
+        Odometry = new SwerveDriveOdometry(
+            Kinematics, Navigation.NavX.getRotation2d(),
+            new SwerveModulePosition[] {
+                FL_module.GetPosition(),
+                FR_module.GetPosition(),
+                RL_module.GetPosition(),
+                RR_module.GetPosition()
+            },
+            new Pose2d( 0.00, 0.00, new Rotation2d() )
+        );
+    }
+
+    public static Pose2d GetPose() {
+        return Pose;
+    }
+
+    // X is down the field, Y is horizontal position, Angle is forward measured CCW
+    public static void ResetPose( double X, double Y, double Angle ) {
+        Odometry = new SwerveDriveOdometry(
+            Kinematics, Navigation.NavX.getRotation2d(),
+            new SwerveModulePosition[] {
+                FL_module.GetPosition(),
+                FR_module.GetPosition(),
+                RL_module.GetPosition(),
+                RR_module.GetPosition()
+            },
+            new Pose2d( X, Y, new Rotation2d( Angle ) )
+        );
     }
 
     public static void UpdateFieldRelative ( double vx, double vy, double vt) {
@@ -83,6 +118,17 @@ public class Drivetrain {
 
         // UPDATE ROBOT SPEEDS
         RobotSpeed = Kinematics.toChassisSpeeds( ModuleStates );
+
+        // UPDATE ODOMETRY
+        Pose = Odometry.update(
+            Navigation.NavX.getRotation2d(),
+            new SwerveModulePosition[] {
+                FL_module.GetPosition(),
+                FR_module.GetPosition(),
+                RL_module.GetPosition(),
+                RR_module.GetPosition()
+            }
+        );
 
         // UPDATE EACH MODULE
         // Update Steer before Drive since steer may change the drive wheel direction
