@@ -1,5 +1,6 @@
 package frc.robot.Auton;
 
+import frc.robot.Mech.Mechanism;
 import frc.robot.System.*;
 
 // FROM CENTER - SHOOT AND BACK UP
@@ -16,17 +17,11 @@ public class Track03 {
                 break;
 
             case 2:
-                Mover.Forward();
-                Shooter.Shoot( 1.00 );
+                Mechanism.ShootLo();
                 Stage.WaitForMinDuration( 2.00 );
                 break;
 
             case 3:
-                Mover.Stop();
-                Shooter.Stop();
-                break;
-
-            case 4:
                 Autopilot.DriveS( 0.35 );
                 Stage.WaitForMinDistance( 120 );
                 break;

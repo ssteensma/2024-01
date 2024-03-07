@@ -2,7 +2,7 @@ package frc.robot.Mode;
 
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Mech.Mech;
+import frc.robot.Mech.Mechanism;
 import frc.robot.Ports.pStick;
 import frc.robot.System.*;
 
@@ -40,12 +40,12 @@ public class Teleop {
         Z *= 0.2;
 
         // MANIP STICK BUTTONS
-        if      ( MS.getYButton() ) { Mech.ShootHi(); }
-        else if ( MS.getAButton() ) { Mech.ShootLo(); }
-        else if ( MS.getXButton() ) { Mech.Collect(); }
-        else if ( MS.getBButton() ) { Mech.Ascend();  }
-        else if ( MS.getBButton() ) { Mech.Descend(); }
-        else                        { Mech.Stop();    }
+        if      ( MS.getYButton    () ) { Mechanism.ShootHi (); }
+        else if ( MS.getAButton    () ) { Mechanism.ShootLo (); }
+        else if ( MS.getXButton    () ) { Mechanism.Collect (); }
+        else if ( MS.getStartButton() ) { Mechanism.Ascend  (); }
+        else if ( MS.getBackButton () ) { Mechanism.Descend (); }
+        else                            { Mechanism.Stop    (); }
 
         // GET RING AUTOMATICALLY
         if ( DS.getR2Button() ) {
@@ -54,7 +54,7 @@ public class Teleop {
             Z = CamTarget.TX() * -0.008;
 
             if ( X > 0.10 ) { X = 0.10; }
-            Mech.Collect();
+            Mechanism.Collect();
             
             if ( CamTarget.TY() < -18 ) {
                 X = 0.08;

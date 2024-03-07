@@ -1,5 +1,6 @@
 package frc.robot.Auton;
 
+import frc.robot.Mech.Mechanism;
 import frc.robot.System.*;
 
 // FROM CENTER - SHOOT, BACKUP, PICK UP, SHOOT, BACKUP
@@ -12,45 +13,39 @@ public class Track04 {
         
             case 1:
                 Shooter.Shoot( 1.00 );
-                Stage.WaitForMinDuration( 1.50 );
+                Stage.WaitForMinDuration( 1.00 );
                 break;
 
             case 2:
-                Mover.Forward();
-                Shooter.Shoot( 1.00 );
+                Mechanism.ShootHi();
                 Stage.WaitForMinDuration( 2.00 );
                 break;
 
             case 3:
-                Mover.Stop();
-                Shooter.Stop();
-                break;
-
-            case 4:
                 // Autopilot.DriveS( 0.35 );
                 // Stage.WaitForMinDistance( 80 );
                 break;
 
-            case 5:
+            case 4:
                 Autopilot.DriveToRing();
-                Intake.Suck();
+                Mechanism.Collect();
                 Stage.WaitForRing();
                 break;
 
-            case 6:
+            case 5:
                 Autopilot.DriveS( 0.30 );
-                Intake.Suck();
-                Mover.Forward();
-                Roller.Suck();
-                Stage.WaitForMinDistance( 12 );
+                Mechanism.Collect();
+                Stage.WaitForMinDistance( 8 );
+                break;
+
+            case 6:
+                Mechanism.Collect();
+                Stage.WaitForMinDuration( 1.00 );
                 break;
 
             case 7:
-                Autopilot.Stop();
-                Intake.Suck();
-                Mover.Forward();
-                Roller.Suck();
-                Stage.WaitForMinDuration( 1.00 );
+                Autopilot.AdjustToHeading( 0 );
+                Stage.WaitForHeading( 0, 4 );
                 break;
 
             case 8:
@@ -59,28 +54,13 @@ public class Track04 {
                 break;
 
             case 9:
-                Autopilot.Stop();
+                Shooter.Shoot( 1.00 );
+                Stage.WaitForMinDuration( 1.00 );
                 break;
 
             case 10:
-                Shooter.Shoot( 1.00 );
-                Stage.WaitForMinDuration( 1.50 );
-                break;
-
-            case 11:
-                Mover.Forward();
-                Shooter.Shoot( 1.00 );
+                Mechanism.ShootHi();
                 Stage.WaitForMinDuration( 2.00 );
-                break;
-
-            case 12:
-                Mover.Stop();
-                Shooter.Stop();
-                break;
-
-            case 13:
-                // Autopilot.DriveS( 0.35 );
-                // Stage.WaitForMinDistance( 80 );
                 break;
 
             default:

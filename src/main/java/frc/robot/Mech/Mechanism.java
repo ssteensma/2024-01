@@ -2,7 +2,7 @@ package frc.robot.Mech;
 
 import frc.robot.System.*;
 
-public class Mech {
+public class Mechanism {
 
     public static void Stop() {
         Aimer.Extend();
@@ -24,7 +24,7 @@ public class Mech {
 
     public static void Ascend() {
         Aimer.Extend();
-        Climber.Ascend();
+        Climber.AutoAscend();
         Intake.Stop();
         Mover.Stop();
         Roller.Stop();
@@ -33,7 +33,7 @@ public class Mech {
 
     public static void Descend() {
         Aimer.Extend();
-        Climber.Descend();
+        Climber.AutoDescend();
         Intake.Stop();
         Mover.Stop();
         Roller.Stop();

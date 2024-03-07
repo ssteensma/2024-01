@@ -37,7 +37,7 @@ public class Autopilot {
 		double X = ( CamTarget.TY() - -20 ) * 0.02;
 		double Y = 0;
 		double Z = CamTarget.TX() * -0.008;
-		if ( X > 0.25 ) { X = 0.25; }
+		if ( X > 0.15 ) { X = 0.15; }
 
 		Drivetrain.vx = X;
 		Drivetrain.vy = Y;

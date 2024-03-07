@@ -1,6 +1,6 @@
 package frc.robot.System;
 
-import frc.robot.Mech.Mech;
+import frc.robot.Mech.Mechanism;
 
 public class Stage {
 
@@ -40,7 +40,7 @@ public class Stage {
 
 	public static void Begin () {
 		Autopilot.Stop();
-		Mech.Stop();
+		Mechanism.Stop();
 		ReadyToAdvance	= true;
 
 		SystemTime[ Number ] = System.currentTimeMillis() / 1000;

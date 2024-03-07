@@ -19,7 +19,7 @@ public class Shuffle {
     public static void Initialize() {
 
         // AUTON TAB
-        AutoTab.add( "Auton Chooser"   , Chooser    .chooser                      ).withPosition( 1, 1 ).withSize( 2, 1 );
+        AutoTab.add( "Auton Chooser"   , Chooser    .autonchooser                      ).withPosition( 1, 1 ).withSize( 2, 1 );
         // AutoTab.add( "Stage Distance"  , Stage      .GetStageDist( Stage.Number ) ).withPosition( 2, 1 ).withSize( 2, 1 );
         AutoTab.add( "Stage Number"    , Stage      .GetStageNumber()             ).withPosition( 3, 1 ).withSize( 2, 1 );
 

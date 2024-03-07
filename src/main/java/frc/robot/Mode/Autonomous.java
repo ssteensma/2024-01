@@ -7,14 +7,16 @@ import frc.robot.System.*;
 public class Autonomous {
 
     public static String
-        SelectedAuton = "n/a";
+        SelectedAuton = "n/a",
+        SelectedStart = "n/a";
 
     public static void Initialize () {
         Autopilot   .Reset();
         Navigation  .Reset();
         Stage       .Reset();
 
-        SelectedAuton = Chooser.GetSelected();
+        SelectedAuton = Chooser.GetAuton();
+        SelectedStart = Chooser.GetStart();
     }
 
     public static void Display() {}
