@@ -39,7 +39,8 @@ public class Drivetrain {
         Odometry;
 
     // ROBOT POSE OBJECT
-    public static Pose2d Pose;
+    public static Pose2d
+        Pose;
 
     public static double
 		vx = 0, // + North
@@ -68,7 +69,8 @@ public class Drivetrain {
 
         // ODOMETRY OBJECT
         Odometry = new SwerveDriveOdometry(
-            Kinematics, Navigation.NavX.getRotation2d(),
+            Kinematics,
+            Navigation.NavX.getRotation2d(),
             new SwerveModulePosition[] {
                 FL_module.GetPosition(),
                 FR_module.GetPosition(),
@@ -86,7 +88,8 @@ public class Drivetrain {
     // X is down the field, Y is horizontal position, Angle is forward measured CCW
     public static void ResetPose( double X, double Y, double Angle ) {
         Odometry = new SwerveDriveOdometry(
-            Kinematics, Navigation.NavX.getRotation2d(),
+            Kinematics,
+            Navigation.NavX.getRotation2d(),
             new SwerveModulePosition[] {
                 FL_module.GetPosition(),
                 FR_module.GetPosition(),

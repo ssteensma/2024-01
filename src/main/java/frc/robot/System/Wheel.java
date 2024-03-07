@@ -13,11 +13,11 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 public class Wheel {
 
     public static double
-        kWheelRadiusInches      = 0,
-        kGearRatio              = 0,
-        kCountsPerRev           = 0,
-        k100msPerSecond         = 0,
-        kMotorRotationsPer100ms = 0;
+        kWheelRadiusInches      = 2,
+        kGearRatio              = 14, 
+        kCountsPerRev           = 2048,
+        k100msPerSecond         = 10,
+        kWheelCircumference     = 2 * Math.PI * Units.inchesToMeters(kWheelRadiusInches);
 
     public String
         ModuleName;
@@ -76,27 +76,28 @@ public class Wheel {
         return Math.abs( DriveMotor.getVelocity().getValueAsDouble() / 105 );
     }
 
-    private int DistanceToNativeUnits( double positionMeters ) {
-        double wheelRotations = positionMeters/(2 * Math.PI * Units.inchesToMeters( kWheelRadiusInches ) );
-        double motorRotations = wheelRotations * kGearRatio;
-        int sensorCounts = (int)(motorRotations * kCountsPerRev);
-        return sensorCounts;
-      }
+    public int DistanceToNativeUnits( double PositionMeters ) {
+        double WheelRotations = PositionMeters / kWheelCircumference;
+        double MotorRotations = WheelRotations * kGearRatio;
+        int    SensorCounts   = (int)(MotorRotations * kCountsPerRev);
+        return SensorCounts;
+    }
     
-      private int VelocityToNativeUnits( double velocityMetersPerSecond ) {
-        double wheelRotationsPerSecond = velocityMetersPerSecond/(2 * Math.PI * Units.inchesToMeters( kWheelRadiusInches ) );
-        double motorRotationsPerSecond = wheelRotationsPerSecond * kGearRatio;
-        double motorRotationsPer100ms = motorRotationsPerSecond / k100msPerSecond;
-        int sensorCountsPer100ms = (int)(motorRotationsPer100ms * kCountsPerRev);
-        return sensorCountsPer100ms;
-      }
+    public int VelocityToNativeUnits( double VelocityMetersPerSecond ) {
+        double WheelRotationsPerSecond = VelocityMetersPerSecond / kWheelCircumference;
+        double MotorRotationsPerSecond = WheelRotationsPerSecond * kGearRatio;
+        double MotorRotationsPer100ms  = MotorRotationsPerSecond / k100msPerSecond;
+        int    SensorCountsPer100ms    = (int)(MotorRotationsPer100ms * kCountsPerRev);
+        return SensorCountsPer100ms;
+    }
     
-      private double NativeUnitsToDistanceMeters( double sensorCounts ) {
-        double motorRotations = (double)sensorCounts / kCountsPerRev;
-        double wheelRotations = motorRotations / kGearRatio;
-        double positionMeters = wheelRotations * (2 * Math.PI * Units.inchesToMeters( kWheelRadiusInches ) );
-        return positionMeters;
-      }
+    public double NativeUnitsToDistanceMeters( double SensorCounts ) {
+        double MotorRotations = (double)SensorCounts / kCountsPerRev;
+        double WheelRotations = MotorRotations / kGearRatio;
+        double PositionMeters = WheelRotations * kWheelCircumference;
+        return PositionMeters;
+    }
+
     public void UpdateDrive ( SwerveModuleState state ) {
 
         DrvSP  = state.speedMetersPerSecond;
