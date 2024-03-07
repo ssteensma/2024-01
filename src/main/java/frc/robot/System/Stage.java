@@ -1,6 +1,5 @@
 package frc.robot.System;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Mech.Mech;
 
 public class Stage {
@@ -75,6 +74,10 @@ public class Stage {
 	public static void WaitForHeading( double Heading, double Error ) {
 		double Current = ( Navigation.GetDirection() + 360 ) % 360;
 		if ( Math.abs( Current - Heading ) > Error ) { ReadyToAdvance = false; }
+	}
+
+	public static void WaitForRing() {
+		if ( CamTarget.TY() > -20 ) { ReadyToAdvance = false; }
 	}
 
 }

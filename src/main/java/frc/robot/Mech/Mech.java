@@ -22,9 +22,18 @@ public class Mech {
         Shooter.Stop();
     }
 
-    public static void Climb() {
+    public static void Ascend() {
         Aimer.Extend();
-        Climber.Climb( 0.50 );
+        Climber.Ascend();
+        Intake.Stop();
+        Mover.Stop();
+        Roller.Stop();
+        Shooter.Stop();
+    }
+
+    public static void Descend() {
+        Aimer.Extend();
+        Climber.Descend();
         Intake.Stop();
         Mover.Stop();
         Roller.Stop();

@@ -14,7 +14,7 @@ public class Track01 {
 
             case 1:
                 Autopilot.DriveS( 0.20 );
-                Stage.WaitForMinDistance( 120 );
+                Stage.WaitForMinDistance( 10 );
                 break;
 
             default:

@@ -1,5 +1,6 @@
 package frc.robot.Mode;
 
+import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Mech.Mech;
 import frc.robot.Ports.pStick;
@@ -12,13 +13,15 @@ public class Teleop {
         Y,
         Z;
 
+    public static PS4Controller
+        DS;
+
     public static XboxController
-        DS,
         MS;
 
     public static void Initialize() {
         Drivetrain.Reset();
-        DS = new XboxController( pStick.USB_Drive );
+        DS = new PS4Controller ( pStick.USB_Drive );
         MS = new XboxController( pStick.USM_Manip );
     }
 
@@ -32,68 +35,38 @@ public class Teleop {
         if ( Math.abs(Y) < 0.05 ) { Y = 0; }
         if ( Math.abs(Z) < 0.05 ) { Z = 0; }
 
-        if ( DS.getAButton() ) {
-            Mech.Collect();
-        } else if ( DS.getXButton() ) {
-            Mech.ShootLo();
-        } else if ( DS.getYButton() ) {
-            Mover.Forward();
-            Shooter.Shoot( 1.00 );
-        } else {
-            Mech.Stop();
-        }
-
-        // RESET NAVIGATION
-        if ( DS.getBackButton() ) {
-            Navigation.Reset();
-        }
-
-        if ( DS.getStartButton() ) {
-            Climber.Climb( 1.00 );
-        } else {
-            Climber.Stop();
-        }
-
-        X *= 0.4;
-        Y *= 0.4;
+        X *= 0.9;
+        Y *= 0.9;
         Z *= 0.2;
 
-        // DISPLAY VALUES
-        // SmartDashboard.putNumber( "DS-X", X );
-        // SmartDashboard.putNumber( "DS-Y", Y );
-        // SmartDashboard.putNumber( "DS-T", Z );
+        // MANIP STICK BUTTONS
+        if      ( MS.getYButton() ) { Mech.ShootHi(); }
+        else if ( MS.getAButton() ) { Mech.ShootLo(); }
+        else if ( MS.getXButton() ) { Mech.Collect(); }
+        else if ( MS.getBButton() ) { Mech.Ascend();  }
+        else if ( MS.getBButton() ) { Mech.Descend(); }
+        else                        { Mech.Stop();    }
 
-        // double Xmax = 0.35;
-        // double Zmax = 0.04;
+        // GET RING AUTOMATICALLY
+        if ( DS.getR2Button() ) {
+            X = ( CamTarget.TY() - -20 ) * 0.02;
+            Y = 0;
+            Z = CamTarget.TX() * -0.008;
+
+            if ( X > 0.10 ) { X = 0.10; }
+            Mech.Collect();
+            
+            if ( CamTarget.TY() < -18 ) {
+                X = 0.08;
+                Z = 0.00;
+            }
+        }
+
+        // ALIGN TO SPEAER AUTOMATICALLY
         // if ( DS.getBButton() ) {
-        //     X = 0;
-
-        //     double TY = -12 - CamTarget.TY();
-        //     X = -0.02 * TY;
-        //     if ( X >  Xmax ) { X =  Xmax; }
-        //     if ( X < -Xmax ) { X = -Xmax; }
-
+        //     X = ( CamIntake.TY() - 15 ) * 0.007;
+        //     Y = ( CamIntake.TX() ) * 0.005;
         //     Z = 0;
-        //     double TX = CamTarget.TX();
-        //     // SmartDashboard.putNumber("TX", TX );
-        //     Z = TX * 0.008;
-        //     if ( Z >  Zmax ) { Z =  Zmax; }
-        //     if ( Z < -Zmax ) { Z = -Zmax; }
-        // }
-
-        // if ( DS.getYButton() ) {
-        //     Navigation.Calibrate();
-        // }
-
-        // DRIVE ROBOT
-        // Drivetrain.vx = X;
-        // Drivetrain.vy = Y;
-        // Drivetrain.vt = Z;
-
-        // if ( DS.getAButton() ) { 
-        //     X = -0.35;
-        //     Y =  0.00;
-        //     Z =  0.00;
         // }
 
         Drivetrain  .UpdateRobotRelative( X, Y, Z );

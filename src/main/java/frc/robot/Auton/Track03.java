@@ -2,7 +2,7 @@ package frc.robot.Auton;
 
 import frc.robot.System.*;
 
-// FROM CENTER - SHOOT AND BACK
+// FROM CENTER - SHOOT AND BACK UP
 
 public class Track03 {
     public static void Periodic() {
@@ -27,8 +27,8 @@ public class Track03 {
                 break;
 
             case 4:
-                Autopilot.TranslateS( 0.20 );
-                Stage.WaitForMinDistance( 128 );
+                Autopilot.DriveS( 0.35 );
+                Stage.WaitForMinDistance( 120 );
                 break;
 
             default:

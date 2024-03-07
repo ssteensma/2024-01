@@ -9,7 +9,7 @@ public class CamIntake {
         LI;
 
     public static void Initialize() {
-        LI = NetworkTableInstance.getDefault().getTable("CamIntake12");
+        LI = NetworkTableInstance.getDefault().getTable("limelight-intake");
     }
 
     public static void Periodic() {

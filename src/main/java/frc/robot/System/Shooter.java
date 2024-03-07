@@ -30,6 +30,6 @@ public class Shooter {
     public static void Shoot( double P ) { Power = P; }
     public static void Stop()            { Power = 0; }
 
-    public static void ShootLo() { Power = 0.50; }
+    public static void ShootLo() { Power = 1.00; }
     public static void ShootHi() { Power = 1.00; }
 }

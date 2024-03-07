@@ -28,12 +28,41 @@ public class Autopilot {
 		return Offset;
 	}
 
+	public static double TurnToRing( double Speed ) {
+		double Error = CamTarget.TX();
+		return Error;
+	}
+
+	public static void DriveToRing() {
+		double X = ( CamTarget.TY() - -20 ) * 0.02;
+		double Y = 0;
+		double Z = CamTarget.TX() * -0.008;
+		if ( X > 0.25 ) { X = 0.25; }
+
+		Drivetrain.vx = X;
+		Drivetrain.vy = Y;
+		Drivetrain.vt = Z;
+	}
+
 //
 // 	ALTERNATE FORM FOR DRIVE CARTESIAN
 //
 	public static void DriveStraight ( double X, double Y ) {
 		double angle = Math.atan2( Y, X ) * ToDeg;
 		Drivetrain.vx = -X; Drivetrain.vy = Y; Drivetrain.vt = AdjustToHeading( angle );
+	}
+
+//
+//
+//
+	public static void DriveToAprilTag() {
+		double X = ( CamIntake.TY() - 17 ) * 0.007;
+		double Y = ( CamIntake.TX() ) * 0.005;
+		double Z = 0;		
+
+		Drivetrain.vx = X;
+		Drivetrain.vy = Y;
+		Drivetrain.vt = Z;
 	}
 
 //

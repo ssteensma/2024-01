@@ -9,7 +9,7 @@ public class CamTarget {
         LL;
 
     public static void Initialize() {
-        LL = NetworkTableInstance.getDefault().getTable("CamTarget13");
+        LL = NetworkTableInstance.getDefault().getTable("limelight-target");
     }
 
     public static void Periodic() {
