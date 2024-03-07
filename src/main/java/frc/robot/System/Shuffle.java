@@ -1,8 +1,8 @@
 package frc.robot.System;
 
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
+// import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
+// import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 public class Shuffle {
@@ -12,9 +12,9 @@ public class Shuffle {
     public static ShuffleboardTab LimeTab = Shuffleboard.getTab( "Lime" );
     public static ShuffleboardTab MechTab = Shuffleboard.getTab( "Mech" );
 
-    public static ShuffleboardLayout CamIntake = Shuffleboard.getTab("Lime")
-        .getLayout( "Intake Cam", BuiltInLayouts.kList )
-        .withSize( 5, 1 );
+    // public static ShuffleboardLayout CamIntake = Shuffleboard.getTab("Lime")
+    //     .getLayout( "Intake Cam", BuiltInLayouts.kList )
+    //     .withSize( 5, 1 );
 
     public static void Initialize() {
 
@@ -30,8 +30,11 @@ public class Shuffle {
         DrivTab.add( "RR Power", Drivetrain.FR_module.GetPower() ).withPosition( 3, 2 ).withSize( 2, 1 );
 
         // LIMELIGHT TAB
-        LimeTab.add( "Target TX"       , CamTarget  .TX() ).withPosition( 1, 1 ).withSize( 2, 1 );
-        LimeTab.add( "Target TY"       , CamTarget  .TY() ).withPosition( 3, 1 ).withSize( 2, 1 );
+        // Note that the Intake and Target Cameras are reversed
+        LimeTab.add( "Intake TX"       , CamTarget  .TX() ).withPosition( 1, 1 ).withSize( 2, 1 );
+        LimeTab.add( "Intake TY"       , CamTarget  .TY() ).withPosition( 3, 1 ).withSize( 2, 1 );
+        LimeTab.add( "Target TX"       , CamIntake  .TX() ).withPosition( 5, 1 ).withSize( 2, 1 );
+        LimeTab.add( "Target TY"       , CamIntake  .TY() ).withPosition( 7, 1 ).withSize( 2, 1 );
 
         // MECHANISM TAB
         MechTab.add( "Intake Power"    , Intake     .GetPower() ).withPosition( 1, 1 ).withSize( 2, 1 );
