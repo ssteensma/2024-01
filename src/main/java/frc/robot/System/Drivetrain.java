@@ -81,9 +81,9 @@ public class Drivetrain {
         );
     }
 
-    // public static Pose2d GetPose() {
-    //     return Pose;
-    // }
+    public static Pose2d GetPose() {
+        return Pose;
+    }
 
     // X is down the field, Y is horizontal position, Angle is forward measured CCW
     public static void ResetPose( double X, double Y, double Angle ) {
