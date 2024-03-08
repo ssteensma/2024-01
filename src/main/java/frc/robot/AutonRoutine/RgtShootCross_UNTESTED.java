@@ -24,8 +24,8 @@ public class RgtShootCross_UNTESTED {
                 break;
 
             case 4: // TURN 60 DEGREES LEFT
-                Autopilot.TurnRgtAtSpeed( Auton.TurnSpeed );
-                Stage.WaitForHeading( 300, 3 );
+                Autopilot.TurnLftAtSpeed( Auton.TurnSpeed );
+                Stage.WaitForHeading( 60, 3 );
                 break;
 
             case 5: // CROSS LINE
