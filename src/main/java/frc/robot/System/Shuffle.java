@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 public class Shuffle {
     
     public static ShuffleboardTab AutoTab = Shuffleboard.getTab( "Auto" );
+    public static ShuffleboardTab CompTab = Shuffleboard.getTab( "Comp" );
     public static ShuffleboardTab DrivTab = Shuffleboard.getTab( "Driv" );
     public static ShuffleboardTab LimeTab = Shuffleboard.getTab( "Lime" );
     public static ShuffleboardTab MechTab = Shuffleboard.getTab( "Mech" );
