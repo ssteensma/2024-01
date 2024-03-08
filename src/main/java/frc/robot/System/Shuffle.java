@@ -31,10 +31,10 @@ public class Shuffle {
 
         // LIMELIGHT TAB
         // Note that the Intake and Target Cameras are reversed
-        LimeTab.add( "Intake TX"       , CamTarget  .TX() ).withPosition( 1, 1 ).withSize( 2, 1 );
-        LimeTab.add( "Intake TY"       , CamTarget  .TY() ).withPosition( 3, 1 ).withSize( 2, 1 );
-        LimeTab.add( "Target TX"       , CamIntake  .TX() ).withPosition( 5, 1 ).withSize( 2, 1 );
-        LimeTab.add( "Target TY"       , CamIntake  .TY() ).withPosition( 7, 1 ).withSize( 2, 1 );
+        LimeTab.add( "Intake TX"       , CamIntake  .TX() ).withPosition( 1, 1 ).withSize( 2, 1 );
+        LimeTab.add( "Intake TY"       , CamIntake  .TY() ).withPosition( 3, 1 ).withSize( 2, 1 );
+        LimeTab.add( "Target TX"       , CamShooter  .TX() ).withPosition( 5, 1 ).withSize( 2, 1 );
+        LimeTab.add( "Target TY"       , CamShooter  .TY() ).withPosition( 7, 1 ).withSize( 2, 1 );
 
         // MECHANISM TAB
         MechTab.add( "Intake Power"    , Intake     .GetPower() ).withPosition( 1, 1 ).withSize( 2, 1 );

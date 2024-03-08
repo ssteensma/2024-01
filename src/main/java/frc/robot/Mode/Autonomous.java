@@ -51,7 +51,7 @@ public class Autonomous {
             case "Lft Shoot, Cross"       : LftShootCross       .Periodic(); break;
             case "Rgt Shoot, Cross"       : RgtShootCross_UNTESTED   .Periodic(); break;
             case "Ctr Shoot, Cross, Grab" : CtrShootCrossGrab   .Periodic(); break;
-            case "Ctr Shoot Twice"        : CtrShootTwice_UNTESTED   .Periodic(); break;
+            case "Ctr Shoot Twice"        : CtrShootTwice_PENDING   .Periodic(); break;
 
             // case "Path-04" : LftShootCross.Periodic(); break;
             // case "Path-05" : LftShootCross.Periodic(); break;

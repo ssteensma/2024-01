@@ -2,7 +2,7 @@ package frc.robot.AutonRoutine;
 
 import frc.robot.System.*;
 
-public class CtrShootTwice_UNTESTED {
+public class CtrShootTwice_PENDING {
     public static void Periodic() {
         switch ( Stage.Number ) {
             case 0:

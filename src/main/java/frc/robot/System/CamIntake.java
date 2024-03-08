@@ -7,20 +7,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class CamIntake {
 
     public static NetworkTable
-        LI;
+        LL;
 
     public static void Initialize() {
-        LI = NetworkTableInstance.getDefault().getTable("limelight-intake");
+        LL = NetworkTableInstance.getDefault().getTable("limelight-target");
     }
 
     public static void Periodic() {
-        SmartDashboard.putNumber( "CamIntake TX", GetCode("tx") );
-        SmartDashboard.putNumber( "CamIntake TY", GetCode("ty") );
+        SmartDashboard.putNumber( "CamTarget TX", GetCode("tx") );
+        SmartDashboard.putNumber( "CamTarget TY", GetCode("ty") );
     }
 
-    public static double GetCode( String S ) { return LI.getEntry( S ).getDouble( 0 ); }
-
     public static void Reset() {}
+
+    public static double GetCode( String S ) { return LL.getEntry( S ).getDouble( 0 ); }
 
     public static double TX() { return GetCode("tx"); }
     public static double TY() { return GetCode("ty"); }
