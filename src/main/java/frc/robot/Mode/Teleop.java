@@ -49,18 +49,23 @@ public class Teleop {
 
         // GET RING AUTOMATICALLY
         if ( DS.getR2Button() ) {
-            X = ( CamTarget.TY() - -25 ) * -0.016;
+            X = ( CamTarget.TY() - -6 ) * -0.016;
             Y = 0;
             Z = CamTarget.TX() * -0.008;
 
-            if ( X > 0.10 ) { X = 0.10; }
+            if ( X >  0.15 ) { X =  0.15; }
+            if ( X < -0.15 ) { X = -0.15; }
+
             Mechanism.Collect();
             
-            if ( CamTarget.TY() < -25 ) {
-                X = 0.10;
-                Z = 0.00;
-            }
+            if ( CamTarget.TY() < -6 ) { X = 0.10; Z = 0.00; }
         }
+
+        // if ( DS.getCircleButton() ) {
+        //     Z = Autopilot.AdjustToHeading( 0 );
+        // } else if ( DS.getCrossButton() ) {
+        //     Z = Autopilot.AdjustToHeading( 90 );
+        // }
 
         // ALIGN TO SPEAKER AUTOMATICALLY
         // if ( DS.getBButton() ) {

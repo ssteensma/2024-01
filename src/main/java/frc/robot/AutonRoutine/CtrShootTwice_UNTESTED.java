@@ -8,62 +8,46 @@ public class CtrShootTwice_UNTESTED {
             case 0:
                 break;
         
-            case 1: // 
+            case 1: // PREPARE SHOOTER
                 Shooter.Shoot( 1.00 );
                 Stage.WaitForMinDuration( Auton.Shoot_PrepTime );
                 break;
 
-            case 2: // 
+            case 2: // SHOOT NOTE
                 Mechanism.ShootHi();
                 Stage.WaitForMinDuration( Auton.Shoot_Duration );
                 break;
 
-            case 3: // DRIVE SOUTH (If Needed)
-                // Autopilot.TranslateS( Auton.DriveSpeed );
-                // Stage.WaitForMinDistance( 18 );
-                break;
-
-            case 4: // ALIGN WITH RING
+            case 3: // ALIGN WITH SECOND RING
                 Autopilot.DriveToRing();
                 Mechanism.Collect();
                 Stage.WaitForRing();
                 break;
             
-            case 5: // COLLECT RING
+            case 4: // COLLECT SECOND RING
                 Autopilot.TranslateS( Auton.DriveSpeed );
                 Mechanism.Collect();
-                Stage.WaitForMinDistance( 12 );
+                Stage.WaitForMinDistance( 30 );
                 break;
 
-            case 6: // TURN TO HEADING ZERO
-                Autopilot.AdjustToHeading( 0 );
-                Stage.WaitForHeading( 0, 1 );
-                break;
-
-            case 7: //  SLIDE TO BE ALIGNED WITH APRIL TAG CENTER
-                if ( CamIntake.TX() > 0 ) { Autopilot.TranslateE_UNTESTED( Auton.DriveSpeed ); }
-                else                      { Autopilot.TranslateW_UNTESTED( Auton.DriveSpeed ); }
-                Stage.WaitForAprilTagX( 0, 2 );
-                break;
-
-            case 8: // DRIVE TO APRIL TAG
+            case 5: // DRIVE TO APRIL TAG
                 Autopilot.DriveToAprilTag_UNTESTED();
                 Stage.WaitForAprilTagY( -13, 1 );
                 break;
 
-            case 9: // PREPARE TO SHOOT
+            case 6: // PREPARE SHOOTER
                 Shooter.Shoot( 1.00 );
                 Stage.WaitForMinDuration( Auton.Shoot_PrepTime );
                 break;
 
-            case 10: // SHOOT SECOND NOTE
+            case 7: // SHOOT SECOND NOTE
                 Mechanism.ShootHi();
                 Stage.WaitForMinDuration( Auton.Shoot_Duration );
                 break;
 
-            case 11: // CROSS LINE AGAIN
+            case 8: // CROSS LINE AGAIN
                 Autopilot.TranslateS( Auton.DriveSpeed );
-                Stage.WaitForMinDistance( 48 );
+                Stage.WaitForMinDistance( 60 );
                 break;
     
             default:

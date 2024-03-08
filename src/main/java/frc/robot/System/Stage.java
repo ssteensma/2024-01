@@ -74,7 +74,7 @@ public class Stage {
 	}
 
 	public static void WaitForRing() {
-		if ( CamTarget.TY() > -8 ) { ReadyToAdvance = false; }
+		if ( CamTarget.TY() > -6 ) { ReadyToAdvance = false; }
 	}
 
 }
