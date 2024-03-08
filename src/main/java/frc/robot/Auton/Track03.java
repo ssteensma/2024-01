@@ -22,7 +22,7 @@ public class Track03 {
 
             case 3:
                 Autopilot.DriveS( 0.35 );
-                Stage.WaitForMinDistance( 120 );
+                Stage.WaitForMinDistance( 48 );
                 break;
 
             default:

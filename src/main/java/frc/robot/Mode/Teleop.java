@@ -44,11 +44,12 @@ public class Teleop {
         else if ( MS.getXButton    () ) { Mechanism.Collect (); }
         else if ( MS.getStartButton() ) { Mechanism.Ascend  (); }
         else if ( MS.getBackButton () ) { Mechanism.Descend (); }
+        else if ( MS.getLeftBumper () && MS.getRightBumper() ) { Climber.LowerClimber(); }
         else                            { Mechanism.Stop    (); }
 
         // GET RING AUTOMATICALLY
         if ( DS.getR2Button() ) {
-            X = ( CamTarget.TY() - -20 ) * 0.02;
+            X = ( CamTarget.TY() - -18 ) * 0.02;
             Y = 0;
             Z = CamTarget.TX() * -0.008;
 
@@ -61,7 +62,7 @@ public class Teleop {
             }
         }
 
-        // ALIGN TO SPEAER AUTOMATICALLY
+        // ALIGN TO SPEAKER AUTOMATICALLY
         // if ( DS.getBButton() ) {
         //     X = ( CamIntake.TY() - 15 ) * 0.007;
         //     Y = ( CamIntake.TX() ) * 0.005;

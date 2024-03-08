@@ -44,9 +44,9 @@ public class Shuffle {
         MechTab.add( "Aimer State"     , Aimer      .GetState() ).withPosition( 5, 1 ).withSize( 2, 1 );
 
         // ROBOT POSE
-        DrivTab.add( "Pose X", Drivetrain.GetPose().getX()        );
-        DrivTab.add( "Pose Y", Drivetrain.GetPose().getY()        );
-        DrivTab.add( "Pose Z", Drivetrain.GetPose().getRotation() );
+        // DrivTab.add( "Pose X", Drivetrain.GetPose().getX()        );
+        // DrivTab.add( "Pose Y", Drivetrain.GetPose().getY()        );
+        // DrivTab.add( "Pose Z", Drivetrain.GetPose().getRotation() );
 
     }
 

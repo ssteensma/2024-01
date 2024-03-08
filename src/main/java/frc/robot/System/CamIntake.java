@@ -17,9 +17,9 @@ public class CamIntake {
         // SmartDashboard.putNumber( "CamIntake TY", GetCode("ty") );
     }
 
-    public static void Reset() {}
-
     public static double GetCode( String S ) { return LI.getEntry( S ).getDouble( 0 ); }
+
+    public static void Reset() {}
 
     public static double TX() { return GetCode("tx"); }
     public static double TY() { return GetCode("ty"); }
