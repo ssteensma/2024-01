@@ -1,10 +1,8 @@
-package frc.robot.Auton;
+package frc.robot.AutonRoutine;
 
 import frc.robot.System.*;
 
-// SHOOT ONLY
-
-public class Track02 {
+public class ShootOnly {
     public static void Periodic() {
         switch ( Stage.Number ) {
             case 0:
@@ -12,12 +10,12 @@ public class Track02 {
         
             case 1:
                 Shooter.Shoot( 1.00 );
-                Stage.WaitForMinDuration( 3.00 );
+                Stage.WaitForMinDuration( Auton.Shoot_PrepTime );
                 break;
 
             case 2:
                 Mechanism.ShootHi();
-                Stage.WaitForMinDuration( 3.00 );
+                Stage.WaitForMinDuration( Auton.Shoot_Duration );
                 break;
 
             default:

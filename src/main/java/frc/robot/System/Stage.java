@@ -20,7 +20,7 @@ public class Stage {
 		SystemTime = {};
 
 	public static void Reset () {
-		Number    = 0;
+		Number         = 0;
 		ReadyToAdvance = true;
 		SystemTime = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		SystemDist = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -74,7 +74,7 @@ public class Stage {
 	}
 
 	public static void WaitForRing() {
-		if ( CamTarget.TY() > -20 ) { ReadyToAdvance = false; }
+		if ( CamTarget.TY() > -8 ) { ReadyToAdvance = false; }
 	}
 
 }

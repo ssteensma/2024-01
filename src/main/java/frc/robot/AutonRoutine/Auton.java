@@ -1,8 +1,11 @@
-package frc.robot.Auton;
+package frc.robot.AutonRoutine;
 
-public class Measurement {
+public class Auton {
 
     public static double
+        DriveSpeed   = 0.15,
+        TurnSpeed    = 0.15,
+
         Wall_To_Line = 114,
 
         Lft_Backup =  34,
@@ -17,5 +20,8 @@ public class Measurement {
         Turn_Angle  =  60,
 
         Far_Short   = 337,
-        Far_Long    = 414;
+        Far_Long    = 414,
+        
+        Shoot_PrepTime = 1.50,
+        Shoot_Duration = 2.00;
 }

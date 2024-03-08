@@ -1,14 +1,14 @@
 package frc.robot.Mode;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Auton.*;
+import frc.robot.AutonRoutine.*;
 import frc.robot.System.*;
 
 public class Autonomous {
 
     public static String
-        SelectedAuton = "n/a",
-        SelectedStart = "n/a";
+        SelectedAuton = "n/a";
+        // SelectedStart = "n/a";
 
     public static void Initialize () {
         Autopilot   .Reset();
@@ -44,16 +44,21 @@ public class Autonomous {
         // }
 
         switch ( SelectedAuton ) {
-            case "Path-00" : Track00.Periodic(); break;
-            case "Path-01" : Track01.Periodic(); break;
-            case "Path-02" : Track02.Periodic(); break;
-            case "Path-03" : Track03.Periodic(); break;
-            case "Path-04" : Track04.Periodic(); break;
-            case "Path-05" : x_Track05.Periodic(); break;
-            case "Path-06" : x_Track05.Periodic(); break;
-            case "Path-07" : x_Track07.Periodic(); break;
-            case "Path-08" : x_Track08.Periodic(); break;
-            case "Path-09" : x_Track09.Periodic(); break;
+            case "Do Nothing"             : DoNothing           .Periodic(); break;
+            case "Wall Cross Line"        : WallCrossLine       .Periodic(); break;
+            case "Shoot Only"             : ShootOnly           .Periodic(); break;
+            case "Ctr Shoot, Cross"       : CtrShootCross       .Periodic(); break;
+            case "Lft Shoot, Cross"       : LftShootCross       .Periodic(); break;
+            case "Rgt Shoot, Cross"       : RgtShootCross_UNTESTED   .Periodic(); break;
+            case "Ctr Shoot, Cross, Grab" : CtrShootCrossGrab   .Periodic(); break;
+            case "Ctr Shoot Twice"        : CtrShootTwice_UNTESTED   .Periodic(); break;
+
+            // case "Path-04" : LftShootCross.Periodic(); break;
+            // case "Path-05" : LftShootCross.Periodic(); break;
+            // case "Path-06" : LftShootCross.Periodic(); break;
+            // case "Path-07" : x_Track07.Periodic(); break;
+            // case "Path-08" : x_Track08.Periodic(); break;
+            // case "Path-09" : x_Track09.Periodic(); break;
         }
 
         Stage.Next();

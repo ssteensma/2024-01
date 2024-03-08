@@ -1,13 +1,13 @@
 package frc.robot.Mode;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DataLogManager;
 import frc.robot.System.*;
 
 public class Onabot {
 
     public static void Initialize() {
-        // DataLogManager.start();
+        DataLogManager.start();
         
         Navigation   .Initialize();
         Drivetrain   .Initialize();
@@ -27,15 +27,15 @@ public class Onabot {
     }
 
     public static void Periodic() {
-        SmartDashboard.putNumber( "FL-PV", Drivetrain.FL_module.GetDirection() );
-        SmartDashboard.putNumber( "FR-PV", Drivetrain.FR_module.GetDirection() );
-        SmartDashboard.putNumber( "RL-PV", Drivetrain.RL_module.GetDirection() );
-        SmartDashboard.putNumber( "RR-PV", Drivetrain.RR_module.GetDirection() );
+        // SmartDashboard.putNumber( "FL-PV", Drivetrain.FL_module.GetDirection() );
+        // SmartDashboard.putNumber( "FR-PV", Drivetrain.FR_module.GetDirection() );
+        // SmartDashboard.putNumber( "RL-PV", Drivetrain.RL_module.GetDirection() );
+        // SmartDashboard.putNumber( "RR-PV", Drivetrain.RR_module.GetDirection() );
 
-        SmartDashboard.putNumber( "FL-SP", Drivetrain.FL_module.StrSP );
-        SmartDashboard.putNumber( "FR-SP", Drivetrain.FR_module.StrSP );
-        SmartDashboard.putNumber( "RL-SP", Drivetrain.RL_module.StrSP );
-        SmartDashboard.putNumber( "RR-SP", Drivetrain.RR_module.StrSP );
+        // SmartDashboard.putNumber( "FL-SP", Drivetrain.FL_module.StrSP );
+        // SmartDashboard.putNumber( "FR-SP", Drivetrain.FR_module.StrSP );
+        // SmartDashboard.putNumber( "RL-SP", Drivetrain.RL_module.StrSP );
+        // SmartDashboard.putNumber( "RR-SP", Drivetrain.RR_module.StrSP );
 
         SmartDashboard.putNumber( "NAV DIR", Navigation.GetDirection() );
     }

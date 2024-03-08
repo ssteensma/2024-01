@@ -1,10 +1,8 @@
-package frc.robot.Auton;
+package frc.robot.AutonRoutine;
 
 import frc.robot.System.*;
 
-// FROM CENTER - SHOOT AND BACK UP FROM CENTER
-
-public class Track03 {
+public class CtrShootCross {
     public static void Periodic() {
         switch ( Stage.Number ) {
             case 0:
@@ -12,16 +10,16 @@ public class Track03 {
         
             case 1: // 
                 Shooter.Shoot( 1.00 );
-                Stage.WaitForMinDuration( 1.50 );
+                Stage.WaitForMinDuration( Auton.Shoot_PrepTime );
                 break;
 
             case 2: // 
                 Mechanism.ShootHi();
-                Stage.WaitForMinDuration( 2.00 );
+                Stage.WaitForMinDuration( Auton.Shoot_Duration );
                 break;
 
             case 3: // 
-                Autopilot.DriveS( 0.35 );
+                Autopilot.TranslateS( Auton.DriveSpeed );
                 Stage.WaitForMinDistance( 48 );
                 break;
 

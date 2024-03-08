@@ -2,6 +2,7 @@ package frc.robot.System;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CamIntake {
 
@@ -13,8 +14,8 @@ public class CamIntake {
     }
 
     public static void Periodic() {
-        // SmartDashboard.putNumber( "CamIntake TX", GetCode("tx") );
-        // SmartDashboard.putNumber( "CamIntake TY", GetCode("ty") );
+        SmartDashboard.putNumber( "CamIntake TX", GetCode("tx") );
+        SmartDashboard.putNumber( "CamIntake TY", GetCode("ty") );
     }
 
     public static double GetCode( String S ) { return LI.getEntry( S ).getDouble( 0 ); }

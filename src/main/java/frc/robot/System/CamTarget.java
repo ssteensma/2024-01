@@ -2,6 +2,7 @@ package frc.robot.System;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CamTarget {
 
@@ -13,8 +14,8 @@ public class CamTarget {
     }
 
     public static void Periodic() {
-        // SmartDashboard.putNumber( "CamTarget TX", GetCode("tx") );
-        // SmartDashboard.putNumber( "CamTarget TY", GetCode("ty") );
+        SmartDashboard.putNumber( "CamTarget TX", GetCode("tx") );
+        SmartDashboard.putNumber( "CamTarget TY", GetCode("ty") );
     }
 
     public static void Reset() {}

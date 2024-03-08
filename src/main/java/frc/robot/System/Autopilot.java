@@ -1,5 +1,7 @@
 package frc.robot.System;
 
+import frc.robot.AutonRoutine.Auton;
+
 public class Autopilot {
 
 	public static double
@@ -28,16 +30,18 @@ public class Autopilot {
 		return Offset;
 	}
 
-	public static double TurnToRing( double Speed ) {
+	public static double TurnToRing_UNTESTED( double Speed ) {
 		double Error = CamTarget.TX();
 		return Error;
 	}
 
 	public static void DriveToRing() {
-		double X = ( CamTarget.TY() - -20 ) * 0.02;
+		double X = ( CamTarget.TY() - -20 ) * -0.02;
 		double Y = 0;
 		double Z = CamTarget.TX() * -0.008;
-		if ( X > 0.15 ) { X = 0.15; }
+
+		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
+		if ( X < -Auton.DriveSpeed ) { X = -Auton.DriveSpeed; }
 
 		Drivetrain.vx = X;
 		Drivetrain.vy = Y;
@@ -47,7 +51,7 @@ public class Autopilot {
 //
 // 	ALTERNATE FORM FOR DRIVE CARTESIAN
 //
-	public static void DriveStraight ( double X, double Y ) {
+	public static void DriveStraight_UNTESTED ( double X, double Y ) {
 		double angle = Math.atan2( Y, X ) * ToDeg;
 		Drivetrain.vx = -X; Drivetrain.vy = Y; Drivetrain.vt = AdjustToHeading( angle );
 	}
@@ -55,10 +59,14 @@ public class Autopilot {
 //
 //
 //
-	public static void DriveToAprilTag() {
+	public static void DriveToAprilTag_UNTESTED() {
 		double X = ( CamIntake.TY() - 17 ) * 0.007;
 		double Y = ( CamIntake.TX() ) * 0.005;
 		double Z = 0;		
+
+		// MAXIMUM SPEED
+		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
+		if ( X < -Auton.DriveSpeed ) { X = -Auton.DriveSpeed; }
 
 		Drivetrain.vx = X;
 		Drivetrain.vy = Y;
@@ -68,22 +76,25 @@ public class Autopilot {
 //
 // TRANSLATION MOVEMENT ONLY
 //
-	public static void TranslateN ( double Speed ) { Drivetrain.vx = -Speed; Drivetrain.vy = 0;      Drivetrain.vt = 0; }
-	public static void TranslateS ( double Speed ) { Drivetrain.vx = +Speed; Drivetrain.vy = 0;      Drivetrain.vt = 0; }
-	public static void TranslateW ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = -Speed; Drivetrain.vt = 0; }
+	public static void TranslateN_UNTESTED ( double Speed ) { Drivetrain.vx = +Speed; Drivetrain.vy = 0;      Drivetrain.vt = 0; }
+	public static void TranslateE_UNTESTED ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = -Speed; Drivetrain.vt = 0; }
+	public static void TranslateS ( double Speed ) { Drivetrain.vx = -Speed; Drivetrain.vy = 0;      Drivetrain.vt = 0; }
+	public static void TranslateW_UNTESTED ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = +Speed; Drivetrain.vt = 0; }
+
+	public static void Backup( double Speed ) { TranslateS( Speed ); }
 
 //
 // DRIVE BY CARDINAL COMPASS
 //
-	public static void DriveN ( double Speed ) { Drivetrain.vx = -Speed; Drivetrain.vy = 0;      Drivetrain.vt = AdjustToHeading(   0 ); }
-	public static void DriveE ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = +Speed; Drivetrain.vt = AdjustToHeading(  90 ); }
-	public static void DriveS ( double Speed ) { Drivetrain.vx = +Speed; Drivetrain.vy = 0;      Drivetrain.vt = AdjustToHeading( 180 ); }
-	public static void DriveW ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = -Speed; Drivetrain.vt = AdjustToHeading( 270 ); }
+	public static void DriveN_UNTESTED ( double Speed ) { Drivetrain.vx = +Speed; Drivetrain.vy = 0;      Drivetrain.vt = AdjustToHeading(   0 ); }
+	public static void DriveE_UNTESTED ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = -Speed; Drivetrain.vt = AdjustToHeading(  90 ); }
+	public static void DriveS_UNTESTED ( double Speed ) { Drivetrain.vx = -Speed; Drivetrain.vy = 0;      Drivetrain.vt = AdjustToHeading( 180 ); }
+	public static void DriveW_UNTESTED ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = +Speed; Drivetrain.vt = AdjustToHeading( 270 ); }
 
 //
 // DRIVE BY COMPONENTS
 //
-	public static void DriveCartesian( double X, double Y ) {
+	public static void DriveCartesian_UNTESTED( double X, double Y ) {
 		Drivetrain.vx = -X; Drivetrain.vy = Y; Drivetrain.vt = 0;
 	}
 
@@ -97,10 +108,10 @@ public class Autopilot {
 //
 // DRIVE BY COMPASS HALVES
 //
-	public static void DriveNE ( double S ) { Drivetrain.vx = -S*Cos45; Drivetrain.vy = -S*Sin45; Drivetrain.vt = AdjustToHeading(  45 ); }
-	public static void DriveSE ( double S ) { Drivetrain.vx = +S*Cos45; Drivetrain.vy = -S*Sin45; Drivetrain.vt = AdjustToHeading( 135 ); }
-	public static void DriveSW ( double S ) { Drivetrain.vx = +S*Cos45; Drivetrain.vy = +S*Sin45; Drivetrain.vt = AdjustToHeading( 225 ); }
-	public static void DriveNW ( double S ) { Drivetrain.vx = -S*Cos45; Drivetrain.vy = +S*Sin45; Drivetrain.vt = AdjustToHeading( 315 ); }
+	public static void DriveNE_UNTESTED ( double S ) { Drivetrain.vx = -S*Cos45; Drivetrain.vy = -S*Sin45; Drivetrain.vt = AdjustToHeading(  45 ); }
+	public static void DriveSE_UNTESTED ( double S ) { Drivetrain.vx = +S*Cos45; Drivetrain.vy = -S*Sin45; Drivetrain.vt = AdjustToHeading( 135 ); }
+	public static void DriveSW_UNTESTED ( double S ) { Drivetrain.vx = +S*Cos45; Drivetrain.vy = +S*Sin45; Drivetrain.vt = AdjustToHeading( 225 ); }
+	public static void DriveNW_UNTESTED ( double S ) { Drivetrain.vx = -S*Cos45; Drivetrain.vy = +S*Sin45; Drivetrain.vt = AdjustToHeading( 315 ); }
 
 //
 // Stop sets the robot speed vector to zero. This is useful only in Autonomous

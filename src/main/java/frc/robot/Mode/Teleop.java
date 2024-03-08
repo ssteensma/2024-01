@@ -25,8 +25,8 @@ public class Teleop {
     }
 
     public static void Periodic() {
-        X =  DS.getLeftY();
-        Y =  DS.getLeftX();
+        X = -DS.getLeftY();
+        Y = -DS.getLeftX();
         Z = -DS.getRightX();
 
         // DEAD ZONE
@@ -49,15 +49,15 @@ public class Teleop {
 
         // GET RING AUTOMATICALLY
         if ( DS.getR2Button() ) {
-            X = ( CamTarget.TY() - -18 ) * 0.02;
+            X = ( CamTarget.TY() - -25 ) * -0.016;
             Y = 0;
             Z = CamTarget.TX() * -0.008;
 
             if ( X > 0.10 ) { X = 0.10; }
             Mechanism.Collect();
             
-            if ( CamTarget.TY() < -18 ) {
-                X = 0.08;
+            if ( CamTarget.TY() < -25 ) {
+                X = 0.10;
                 Z = 0.00;
             }
         }

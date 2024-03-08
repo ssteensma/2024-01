@@ -1,19 +1,13 @@
-package frc.robot.Auton;
+package frc.robot.AutonRoutine;
 
 import frc.robot.System.*;
 
-// CROSS LINE ONLY FROM BACK WALL
+// DO NOTHING
 
-public class Track01 {
-
+public class DoNothing {
     public static void Periodic() {
         switch ( Stage.Number ) {
             case 0:
-                break;
-
-            case 1:
-                Autopilot.DriveS( 0.20 );
-                Stage.WaitForMinDistance( 120 );
                 break;
 
             default:
