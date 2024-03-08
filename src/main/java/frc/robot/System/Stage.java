@@ -53,11 +53,11 @@ public class Stage {
 	public static void WaitForever() { ReadyToAdvance = false;                   }
 
 	public static void WaitForAprilTagX( double X, double Error ) {
-		if ( Math.abs( X - CamTarget.TX() ) > Error ) { ReadyToAdvance = false; }
+		if ( Math.abs( X - CamIntake.TX() ) > Error ) { ReadyToAdvance = false; }
 	}
 
 	public static void WaitForAprilTagY( double Y, double Error ) {
-		if ( Math.abs( Y - CamTarget.TY() ) > Error ) { ReadyToAdvance = false; }
+		if ( Math.abs( Y - CamIntake.TY() ) > Error ) { ReadyToAdvance = false; }
 	}
 
 	public static void WaitForMinDistance( double Distance ) {
@@ -74,7 +74,7 @@ public class Stage {
 	}
 
 	public static void WaitForRing() {
-		if ( CamTarget.TY() > -20 ) { ReadyToAdvance = false; }
+		if ( CamIntake.TY() > -20 ) { ReadyToAdvance = false; }
 	}
 
 }

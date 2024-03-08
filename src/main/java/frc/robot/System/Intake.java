@@ -21,6 +21,9 @@ public class Intake {
     public static void Initialize() {
         Lft.setInverted( true  );
         Rgt.setInverted( false );
+
+        Lft.setSmartCurrentLimit( 20, 10 );
+        Rgt.setSmartCurrentLimit( 20, 10 );
     }
 
     public static double GetPower() { return Power; }

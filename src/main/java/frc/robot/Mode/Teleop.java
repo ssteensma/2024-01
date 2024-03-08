@@ -48,14 +48,14 @@ public class Teleop {
 
         // GET RING AUTOMATICALLY
         if ( DS.getR2Button() ) {
-            X = ( CamTarget.TY() - -20 ) * 0.02;
+            X = ( CamIntake.TY() - -20 ) * 0.02;
             Y = 0;
-            Z = CamTarget.TX() * -0.008;
+            Z = CamIntake.TX() * -0.008;
 
             if ( X > 0.10 ) { X = 0.10; }
             Mechanism.Collect();
             
-            if ( CamTarget.TY() < -18 ) {
+            if ( CamIntake.TY() < -18 ) {
                 X = 0.08;
                 Z = 0.00;
             }

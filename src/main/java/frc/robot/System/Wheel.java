@@ -6,8 +6,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
@@ -80,7 +78,7 @@ public class Wheel {
                 status = DriveMotor.getConfigurator().apply( DriveConfig );
                 if (status.isOK()) break;
             }
-            if(!status.isOK()) {
+            if ( !status.isOK() ) {
                 System.out.println("Could not apply configs, error code: " + status.toString());
             }
 

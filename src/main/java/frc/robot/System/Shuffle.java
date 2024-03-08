@@ -30,11 +30,15 @@ public class Shuffle {
         DrivTab.add( "RR Power", Drivetrain.FR_module.GetPower() ).withPosition( 3, 2 ).withSize( 2, 1 );
 
         // LIMELIGHT TAB
-        // Note that the Intake and Target Cameras are reversed
-        LimeTab.add( "Intake TX"       , CamTarget  .TX() ).withPosition( 1, 1 ).withSize( 2, 1 );
-        LimeTab.add( "Intake TY"       , CamTarget  .TY() ).withPosition( 3, 1 ).withSize( 2, 1 );
-        LimeTab.add( "Target TX"       , CamIntake  .TX() ).withPosition( 5, 1 ).withSize( 2, 1 );
-        LimeTab.add( "Target TY"       , CamIntake  .TY() ).withPosition( 7, 1 ).withSize( 2, 1 );
+        if ( CamIntake.LL != null ) {
+            LimeTab.add( "Intake TX", CamIntake  .TX() ).withPosition( 1, 1 ).withSize( 2, 1 );
+            LimeTab.add( "Intake TY", CamIntake  .TY() ).withPosition( 3, 1 ).withSize( 2, 1 );
+        }
+
+        if ( CamShooter.LI != null ) {
+            LimeTab.add( "Target TX"       , CamShooter  .TX() ).withPosition( 5, 1 ).withSize( 2, 1 );
+            LimeTab.add( "Target TY"       , CamShooter  .TY() ).withPosition( 7, 1 ).withSize( 2, 1 );
+        }
 
         // MECHANISM TAB
         MechTab.add( "Intake Power"    , Intake     .GetPower() ).withPosition( 1, 1 ).withSize( 2, 1 );
@@ -44,9 +48,11 @@ public class Shuffle {
         MechTab.add( "Aimer State"     , Aimer      .GetState() ).withPosition( 5, 1 ).withSize( 2, 1 );
 
         // ROBOT POSE
-        DrivTab.add( "Pose X", Drivetrain.GetPose().getX()        );
-        DrivTab.add( "Pose Y", Drivetrain.GetPose().getY()        );
-        DrivTab.add( "Pose Z", Drivetrain.GetPose().getRotation() );
+        if ( Drivetrain.Pose != null ) {
+            DrivTab.add( "Pose X", Drivetrain.GetPose().getX()        );
+            DrivTab.add( "Pose Y", Drivetrain.GetPose().getY()        );
+            DrivTab.add( "Pose Z", Drivetrain.GetPose().getRotation() );
+        }
 
     }
 
