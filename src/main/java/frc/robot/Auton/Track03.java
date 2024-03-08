@@ -10,22 +10,22 @@ public class Track03 {
             case 0:
                 break;
         
-            case 1:
+            case 1: // 
                 Shooter.Shoot( 1.00 );
                 Stage.WaitForMinDuration( 1.50 );
                 break;
 
-            case 2:
+            case 2: // 
                 Mechanism.ShootHi();
                 Stage.WaitForMinDuration( 2.00 );
                 break;
 
-            case 3:
+            case 3: // 
                 Autopilot.DriveS( 0.35 );
                 Stage.WaitForMinDistance( 48 );
                 break;
 
-            default:
+            default: // 
                 Stage.Last();
                 break;
         }

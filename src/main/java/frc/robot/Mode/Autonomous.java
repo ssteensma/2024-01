@@ -16,7 +16,7 @@ public class Autonomous {
         Stage       .Reset();
 
         SelectedAuton = Chooser.GetAuton();
-        SelectedStart = Chooser.GetStart();
+        // SelectedStart = Chooser.GetStart();
     }
 
     public static void Display() {}
@@ -38,10 +38,10 @@ public class Autonomous {
         SmartDashboard.putNumber( "Stage 4 Dist",  Stage.GetStageDist( 4 ) );
         SmartDashboard.putNumber( "Stage 5 Dist",  Stage.GetStageDist( 5 ) );
  
-        for ( int i=6; i<=15; i++ ) {
-            SmartDashboard.putNumber( "Stage " + i + " Time",  Stage.GetStageTime( i ) );
-            SmartDashboard.putNumber( "Stage " + i + " Dist",  Stage.GetStageDist( i ) );
-        }
+        // for ( int i=6; i<=15; i++ ) {
+        //     SmartDashboard.putNumber( "Stage " + i + " Time",  Stage.GetStageTime( i ) );
+        //     SmartDashboard.putNumber( "Stage " + i + " Dist",  Stage.GetStageDist( i ) );
+        // }
 
         switch ( SelectedAuton ) {
             case "Path-00" : Track00.Periodic(); break;
