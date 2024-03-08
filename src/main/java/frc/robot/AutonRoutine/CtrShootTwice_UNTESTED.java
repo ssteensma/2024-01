@@ -61,7 +61,7 @@ public class CtrShootTwice_UNTESTED {
                 Stage.WaitForMinDuration( Auton.Shoot_Duration );
                 break;
 
-            case 11: // RECROSS LINE
+            case 11: // CROSS LINE AGAIN
                 Autopilot.TranslateS( Auton.DriveSpeed );
                 Stage.WaitForMinDistance( 48 );
                 break;
