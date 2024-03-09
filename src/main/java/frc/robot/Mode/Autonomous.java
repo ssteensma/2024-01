@@ -15,7 +15,7 @@ public class Autonomous {
         Navigation  .Reset();
         Stage       .Reset();
 
-        SelectedAuton = Chooser.GetAuton();
+        SelectedAuton = ChooserAuton.GetAuton();
         // SelectedStart = Chooser.GetStart();
     }
 

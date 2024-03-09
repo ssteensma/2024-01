@@ -111,17 +111,17 @@ public class Wheel {
 
         DrvPwr += DrvErr * Factor;
 
-        SmartDashboard.putNumber( ModuleName + "NEW Drv SP", DrvSP );
-        SmartDashboard.putNumber( ModuleName + "NEW Drv PV", DrvPV );
+        // SmartDashboard.putNumber( ModuleName + "NEW Drv SP", DrvSP );
+        // SmartDashboard.putNumber( ModuleName + "NEW Drv PV", DrvPV );
 
         if ( DrvSP == 0 ) { DrvPwr = 0; } 
 
-        if ( ModuleName == "RR" ) {
-            SmartDashboard.putNumber( ModuleName + "Drive Factor", Factor );
+        // if ( ModuleName == "RR" ) {
+            // SmartDashboard.putNumber( ModuleName + "Drive Factor", Factor );
             SmartDashboard.putNumber( ModuleName + "Drive Power", DrvPwr );
-            SmartDashboard.putNumber( ModuleName + "Drive Error", DrvErr );
-            SmartDashboard.putNumber( ModuleName + "Drive Reverse", reverse );
-        }
+            // SmartDashboard.putNumber( ModuleName + "Drive Error", DrvErr );
+            // SmartDashboard.putNumber( ModuleName + "Drive Reverse", reverse );
+        // }
 
         DriveMotor.set( DrvPwr * reverse );
     }

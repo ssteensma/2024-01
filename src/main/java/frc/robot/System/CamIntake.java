@@ -1,21 +1,43 @@
 package frc.robot.System;
 
+import java.util.Map;
+
+import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 
 public class CamIntake {
 
     public static NetworkTable
         LL;
+    
+    private static GenericEntry
+        TargetTX = Shuffle.CompTab.add( "Target TX", 0 )
+            .withPosition( 5, 0 )
+            .withSize( 2, 1 )
+            .getEntry(),
+
+        TargetTY = Shuffle.CompTab.add( "Target TY", 0 )
+            .withPosition( 5, 1 )
+            .withSize( 2, 1 )
+            .getEntry();
 
     public static void Initialize() {
         LL = NetworkTableInstance.getDefault().getTable("limelight-target");
-    }
+
+        Shuffle.CompTab.addCamera( "Camera Intake", "Limelight 3", "http://10.55.34.13:5800" )
+            .withPosition( 0, 0 )
+            .withProperties( Map.of( "showControls", false ) )
+            .withSize( 5, 5 )
+            .withWidget( BuiltInWidgets.kCameraStream );
+     }
+
+    
 
     public static void Periodic() {
-        SmartDashboard.putNumber( "CamTarget TX", GetCode("tx") );
-        SmartDashboard.putNumber( "CamTarget TY", GetCode("ty") );
+        TargetTX.setDouble( GetCode( "tx" ) );
+        TargetTY.setDouble( GetCode( "ty" ) );
     }
 
     public static void Reset() {}

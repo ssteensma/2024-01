@@ -26,8 +26,8 @@ public class Intake {
         Rgt.setSmartCurrentLimit( 25, 10 );
     }
 
-    public static double GetPower() { return Power; }
-    public static void Reset() { Power = 0; }
+    public static double GetPower () { return Power; }
+    public static void   Reset    () { Power = 0;    }
 
     public static void Periodic() {
         Lft.set( Power );

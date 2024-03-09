@@ -1,20 +1,8 @@
 package frc.robot.System;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Chooser {
-
-    // public static final String[] kStart = {
-    //     "Red Wal",
-    //     "Red Lft",
-    //     "Red Ctr",
-    //     "Red Rg",
-    //     "Blu Wal",
-    //     "Blu Lft",
-    //     "Blu Ctr",
-    //     "Blu Rgt"
-    // };
+public class ChooserAuton {
 
     public static final String[] kPath = {
         "Do Nothing",               // 0
@@ -61,21 +49,11 @@ public class Chooser {
         autonchooser.setDefaultOption( kPath[14], kPath[14] );
         autonchooser.setDefaultOption( kPath[15], kPath[15] );
         autonchooser.setDefaultOption( kPath[16], kPath[16] );
-        SmartDashboard.putData( "PATH", autonchooser );
 
-        // startchooser.setDefaultOption( "Red Wal", kStart[0] );
-        // startchooser.setDefaultOption( "Red Lft", kStart[1] );
-        // startchooser.setDefaultOption( "Red Ctr", kStart[2] );
-        // startchooser.setDefaultOption( "Red Rgt", kStart[3] );
-        // startchooser.setDefaultOption( "Blu Wal", kStart[4] );
-        // startchooser.setDefaultOption( "Blu Lft", kStart[5] );
-        // startchooser.setDefaultOption( "Blu Ctr", kStart[6] );
-        // startchooser.setDefaultOption( "Blu Rgt", kStart[7] );
-        // SmartDashboard.putData( "START", startchooser );
+        Shuffle.CompTab.add( "Auton Chooser", autonchooser ).withPosition( 7, 0 ).withSize( 2, 2 );
     }
 
     public static void Periodic () {}
 
     public static String GetAuton() { return autonchooser.getSelected(); }
-    // public static String GetStart() { return startchooser.getSelected(); }
 }

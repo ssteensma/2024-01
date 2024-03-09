@@ -1,7 +1,7 @@
 package frc.robot.System;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 
 public class Navigation {
     
@@ -10,11 +10,14 @@ public class Navigation {
 
     public static void Initialize() {
         NavX.calibrate();
+
+        Shuffle.CompTab.add( NavX )
+            .withPosition( 5, 2 )
+            .withSize( 3, 3 )
+            .withWidget( BuiltInWidgets.kGyro );
     }
 
-    public static void Periodic() {
-        SmartDashboard.putNumber( "Nav Dir", GetDirection() );
-    }
+    public static void Periodic() {}
 
     public static double GetDirection() { 
         return ( GetYaw() + 360 ) % 360;
