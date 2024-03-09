@@ -5,12 +5,9 @@ import frc.robot.System.Stage;
 public class x_Track09 {
     public static void Periodic() {
         switch ( Stage.Number ) {
-            case 0:
-                break;
+            case 0: break;
         
-            default:
-                Stage.Last();
-                break;
+            default: Stage.Last(); break;
         }
     }
 }

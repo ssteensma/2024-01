@@ -40,17 +40,19 @@ public class ChooserAuton {
         autonchooser.setDefaultOption( kPath[ 5], kPath[ 5] );
         autonchooser.setDefaultOption( kPath[ 6], kPath[ 6] );
         autonchooser.setDefaultOption( kPath[ 7], kPath[ 7] );
-        autonchooser.setDefaultOption( kPath[ 8], kPath[ 8] );
-        autonchooser.setDefaultOption( kPath[ 9], kPath[ 9] );
-        autonchooser.setDefaultOption( kPath[10], kPath[10] );
-        autonchooser.setDefaultOption( kPath[11], kPath[11] );
-        autonchooser.setDefaultOption( kPath[12], kPath[12] );
-        autonchooser.setDefaultOption( kPath[13], kPath[13] );
-        autonchooser.setDefaultOption( kPath[14], kPath[14] );
-        autonchooser.setDefaultOption( kPath[15], kPath[15] );
-        autonchooser.setDefaultOption( kPath[16], kPath[16] );
+        // autonchooser.setDefaultOption( kPath[ 8], kPath[ 8] );
+        // autonchooser.setDefaultOption( kPath[ 9], kPath[ 9] );
+        // autonchooser.setDefaultOption( kPath[10], kPath[10] );
+        // autonchooser.setDefaultOption( kPath[11], kPath[11] );
+        // autonchooser.setDefaultOption( kPath[12], kPath[12] );
+        // autonchooser.setDefaultOption( kPath[13], kPath[13] );
+        // autonchooser.setDefaultOption( kPath[14], kPath[14] );
+        // autonchooser.setDefaultOption( kPath[15], kPath[15] );
+        // autonchooser.setDefaultOption( kPath[16], kPath[16] );
 
-        Shuffle.CompTab.add( "Auton Chooser", autonchooser ).withPosition( 7, 0 ).withSize( 2, 2 );
+        Shuffle.CompTab.add( "Auton Chooser", autonchooser )
+            .withPosition( 7, 0 )
+            .withSize( 2, 2 );
     }
 
     public static void Periodic () {}

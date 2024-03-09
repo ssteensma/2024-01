@@ -5,18 +5,10 @@ import frc.robot.System.*;
 public class LftShootCross {
     public static void Periodic() {
         switch ( Stage.Number ) {
-            case 0:
-                break;
+            case 0: break;
         
-            case 1: // POWER UP SHOOTER
-                Shooter.Shoot( 1.00 );
-                Stage.WaitForMinDuration( Auton.Shoot_PrepTime );
-                break;
-
-            case 2: // SHOOT INTO SPEAKER
-                Mechanism.ShootHi();
-                Stage.WaitForMinDuration( Auton.Shoot_Duration );
-                break;
+            case 1: Auton.PrepShooter(); break;
+            case 2: Auton.ShootHi();     break;
 
             case 3: // BACK UP
                 Autopilot.TranslateS( Auton.DriveSpeed );

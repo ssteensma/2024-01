@@ -1,6 +1,5 @@
 package frc.robot.Mode;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DataLogManager;
 import frc.robot.System.*;
 
@@ -24,9 +23,7 @@ public class Onabot {
         Shooter      .Initialize();
     }
 
-    public static void Periodic() {
-        SmartDashboard.putNumber( "NAV DIR", Navigation.GetDirection() );
-    }
+    public static void Periodic() {}
 
     public static void UpdateMechanism() {
         Aimer        .Periodic();

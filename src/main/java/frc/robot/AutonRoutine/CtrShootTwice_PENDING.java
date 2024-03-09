@@ -5,54 +5,30 @@ import frc.robot.System.*;
 public class CtrShootTwice_PENDING {
     public static void Periodic() {
         switch ( Stage.Number ) {
-            case 0:
-                break;
+            case 0: break;
         
-            case 1: // PREPARE SHOOTER
-                Shooter.Shoot( 1.00 );
-                Stage.WaitForMinDuration( Auton.Shoot_PrepTime );
-                break;
+            // SHOOT FIRST RING
+            case 1: Auton.PrepShooter   (); break;
+            case 2: Auton.ShootHi       (); break;
 
-            case 2: // SHOOT NOTE
-                Mechanism.ShootHi();
-                Stage.WaitForMinDuration( Auton.Shoot_Duration );
-                break;
+            // COLLECT SECOND RING
+            case 3: Auton.DriveToRing   (); break;
+            case 4: Auton.CollectRing   (); break;
 
-            case 3: // ALIGN WITH SECOND RING
-                Autopilot.DriveToRing();
-                Mechanism.Collect();
-                Stage.WaitForRing();
-                break;
-            
-            case 4: // COLLECT SECOND RING
-                Autopilot.TranslateS( Auton.DriveSpeed );
-                Mechanism.Collect();
-                Stage.WaitForMinDistance( 30 );
-                break;
+            // DRIVE TO SPEAKER
+            case 5: Auton.DriveToSpeaker(); break;
 
-            case 5: // DRIVE TO APRIL TAG
-                Autopilot.DriveToAprilTag_UNTESTED();
-                Stage.WaitForAprilTagY( -13, 1 );
-                break;
+            // SHOOT SECOND RING
+            case 6: Auton.PrepShooter   (); break;
+            case 7: Auton.ShootHi       (); break;
 
-            case 6: // PREPARE SHOOTER
-                Shooter.Shoot( 1.00 );
-                Stage.WaitForMinDuration( Auton.Shoot_PrepTime );
-                break;
-
-            case 7: // SHOOT SECOND NOTE
-                Mechanism.ShootHi();
-                Stage.WaitForMinDuration( Auton.Shoot_Duration );
-                break;
-
-            case 8: // CROSS LINE AGAIN
+            // CROSS LINE AGAIN
+            case 8:
                 Autopilot.TranslateS( Auton.DriveSpeed );
                 Stage.WaitForMinDistance( 60 );
                 break;
     
-            default:
-                Stage.Last();
-                break;
+            default: Stage.Last(); break;
         }
     }
 }
