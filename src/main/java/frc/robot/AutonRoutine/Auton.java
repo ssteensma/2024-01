@@ -22,11 +22,8 @@ public class Auton {
         Turn_Angle  =  60,
 
         Far_Short   = 337,
-        Far_Long    = 414,
+        Far_Long    = 414;
         
-        Shoot_PrepTime = 1.50,
-        Shoot_Duration = 2.00;
-
     public static void CollectRing() {
         Autopilot.TranslateS( Auton.DriveSpeed );
         Mechanism.Collect();
@@ -46,11 +43,11 @@ public class Auton {
 
     public static void PrepShooter() {
         Shooter.Shoot( 1.00 );
-        Stage.WaitForMinDuration( Auton.Shoot_PrepTime );
+        Stage.WaitForMinDuration( 1.50 );
     }
 
     public static void ShootHi() {
         Mechanism.ShootHi();
-        Stage.WaitForMinDuration( Auton.Shoot_Duration );
+        Stage.WaitForMinDuration( 2.00 );
     }
 }
