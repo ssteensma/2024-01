@@ -25,7 +25,7 @@ public class Auton {
         Far_Long    = 414;
         
     public static void Backup( double Distance ) {
-        Autopilot.TranslateS( Distance );
+        Autopilot.TranslateS( Auton.DriveSpeed );
         Stage.WaitForMinDistance( Distance );
     }
 
@@ -55,14 +55,19 @@ public class Auton {
         Stage.WaitForMinDistance( 18 );
     }
 
-    public static void DriveToSpeaker() {
+    public static void TransToSpeaker() {
         Autopilot.TransToAprilTag();
         Stage.WaitForAprilTagY( 10, 1 );
     }
 
+    public static void Forward( double Distance ) {
+        Autopilot.TranslateN( Auton.DriveSpeed );
+        Stage.WaitForMinDistance( Distance );
+    }
+
     public static void PrepShooter() {
         Shooter.Shoot( 1.00 );
-        Stage.WaitForMinDuration( 1.50 );
+        Stage.WaitForMinDuration( 0.50 );
     }
 
     public static void ShootHi() {

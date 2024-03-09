@@ -49,9 +49,11 @@ public class Autonomous {
             case "Shoot Only"             : ShootOnly           .Periodic(); break;
             case "Ctr Shoot, Cross"       : CtrShootCross       .Periodic(); break;
             case "Lft Shoot, Cross"       : LftShootCross       .Periodic(); break;
-            case "Rgt Shoot, Cross"       : RgtShootCross   .Periodic(); break;
+            case "Rgt Shoot, Cross"       : RgtShootCross       .Periodic(); break;
             case "Ctr Shoot, Cross, Grab" : CtrShootCrossGrab   .Periodic(); break;
-            case "Ctr Shoot Twice"        : CtrShootTwice   .Periodic(); break;
+            case "Ctr Shoot Twice"        : CtrShootTwice       .Periodic(); break;
+            case "Lft Shoot Twice"        : LftShootTwice       .Periodic(); break;
+            case "Rgt Shoot Twice"        : RgtShootTwice       .Periodic(); break;
         }
 
         Stage.Next();

@@ -1,13 +1,15 @@
 package frc.robot.Mode;
 
 import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.System.*;
 
 public class Onabot {
 
     public static void Initialize() {
         DataLogManager.start();
-        
+        DriverStation .startDataLog( DataLogManager.getLog() );
+
         Navigation   .Initialize();
         Drivetrain   .Initialize();
 
