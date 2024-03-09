@@ -61,18 +61,12 @@ public class Teleop {
             if ( CamIntake.TY() < -6 ) { X = -0.10; Z = 0.00; }
         }
 
-        // if ( DS.getCircleButton() ) {
-        //     Z = Autopilot.AdjustToHeading( 0 );
-        // } else if ( DS.getCrossButton() ) {
-        //     Z = Autopilot.AdjustToHeading( 90 );
-        // }
 
         // ALIGN TO SPEAKER AUTOMATICALLY
-        // if ( DS.getBButton() ) {
-        //     X = ( CamIntake.TY() - 15 ) * 0.007;
-        //     Y = ( CamIntake.TX() ) * 0.005;
-        //     Z = 0;
-        // }
+        if ( DS.getCrossButton() ) {
+            Autopilot.TransToAprilTag();
+            X = Drivetrain.vx; Y = Drivetrain.vy; Z = 0;
+        }
 
         Drivetrain  .UpdateRobotRelative( X, Y, Z );
         Onabot      .UpdateMechanism();

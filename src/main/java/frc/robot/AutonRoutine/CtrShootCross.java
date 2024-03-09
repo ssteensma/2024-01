@@ -10,10 +10,7 @@ public class CtrShootCross {
             case 1: Auton.PrepShooter(); break;
             case 2: Auton.ShootHi    (); break;
 
-            case 3:
-                Autopilot.TranslateS( Auton.DriveSpeed );
-                Stage.WaitForMinDistance( 48 );
-                break;
+            case 3: Auton.BackupCtr  (); break;
 
             default: Stage.Last(); break;
         }

@@ -8,10 +8,7 @@ public class WallCrossLine {
         switch ( Stage.Number ) {
             case 0: break;
 
-            case 1:
-                Autopilot.TranslateS( Auton.DriveSpeed );
-                Stage.WaitForMinDistance( Auton.Wall_To_Line + 12 );
-                break;
+            case 1: Auton.BackupWall(); break;
 
             default: Stage.Last(); break;
         }

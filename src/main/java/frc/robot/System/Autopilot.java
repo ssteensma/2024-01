@@ -17,52 +17,45 @@ public class Autopilot {
 //
 //	ADJUST HEADING
 //
-	public static double GetError( double Heading ) {
-		double Error = Heading - Navigation.GetYaw();
-		return Error;
-	}
-
 	public static double AdjustToHeading( double Heading ) {
-		double Error  = GetError( Heading );
+		double Error  = Heading - Navigation.GetDirection();
 		double Offset = Error * -0.007;
 		if ( Offset >  0.10 ) { Offset =  0.10; }
 		if ( Offset < -0.10 ) { Offset = -0.10; }
 		return Offset;
 	}
 
-	public static double TurnToRing_UNTESTED( double Speed ) {
-		double Error = CamIntake.TX();
-		return Error;
-	}
+	// public static double TurnToRing_UNTESTED( double Speed ) {
+	// 	double Error = CamIntake.TX();
+	// 	return Error;
+	// }
 
-	public static void DriveToRing() {
+	public static void TransToRing() {
 		double X = ( CamIntake.TY() - -20 ) * -0.02;
-		double Y = 0;
-		double Z = CamIntake.TX() * -0.008;
+		double Y = ( CamIntake.TX() )  * 0.01;
 
 		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
 		if ( X < -Auton.DriveSpeed ) { X = -Auton.DriveSpeed; }
 
 		Drivetrain.vx = X;
 		Drivetrain.vy = Y;
-		Drivetrain.vt = Z;
+		Drivetrain.vt = 0;
 	}
 
 //
 // 	ALTERNATE FORM FOR DRIVE CARTESIAN
 //
-	public static void DriveStraight_UNTESTED ( double X, double Y ) {
-		double angle = Math.atan2( Y, X ) * ToDeg;
-		Drivetrain.vx = -X; Drivetrain.vy = Y; Drivetrain.vt = AdjustToHeading( angle );
-	}
+	// public static void DriveStraight_UNTESTED ( double X, double Y ) {
+	// 	double angle = Math.atan2( Y, X ) * ToDeg;
+	// 	Drivetrain.vx = -X; Drivetrain.vy = Y; Drivetrain.vt = AdjustToHeading( angle );
+	// }
 
 //
 //
-//
-	public static void DriveToAprilTag_UNTESTED() {
-		double X = ( CamShooter.TY() - 17 ) * 0.007;
-		double Y = ( CamShooter.TX() ) * 0.005;
-		double Z = 0;		
+	public static void TransToAprilTag() {
+		double X = ( 10 - CamShooter.TY() ) * 0.015;
+		double Y = ( CamShooter.TX() ) * -0.01;
+		double Z = 0;
 
 		// MAXIMUM SPEED
 		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
@@ -76,12 +69,13 @@ public class Autopilot {
 //
 // TRANSLATION MOVEMENT ONLY
 //
-	public static void TranslateN_UNTESTED ( double Speed ) { Drivetrain.vx = +Speed; Drivetrain.vy = 0;      Drivetrain.vt = 0; }
-	public static void TranslateE_UNTESTED ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = -Speed; Drivetrain.vt = 0; }
-	public static void TranslateS ( double Speed ) { Drivetrain.vx = -Speed; Drivetrain.vy = 0;      Drivetrain.vt = 0; }
-	public static void TranslateW_UNTESTED ( double Speed ) { Drivetrain.vx = 0;      Drivetrain.vy = +Speed; Drivetrain.vt = 0; }
+	public static void TranslateN ( double Speed ) { Drivetrain.vx = +Speed; Drivetrain.vy = 0; Drivetrain.vt = 0; }
+	public static void TranslateS ( double Speed ) { Drivetrain.vx = -Speed; Drivetrain.vy = 0; Drivetrain.vt = 0; }
 
-	public static void Backup( double Speed ) { TranslateS( Speed ); }
+	public static void TranslateE_UNTESTED ( double Speed ) { Drivetrain.vx = 0; Drivetrain.vy = -Speed; Drivetrain.vt = 0; }
+	public static void TranslateW_UNTESTED ( double Speed ) { Drivetrain.vx = 0; Drivetrain.vy = +Speed; Drivetrain.vt = 0; }
+
+	// public static void Backup( double Speed ) { TranslateS( Speed ); }
 
 //
 // DRIVE BY CARDINAL COMPASS

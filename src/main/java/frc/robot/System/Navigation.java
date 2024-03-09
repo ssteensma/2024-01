@@ -30,16 +30,4 @@ public class Navigation {
     // public static double GetRoll()  { return +NavX.getRoll();  }
     public static double GetYaw()   { return -NavX.getAngle();   }
 
-    // public static double GetNavigationOffset() {
-    //     double Offset = 0;
-    //     if      ( Chooser.GetStart() == "Red Wal" ) { Offset =   0; }
-    //     else if ( Chooser.GetStart() == "Red Lft" ) { Offset = 300; } // TEST
-    //     else if ( Chooser.GetStart() == "Red Ctr" ) { Offset =   0; }
-    //     else if ( Chooser.GetStart() == "Red Rgt" ) { Offset =  60; } // TEST
-    //     else if ( Chooser.GetStart() == "Blu Wal" ) { Offset =   0; }
-    //     else if ( Chooser.GetStart() == "Blu Lft" ) { Offset = 300; } // TEST
-    //     else if ( Chooser.GetStart() == "Blu Ctr" ) { Offset =   0; }
-    //     else if ( Chooser.GetStart() == "Blu Rgt" ) { Offset =  60; } // TEST
-    //     return Offset;
-    // }
 }

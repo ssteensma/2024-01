@@ -13,12 +13,12 @@ public class CamIntake {
         LL;
     
     private static GenericEntry
-        TargetTX = Shuffle.CompTab.add( "Target TX", 0 )
+        TargetTX = Shuffle.CompTab.add( "Intake TX", 0 )
             .withPosition( 5, 0 )
             .withSize( 2, 1 )
             .getEntry(),
 
-        TargetTY = Shuffle.CompTab.add( "Target TY", 0 )
+        TargetTY = Shuffle.CompTab.add( "Intake TY", 0 )
             .withPosition( 5, 1 )
             .withSize( 2, 1 )
             .getEntry();

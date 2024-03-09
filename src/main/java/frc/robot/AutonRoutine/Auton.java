@@ -5,7 +5,7 @@ import frc.robot.System.*;
 public class Auton {
 
     public static double
-        DriveSpeed   = 0.15,
+        DriveSpeed   = 0.17,
         TurnSpeed    = 0.15,
 
         Wall_To_Line = 114,
@@ -24,21 +24,35 @@ public class Auton {
         Far_Short   = 337,
         Far_Long    = 414;
         
+    public static void BackupCtr() {
+        Autopilot.TranslateS( Auton.DriveSpeed );
+        Stage.WaitForMinDistance( 48 );
+    }
+
+    public static void BackupLft() {
+        Autopilot.TranslateS( Auton.DriveSpeed );
+        Stage.WaitForMinDistance( 34 );
+    }
+
+    public static void BackupRgt() {
+        Autopilot.TranslateS( Auton.DriveSpeed );
+        Stage.WaitForMinDistance( 34 );
+    }
+
+    public static void BackupWall() {
+        Autopilot.TranslateS( Auton.DriveSpeed );
+        Stage.WaitForMinDistance( 120 );
+    }
+
     public static void CollectRing() {
         Autopilot.TranslateS( Auton.DriveSpeed );
         Mechanism.Collect();
-        Stage.WaitForMinDistance( 12 );
-    }
-
-    public static void DriveToRing() {
-        Autopilot.DriveToRing();
-        Mechanism.Collect();
-        Stage.WaitForRing();
+        Stage.WaitForMinDistance( 18 );
     }
 
     public static void DriveToSpeaker() {
-        Autopilot.DriveToAprilTag_UNTESTED();
-        Stage.WaitForAprilTagY( -13, 1 );
+        Autopilot.TransToAprilTag();
+        Stage.WaitForAprilTagY( 10, 1 );
     }
 
     public static void PrepShooter() {
@@ -50,4 +64,27 @@ public class Auton {
         Mechanism.ShootHi();
         Stage.WaitForMinDuration( 2.00 );
     }
+
+    public static void TranslateS( double Distance ) {
+        Autopilot.TranslateS( Auton.DriveSpeed );
+        Stage.WaitForMinDistance( Distance );
+    }
+
+    public static void TransToRing() {
+        Autopilot.TransToRing();
+        Mechanism.Collect();
+        Stage.WaitForRing();
+    }
+
+    public static void TurnLft() {
+        Autopilot.TurnLftAtSpeed( Auton.TurnSpeed );
+        Stage.WaitForHeading( 60, 2 );
+    }
+
+    public static void TurnRgt() {
+        Autopilot.TurnRgtAtSpeed( Auton.TurnSpeed );
+        Stage.WaitForHeading( 300, 2 );
+    }
+
+
 }

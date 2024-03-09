@@ -10,18 +10,8 @@ public class CtrShootCrossGrab {
             case 1: Auton.PrepShooter(); break;
             case 2: Auton.ShootHi    (); break;
 
-            case 3:
-                Autopilot.TranslateS( Auton.DriveSpeed );
-                Stage.WaitForMinDistance( 18 );
-                break;
-
-            case 4: Auton.DriveToRing(); break;
-            case 5: Auton.CollectRing(); break;
-
-            case 6:
-                Autopilot.AdjustToHeading( 0 );
-                Stage.WaitForHeading( 0, 1 );
-                break;
+            case 3: Auton.TransToRing(); break;
+            case 4: Auton.CollectRing(); break;
 
             default: Stage.Last(); break;
         }

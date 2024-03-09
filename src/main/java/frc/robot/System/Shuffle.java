@@ -12,11 +12,7 @@ public class Shuffle {
     public static ShuffleboardTab DrivTab = Shuffleboard.getTab( "Driv" );
     public static ShuffleboardTab LimeTab = Shuffleboard.getTab( "Lime" );
     public static ShuffleboardTab MechTab = Shuffleboard.getTab( "Mech" );
-    public static ShuffleboardTab PoseTab = Shuffleboard.getTab( "Pose`" );
-
-    // public static ShuffleboardLayout CamIntake = Shuffleboard.getTab("Lime")
-    //     .getLayout( "Intake Cam", BuiltInLayouts.kList )
-    //     .withSize( 5, 1 );
+    public static ShuffleboardTab PoseTab = Shuffleboard.getTab( "Pose" );
 
     public static void Initialize() {
 
@@ -62,12 +58,7 @@ public class Shuffle {
     //             PoseTab.add( "Pose Z", Drivetrain.GetPose().getRotation() );
     //         }
     //     }
-
     // }
 
-    // public static void Reset() {
-    //     CompTab.addPersistent( "Target Vertical",  CamIntake .TargetY ).getEntry();
-    //     CompTab.addPersistent( "Shooter Vertical", CamShooter.TargetY ).getEntry();
-    // }
     }
 }

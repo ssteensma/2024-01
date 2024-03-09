@@ -13,12 +13,12 @@ public class CamShooter {
             .getTable("limelight-intake");
 
     private static GenericEntry
-        IntakeTX = Shuffle.CompTab.add( "Intake TX", 0 )
+        IntakeTX = Shuffle.CompTab.add( "Shooter TX", 0 )
             .withPosition( 9, 0 )
             .withSize( 2, 1 )
             .getEntry(),
 
-        IntakeTY = Shuffle.CompTab.add( "Intake TY", 0 )
+        IntakeTY = Shuffle.CompTab.add( "Shooter TY", 0 )
             .withPosition( 9, 1 )
             .withSize( 2, 1 )
             .getEntry();
