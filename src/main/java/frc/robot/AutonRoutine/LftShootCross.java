@@ -12,7 +12,7 @@ public class LftShootCross {
 
             case 3: Auton.BackupLft  (); break;
             case 4: Auton.TurnRgt    (); break;
-            case 5: Auton.TranslateS( 48 ); break;
+            case 5: Auton.Backup ( 48 ); break;
 
             default: Stage.Last(); break;
         }

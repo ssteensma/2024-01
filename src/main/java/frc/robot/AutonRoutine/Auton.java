@@ -24,6 +24,11 @@ public class Auton {
         Far_Short   = 337,
         Far_Long    = 414;
         
+    public static void Backup( double Distance ) {
+        Autopilot.TranslateS( Distance );
+        Stage.WaitForMinDistance( Distance );
+    }
+
     public static void BackupCtr() {
         Autopilot.TranslateS( Auton.DriveSpeed );
         Stage.WaitForMinDistance( 48 );
