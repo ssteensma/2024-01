@@ -2,9 +2,11 @@ package frc.robot.System;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Ports.pShooter;
 
-public class Shooter {
+public class Shooter extends SubsystemBase {
     
     // TALON FX
     public static TalonFX
@@ -32,4 +34,10 @@ public class Shooter {
 
     public static void ShootLo() { Power = 1.00; }
     public static void ShootHi() { Power = 1.00; }
+
+// ====================================
+
+    public Command cReset() { return this.runOnce( () -> Reset( ) ); }
+    public Command cStop () { return this.runOnce( () -> Stop ( ) ); }
+    public Command cShoot() { return this.runOnce( () -> Shoot(1) ); }
 }

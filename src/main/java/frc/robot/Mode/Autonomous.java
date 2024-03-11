@@ -69,7 +69,7 @@ public class Autonomous {
         Stage.Next();
 
         // DRIVETRAIN
-        Drivetrain  .UpdateRobotRelative ( Drivetrain.vx, Drivetrain.vy, Drivetrain.vt );
+        Drivetrain  .UpdateRobotRelative ();
         Onabot      .UpdateMechanism     ();
     }
 

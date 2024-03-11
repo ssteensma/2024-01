@@ -100,13 +100,21 @@ public class Drivetrain {
         );
     }
 
-    public static void UpdateFieldRelative ( double vx, double vy, double vt) {
+    public static void UpdateFieldRelative () {
+        double vx = Drivetrain.vx;
+        double vy = Drivetrain.vy;
+        double vt = Drivetrain.vt;
+
         Rotation2d    Rot2d  = Rotation2d.fromDegrees( Navigation.GetYaw() );
         ChassisSpeeds Speeds = ChassisSpeeds.fromFieldRelativeSpeeds( vx, vy, vt, Rot2d );
         Update( Speeds );
     }
 
-    public static void UpdateRobotRelative ( double vx, double vy, double vt ) {
+    public static void UpdateRobotRelative () {
+        double vx = Drivetrain.vx;
+        double vy = Drivetrain.vy;
+        double vt = Drivetrain.vt;
+
         ChassisSpeeds Speeds = new ChassisSpeeds( vx, vy, vt );
         Update( Speeds );
     }

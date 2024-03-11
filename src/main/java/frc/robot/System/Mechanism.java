@@ -1,15 +1,9 @@
 package frc.robot.System;
 
-public class Mechanism {
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-    public static void Stop() {
-        Aimer.Extend();
-        Climber.Stop();
-        Intake.Stop();
-        Mover.Stop();
-        Roller.Stop();
-        Shooter.Stop();
-    }
+public class Mechanism extends SubsystemBase {
 
     public static void Collect() {
         Aimer.Extend();
@@ -20,6 +14,8 @@ public class Mechanism {
         Shooter.Stop();
     }
 
+    public Command cCollect() { return this.runOnce( () -> Collect() ); }
+
     public static void Ascend() {
         Aimer.Extend();
         Climber.AutoAscend();
@@ -28,6 +24,8 @@ public class Mechanism {
         Roller.Stop();
         Shooter.Stop();
     }
+
+    public Command cAscend() { return this.runOnce( () -> Ascend() ); }
 
     public static void Descend() {
         Aimer.Extend();
@@ -38,6 +36,19 @@ public class Mechanism {
         Shooter.Stop();
     }
 
+    public Command cDescend() { return this.runOnce( () -> Descend() ); }
+
+    public static void Reset() {
+        Aimer.Extend();
+        Climber.Stop();
+        Intake.Stop();
+        Mover.Stop();
+        Roller.Stop();
+        Shooter.Stop();
+    }
+
+    public Command cReset() { return this.runOnce( () -> Reset() ); }
+
     public static void ShootLo() {
         Aimer.Retract();
         Climber.Stop();
@@ -47,6 +58,8 @@ public class Mechanism {
         Shooter.ShootLo();
     }
 
+    public Command cShootLo() { return this.runOnce( () -> ShootLo() ); }
+
     public static void ShootHi() {
         Aimer.Extend();
         Climber.Stop();
@@ -55,5 +68,7 @@ public class Mechanism {
         Roller.Stop();
         Shooter.ShootHi();
     }
+
+    public Command cShootHi() { return this.runOnce( () -> ShootHi() ); }
 
 }

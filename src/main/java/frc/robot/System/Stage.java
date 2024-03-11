@@ -37,7 +37,7 @@ public class Stage {
 
 	public static void Begin () {
 		Autopilot.Stop();
-		Mechanism.Stop();
+		Mechanism.Reset();
 		ReadyToAdvance	= true;
 
 		SystemTime[ Number ] = System.currentTimeMillis() / 1000;

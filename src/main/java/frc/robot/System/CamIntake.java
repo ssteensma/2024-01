@@ -6,8 +6,9 @@ import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class CamIntake {
+public class CamIntake extends SubsystemBase {
 
     public static NetworkTable
         LL;
@@ -33,8 +34,6 @@ public class CamIntake {
             .withWidget( BuiltInWidgets.kCameraStream );
      }
 
-    
-
     public static void Periodic() {
         TargetTX.setDouble( GetCode( "tx" ) );
         TargetTY.setDouble( GetCode( "ty" ) );
@@ -51,4 +50,5 @@ public class CamIntake {
     public static double GetErr( String Code, double Desired ) {
         return Desired - GetCode( Code );
     }
+
 }

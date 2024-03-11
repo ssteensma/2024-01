@@ -3,9 +3,11 @@ package frc.robot.System;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Ports.pClimber;
 
-public class Climber {
+public class Climber extends SubsystemBase {
     
     // TALONFX
     public static TalonFX
@@ -41,4 +43,15 @@ public class Climber {
 
     public static void Reset()   { Power =  0.00; }
     public static void Stop ()   { Power =  0.00; }
+
+// ====================================
+
+    public Command cStop        () { return this.runOnce( () -> Stop         () ); }
+    
+    public Command cLowerClimber() { return this.runOnce( () -> LowerClimber () ); }
+    public Command cRaiseClimber() { return this.runOnce( () -> RaiseClimber () ); }
+
+    public Command cLowerRobot  () { return this.runOnce( () -> RaiseClimber () ); }
+    public Command cRaiseRobot  () { return this.runOnce( () -> LowerClimber () ); }
+
 }

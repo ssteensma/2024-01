@@ -3,9 +3,10 @@ package frc.robot.System;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Ports.pAimer;
 
-public class Aimer extends Command {
+public class Aimer extends SubsystemBase {
 
     public static DoubleSolenoid
         Lft,
@@ -30,8 +31,17 @@ public class Aimer extends Command {
     }
 
     public static void Reset()   { Extend(); }
-
     public static void Extend()  { State = DoubleSolenoid.Value.kForward; }
     public static void Retract() { State = DoubleSolenoid.Value.kReverse; }
+
+// ====================================
+
+    public Command cExtend  () { return this.runOnce( () -> Extend  () ); }
+    public Command cRaise   () { return this.runOnce( () -> Extend  () ); }
+
+    public Command cRetract () { return this.runOnce( () -> Retract () ); }
+    public Command cLower   () { return this.runOnce( () -> Retract () ); }
+
+    public Command cReset   () { return this.runOnce( () -> Reset   () ); }
 
 }

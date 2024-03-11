@@ -45,7 +45,7 @@ public class Teleop {
         else if ( MS.getStartButton() ) { Mechanism.Ascend  (); }
         else if ( MS.getBackButton () ) { Mechanism.Descend (); }
         else if ( MS.getLeftBumper () && MS.getRightBumper() ) { Climber.LowerClimber(); }
-        else                            { Mechanism.Stop    (); }
+        else                            { Mechanism.Reset    (); }
 
         // GET RING AUTOMATICALLY
         if ( DS.getR2Button() ) {
@@ -65,10 +65,14 @@ public class Teleop {
         // ALIGN TO SPEAKER AUTOMATICALLY
         if ( DS.getCrossButton() ) {
             Autopilot.TransToAprilTag();
-            X = Drivetrain.vx; Y = Drivetrain.vy; Z = 0;
+            Z = 0;
         }
 
-        Drivetrain  .UpdateRobotRelative( X, Y, Z );
+        Drivetrain.vx = X;
+        Drivetrain.vy = Y;
+        Drivetrain.vt = Z;
+
+        Drivetrain  .UpdateRobotRelative();
         Onabot      .UpdateMechanism();
     }
 
