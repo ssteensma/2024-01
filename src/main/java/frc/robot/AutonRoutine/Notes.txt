@@ -1,0 +1,45 @@
+OPTIONS
+=======
+SelectedAuton     (various numbers)
+SelectedColor     Red, Blue
+SelectedStart     Wall, Left, Center, Right
+
+CONSTANTS
+=========
+DrvSpeed = 0.15
+TrnSpeed = 0.10
+
+DISTANCES
+=========
+
+public static double
+    DistA = 
+
+
+
+Wall_to_Line    9'6" + added
+
+RED LEFT (B), BLUE LEFT (L)
+Dist_B1 = 34
+Turn_Right to 60
+Dist_B2 = 48
+
+CENTER (C, K)
+Dist_C1 = 18
+
+RED RIGHT (D), BLUE RIGHT (J)
+Dist_D1 = 34
+Turn_Left to 300
+Dist_D2 = 48
+
+
+
+GROUP 0
+=======
+0 - Do nothing at all
+1 - Cross line from wall
+2 - Shoot only from any location
+
+GROUP 1
+=======
+3 - 

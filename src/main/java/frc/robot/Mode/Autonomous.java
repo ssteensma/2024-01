@@ -7,8 +7,12 @@ import frc.robot.System.*;
 public class Autonomous {
 
     public static String
-        SelectedAuton = "n/a";
-        // SelectedStart = "n/a";
+        SelectedAuton = "n/a",
+        SelectedColor = "n/a";
+
+    public static double
+        LeaveAngle  =  60,
+        ReturnAngle = 300;
 
     public static void Initialize () {
         Autopilot   .Reset();
@@ -16,12 +20,13 @@ public class Autonomous {
         Stage       .Reset();
 
         SelectedAuton = ChooserAuton.GetAuton();
-        // SelectedStart = Chooser.GetStart();
+        SelectedColor = ChooserColor.GetColor();
     }
 
     public static void Display() {}
 
     public static void Periodic () {
+
         Stage.Begin();
 
         SmartDashboard.putNumber( "STAGE NUMBER", Stage.Number );
@@ -51,9 +56,14 @@ public class Autonomous {
             case "Lft Shoot, Cross"       : LftShootCross       .Periodic(); break;
             case "Rgt Shoot, Cross"       : RgtShootCross       .Periodic(); break;
             case "Ctr Shoot, Cross, Grab" : CtrShootCrossGrab   .Periodic(); break;
+
             case "Ctr Shoot Twice"        : CtrShootTwice       .Periodic(); break;
             case "Lft Shoot Twice"        : LftShootTwice       .Periodic(); break;
             case "Rgt Shoot Twice"        : RgtShootTwice       .Periodic(); break;
+
+            // case "Ctr Shoot Three"        : CtrShootThree       .Periodic(); break;
+            case "Nar Shoot Three"        : NarShootThree_PENDING       .Periodic(); break;
+            // case "Rgt Shoot Three"        : RgtShootThree       .Periodic(); break;
         }
 
         Stage.Next();

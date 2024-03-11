@@ -1,5 +1,6 @@
 package frc.robot.AutonRoutine;
 
+import frc.robot.Mode.Autonomous;
 import frc.robot.System.*;
 
 public class Auton {
@@ -23,7 +24,7 @@ public class Auton {
 
         Far_Short   = 337,
         Far_Long    = 414;
-        
+
     public static void Backup( double Distance ) {
         Autopilot.TranslateS( Auton.DriveSpeed );
         Stage.WaitForMinDistance( Distance );
