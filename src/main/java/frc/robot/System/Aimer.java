@@ -2,9 +2,10 @@ package frc.robot.System;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Ports.pAimer;
 
-public class Aimer {
+public class Aimer extends Command {
 
     public static DoubleSolenoid
         Lft,
@@ -32,4 +33,5 @@ public class Aimer {
 
     public static void Extend()  { State = DoubleSolenoid.Value.kForward; }
     public static void Retract() { State = DoubleSolenoid.Value.kReverse; }
+
 }
