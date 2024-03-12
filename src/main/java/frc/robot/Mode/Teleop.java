@@ -75,11 +75,9 @@ public class Teleop {
 
 
         // ALIGN TO SPEAKER AUTOMATICALLY
-        if ( DS.getCrossButton() ) {
-            Autopilot.TransToAprilTag();
-            Z = 0;
-        }
+        if ( DS.getCrossButton() ) { Autopilot.TransToAprilTag(); }
 
+        // SAVE VALUES FOR DRIVETRAIN
         Drivetrain.vx = X;
         Drivetrain.vy = Y;
         Drivetrain.vt = Z;
