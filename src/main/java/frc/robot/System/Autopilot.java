@@ -71,7 +71,6 @@ public class Autopilot {
 //
 	public static void TranslateN ( double Speed ) { Drivetrain.vx = +Speed; Drivetrain.vy = 0; Drivetrain.vt = 0; }
 	public static void TranslateS ( double Speed ) { Drivetrain.vx = -Speed; Drivetrain.vy = 0; Drivetrain.vt = 0; }
-
 	public static void TranslateE_UNTESTED ( double Speed ) { Drivetrain.vx = 0; Drivetrain.vy = -Speed; Drivetrain.vt = 0; }
 	public static void TranslateW_UNTESTED ( double Speed ) { Drivetrain.vx = 0; Drivetrain.vy = +Speed; Drivetrain.vt = 0; }
 

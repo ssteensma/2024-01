@@ -160,7 +160,10 @@ public class Drivetrain extends SubsystemBase {
 
 // ====================================
 
-    public Command cDriveN( double Speed ) { return this.runOnce( () -> Autopilot.TranslateN( Speed ) ); }
-    public Command cDriveS( double Speed ) { return this.runOnce( () -> Autopilot.TranslateS( Speed ) ); }
+    public Command cTransN( double Speed ) { return this.runOnce( () -> Autopilot.TranslateN( Speed ) ); }
+    public Command cTransS( double Speed ) { return this.runOnce( () -> Autopilot.TranslateS( Speed ) ); }
+    public Command cTransE( double Speed ) { return this.runOnce( () -> Autopilot.TranslateE_UNTESTED( Speed ) ); }
+    public Command cTransW( double Speed ) { return this.runOnce( () -> Autopilot.TranslateW_UNTESTED( Speed ) ); }
+    
 
 }

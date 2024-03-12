@@ -54,12 +54,11 @@ public class Mechanism extends SubsystemBase {
         Aimer.Retract();
         Climber.Stop();
         Intake.Stop();
-        Mover.Forward();
-        Roller.Stop();
-
-        if ( System.currentTimeMillis() - Teleop.shooter_delay > 1.0 ) {
-            Shooter.ShootLo();
+        if ( System.currentTimeMillis() - Teleop.shooter_delay > 0.5 ) {
+            Mover.Forward();
         }
+        Roller.Stop();
+        ShootLo();
     }
 
     public Command cShootLo() { return this.runOnce( () -> ShootLo() ); }
@@ -68,12 +67,11 @@ public class Mechanism extends SubsystemBase {
         Aimer.Extend();
         Climber.Stop();
         Intake.Stop();
-        Mover.Forward();
-        Roller.Stop();
-
-        if ( System.currentTimeMillis() - Teleop.shooter_delay > 1.0 ) {
-            Shooter.ShootHi();
+        if ( System.currentTimeMillis() - Teleop.shooter_delay > 0.5 ) {
+           Mover.Forward();
         }
+        Roller.Stop();
+        Shooter.ShootHi();
     }
 
     public Command cShootHi() { return this.runOnce( () -> ShootHi() ); }
