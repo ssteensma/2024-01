@@ -37,13 +37,13 @@ public class Teleop {
         Z = -DS.getRightX();
 
         // DEAD ZONE
-        if ( Math.abs(X) < 0.05 ) { X = 0; }
-        if ( Math.abs(Y) < 0.05 ) { Y = 0; }
-        if ( Math.abs(Z) < 0.05 ) { Z = 0; }
+        if ( Math.abs(X) < 0.06 ) { X = 0; }
+        if ( Math.abs(Y) < 0.06 ) { Y = 0; }
+        if ( Math.abs(Z) < 0.06 ) { Z = 0; }
 
         X *= 0.90;
         Y *= 0.90;
-        Z *= 0.9;
+        Z *= 0.90;
 
         // SHOOTER DELAY BUTTON
         if      ( MS.getAButtonPressed () || MS.getYButtonPressed () ) { shooter_delay = System.currentTimeMillis(); }
