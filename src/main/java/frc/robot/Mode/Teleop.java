@@ -23,7 +23,6 @@ public class Teleop {
         cMS;
 
     public static void Initialize() {
-        Drivetrain.Reset();
         DS = new PS4Controller ( pStick.USB_Drive );
         MS = new XboxController( pStick.USM_Manip );
     }
@@ -72,7 +71,6 @@ public class Teleop {
             
             if ( CamIntake.TY() < -6 ) { X = -0.20; Z = 0.00; }
         }
-
 
         // ALIGN TO SPEAKER AUTOMATICALLY
         if ( DS.getCrossButton() ) { Autopilot.TransToAprilTag(); }

@@ -7,8 +7,8 @@ import frc.robot.System.*;
 public class Onabot {
 
     public static void Initialize() {
-        DataLogManager.start();
-        DriverStation .startDataLog( DataLogManager.getLog() );
+        // DataLogManager.start();
+        // DriverStation .startDataLog( DataLogManager.getLog() );
 
         Navigation   .Initialize();
         Drivetrain   .Initialize();
@@ -16,6 +16,8 @@ public class Onabot {
         Aimer        .Initialize();
         Autonomous   .Initialize();
         ChooserAuton .Initialize();
+        ChooserColor .Initialize();
+        ChooserStart .Initialize();
         Intake       .Initialize();
         CamShooter   .Initialize();
         CamIntake    .Initialize();

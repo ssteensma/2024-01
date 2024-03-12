@@ -26,7 +26,7 @@ public class Mechanism extends SubsystemBase {
         Shooter.Stop();
     }
 
-    public Command cAscend() { return this.runOnce( () -> Ascend() ); }
+    public Command cAutoAscend() { return this.runOnce( () -> Ascend() ); }
 
     public static void Descend() {
         Aimer.Extend();
@@ -37,7 +37,7 @@ public class Mechanism extends SubsystemBase {
         Shooter.Stop();
     }
 
-    public Command cDescend() { return this.runOnce( () -> Descend() ); }
+    public Command cAutoDescend() { return this.runOnce( () -> Descend() ); }
 
     public static void Reset() {
         Aimer.Extend();
