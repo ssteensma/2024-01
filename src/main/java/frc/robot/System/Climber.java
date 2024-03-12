@@ -30,8 +30,8 @@ public class Climber extends SubsystemBase {
 
     public static void ResetHeight()  { Mtr.setPosition( 0.00 ); }
 
-    public static void LowerClimber() { Power =  0.50; }
-    public static void RaiseClimber() { Power = -0.50; }
+    public static void LowerClimber() { Power =  0.40; }
+    public static void RaiseClimber() { Power = -0.40; }
 
     public static void AutoAscend()  { // LOWER MECHANISM, ROBOT CLIMBS
         Power =  GetDistance() <= 0 ? 1.00 : 0.00;
@@ -51,7 +51,7 @@ public class Climber extends SubsystemBase {
     public Command cLowerClimber() { return this.runOnce( () -> LowerClimber () ); }
     public Command cRaiseClimber() { return this.runOnce( () -> RaiseClimber () ); }
 
-    public Command cLowerRobot  () { return this.runOnce( () -> RaiseClimber () ); }
-    public Command cRaiseRobot  () { return this.runOnce( () -> LowerClimber () ); }
+    public Command cLowerRobot  () { return this.runOnce( () -> AutoDescend  () ); }
+    public Command cRaiseRobot  () { return this.runOnce( () -> AutoAscend   () ); }
 
 }

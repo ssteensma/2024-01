@@ -37,7 +37,7 @@ public class Shooter extends SubsystemBase {
 
 // ====================================
 
-    public Command cReset() { return this.runOnce( () -> Reset( ) ); }
-    public Command cStop () { return this.runOnce( () -> Stop ( ) ); }
-    public Command cShoot() { return this.runOnce( () -> Shoot(1) ); }
+    public Command cReset() { return this.runOnce( () -> Reset(   ) ); }
+    public Command cStop () { return this.runOnce( () -> Stop (   ) ); }
+    public Command cShoot() { return this.runOnce( () -> Shoot( 1 ) ); }
 }

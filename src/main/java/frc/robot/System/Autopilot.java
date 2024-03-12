@@ -32,7 +32,7 @@ public class Autopilot {
 
 	public static void TransToRing() {
 		double X = ( CamIntake.TY() - -20 ) * -0.02;
-		double Y = ( CamIntake.TX() )  * -0.01;
+		double Y = ( CamIntake.TX() )  * -0.02;
 
 		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
 		if ( X < -Auton.DriveSpeed ) { X = -Auton.DriveSpeed; }

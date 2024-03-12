@@ -8,9 +8,11 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Ports.pSwerve;
 
-public class Drivetrain {
+public class Drivetrain extends SubsystemBase {
    
     // CHASSIS SPEEDS
     public static ChassisSpeeds
@@ -155,4 +157,10 @@ public class Drivetrain {
         RL_module.Reset();
         RR_module.Reset();
     }
+
+// ====================================
+
+    public Command cDriveN( double Speed ) { return this.runOnce( () -> Autopilot.TranslateN( Speed ) ); }
+    public Command cDriveS( double Speed ) { return this.runOnce( () -> Autopilot.TranslateS( Speed ) ); }
+
 }

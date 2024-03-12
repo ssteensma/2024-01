@@ -2,6 +2,7 @@ package frc.robot.System;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Mode.Teleop;
 
 public class Mechanism extends SubsystemBase {
 
@@ -55,7 +56,10 @@ public class Mechanism extends SubsystemBase {
         Intake.Stop();
         Mover.Forward();
         Roller.Stop();
-        Shooter.ShootLo();
+
+        if ( System.currentTimeMillis() - Teleop.shooter_delay > 1.0 ) {
+            Shooter.ShootLo();
+        }
     }
 
     public Command cShootLo() { return this.runOnce( () -> ShootLo() ); }
@@ -66,7 +70,10 @@ public class Mechanism extends SubsystemBase {
         Intake.Stop();
         Mover.Forward();
         Roller.Stop();
-        Shooter.ShootHi();
+
+        if ( System.currentTimeMillis() - Teleop.shooter_delay > 1.0 ) {
+            Shooter.ShootHi();
+        }
     }
 
     public Command cShootHi() { return this.runOnce( () -> ShootHi() ); }
