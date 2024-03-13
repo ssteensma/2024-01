@@ -26,7 +26,7 @@ public class Stage {
 		SystemDist = new double[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	}
 
-	public static double GetDist() { return Math.abs( Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble() * 2048 / 1320 ); }
+	public static double GetDist() { return Math.abs( Drivetrain.FL_module.DriveMotor.getPosition().getValueAsDouble() * 2048 / 1400 ); }
 	public static double GetStageDist( int n ) { return Math.abs( SystemDist[ n ] - SystemDist[ n-1 ] ); }
 
 	public static double GetStageNumber() { return Number; }
@@ -74,7 +74,7 @@ public class Stage {
 	}
 
 	public static void WaitForRing() {
-		if ( CamIntake.TY() > -6 ) { ReadyToAdvance = false; }
+		if ( CamIntake.TY() > -1 ) { ReadyToAdvance = false; }
 	}
 
 }

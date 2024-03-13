@@ -59,7 +59,7 @@ public class Auton {
     public static void CollectRing() {
         Autopilot.TranslateS( Auton.DriveSpeed );
         Mechanism.Collect();
-        Stage.WaitForMinDistance( 18 );
+        Stage.WaitForMinDistance( 24 );
     }
 
     public static void TransToSpeaker() {
@@ -93,12 +93,22 @@ public class Auton {
         Stage.WaitForRing();
     }
 
-    public static void TurnLft() {
+    public static void TurnLft( double Heading ) {
+        Autopilot.TurnLftAtSpeed( Auton.TurnSpeed );
+        Stage.WaitForHeading( Heading, 2 );
+    }
+
+    public static void TurnRgt( double Heading ) {
+        Autopilot.TurnRgtAtSpeed( Auton.TurnSpeed );
+        Stage.WaitForHeading( Heading, 2 );
+    }
+
+    public static void TurnLft60() {
         Autopilot.TurnLftAtSpeed( Auton.TurnSpeed );
         Stage.WaitForHeading( 60, 2 );
     }
 
-    public static void TurnRgt() {
+    public static void TurnRgt60() {
         Autopilot.TurnRgtAtSpeed( Auton.TurnSpeed );
         Stage.WaitForHeading( 300, 2 );
     }

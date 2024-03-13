@@ -18,7 +18,7 @@ public class NarShootCross {
             case 3: Auton.Backup( 34 ); break;
 
             case 4:
-                if ( Autonomous.SelectedColor == "Red" ) { Auton.TurnLft(); } else { Auton.TurnRgt(); }
+                if ( Autonomous.SelectedColor == "Red" ) { Auton.TurnLft60(); } else { Auton.TurnRgt60(); }
                 break;
 
             case 5:

@@ -4,42 +4,42 @@ SelectedAuton     (various numbers)
 SelectedColor     Red, Blue
 SelectedStart     Wall, Left, Center, Right
 
-CONSTANTS
-=========
-DrvSpeed = 0.15
-TrnSpeed = 0.10
-
-DISTANCES
-=========
-
-public static double
-    DistA = 
-
-
-
-Wall_to_Line    9'6" + added
-
-RED LEFT (B), BLUE LEFT (L)
-Dist_B1 = 34
-Turn_Right to 60
-Dist_B2 = 48
-
-CENTER (C, K)
-Dist_C1 = 18
-
-RED RIGHT (D), BLUE RIGHT (J)
-Dist_D1 = 34
-Turn_Left to 300
-Dist_D2 = 48
-
-
-
-GROUP 0
-=======
+GROUP 0 (SIMPLE)
+================
 0 - Do nothing at all
 1 - Cross line from wall
 2 - Shoot only from any location
 
-GROUP 1
-=======
-3 - 
+GROUP 1A (ONE RING, CROSS LINE)
+===============================
+3 - Ctr
+4 - Lft
+5 - Rgt
+
+GROUP 1B (GRAB SECOND RING)
+Extension of Group 1A
+===========================
+6 - Ctr
+7 - Lft
+8 - Rgt
+
+GROUP 2A (SHOOT SECOND RING)
+Extension of Group 1B
+============================
+09 - Ctr
+10 - Lft
+11 - Rgt
+
+GROUP 3A (GRAB THIRD RING)
+Extension of 2A
+==========================
+12 - Ctr
+13 - Lft
+14 - Rgt
+
+GROUP 9A (SHOOT NEAR RINGS)
+Unique routines
+===========================
+50 - Ctr
+51 - Lft
+52 - Rgt

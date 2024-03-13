@@ -49,20 +49,22 @@ public class Autonomous {
         // }
 
         switch ( SelectedAuton ) {
-            case "Do Nothing"             : DoNothing           .Periodic(); break;
-            case "Wall Cross Line"        : WallCrossLine       .Periodic(); break;
-            case "Shoot Only"             : ShootOnly           .Periodic(); break;
-            case "Ctr Shoot, Cross"       : CtrShootCross       .Periodic(); break;
-            case "Lft Shoot, Cross"       : LftShootCross       .Periodic(); break;
-            case "Rgt Shoot, Cross"       : RgtShootCross       .Periodic(); break;
-            case "Ctr Shoot, Cross, Grab" : CtrShootCrossGrab   .Periodic(); break;
+            // case "Do Nothing"             : DoNothing           .Periodic(); break;
+            // case "Wall Cross Line"        : WallCrossLine       .Periodic(); break;
+            // case "Shoot Only"             : ShootOnly           .Periodic(); break;
+            // case "Ctr Shoot, Cross"       : CtrShootCross       .Periodic(); break;
+            // case "Lft Shoot, Cross"       : LftShootCross       .Periodic(); break;
+            // case "Rgt Shoot, Cross"       : RgtShootCross       .Periodic(); break;
+            // case "Ctr Shoot, Cross, Grab" : CtrShootCrossGrab   .Periodic(); break;
 
-            case "Ctr Shoot Twice"        : CtrShootTwice       .Periodic(); break;
-            case "Lft Shoot Twice"        : LftShootTwice       .Periodic(); break;
-            case "Rgt Shoot Twice"        : RgtShootTwice       .Periodic(); break;
+            // case "Ctr Shoot Twice"        : CtrShootTwice       .Periodic(); break;
+            // case "Lft Shoot Twice"        : LftShootTwice       .Periodic(); break;
+            // case "Rgt Shoot Twice"        : RgtShootTwice       .Periodic(); break;
+
+            case "Long Shot"              : LongShot            .Periodic(); break;
 
             // case "Ctr Shoot Three"        : CtrShootThree       .Periodic(); break;
-            case "Nar Shoot Three"        : NarShootThree_PENDING       .Periodic(); break;
+            // case "Nar Shoot Three"        : NarShootThree_PENDING       .Periodic(); break;
             // case "Rgt Shoot Three"        : RgtShootThree       .Periodic(); break;
         }
 

@@ -5,10 +5,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class ChooserStart {
 
     public static final String[] kColor = {
-        "Wall",
-        "Lft",
-        "Ctr",
-        "Rgt"
+        "Against wall",
+        "Left side",
+        "Center",
+        "Right side"
     };
 
     public static final SendableChooser<String>
@@ -20,9 +20,9 @@ public class ChooserStart {
         startchooser.setDefaultOption( kColor[ 2], kColor[ 2] );
         startchooser.setDefaultOption( kColor[ 3], kColor[ 3] );
 
-        Shuffle.CompTab.add( "Start Chooser", startchooser )
-            .withPosition( 7, 4 )
-            .withSize( 2, 2 );
+        Shuffle.AutoTab.add( "STARTING LOCATION", startchooser )
+            .withPosition( 3, 0 )
+            .withSize( 3, 2 );
     }
 
     public static void Periodic () {}

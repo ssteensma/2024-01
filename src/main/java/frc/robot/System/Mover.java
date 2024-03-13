@@ -26,6 +26,7 @@ public class Mover extends SubsystemBase {
 
     public static double GetPower() { return Power; }
 
+   
     public static void Forward() { Power = -0.50; }
     public static void Reverse() { Power = +0.35; }
     public static void Reset()   { Power = +0.00; }
@@ -37,6 +38,5 @@ public class Mover extends SubsystemBase {
     public Command cReverse () { return runOnce( () -> Reverse () ); }
     public Command cReset   () { return runOnce( () -> Reset   () ); }
     public Command cStop    () { return runOnce( () -> Stop    () ); }
-
-    
+ 
 }

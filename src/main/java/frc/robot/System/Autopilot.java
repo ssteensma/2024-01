@@ -1,5 +1,6 @@
 package frc.robot.System;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.AutonRoutine.Auton;
 
 public class Autopilot {
@@ -18,21 +19,16 @@ public class Autopilot {
 //	ADJUST HEADING
 //
 	public static double AdjustToHeading( double Heading ) {
-		double Error  = Heading - Navigation.GetDirection();
-		double Offset = Error * -0.007;
+		double Error  = Heading - Navigation.NavX.getAngle();
+		double Offset = Error * -0.003;
 		if ( Offset >  0.10 ) { Offset =  0.10; }
 		if ( Offset < -0.10 ) { Offset = -0.10; }
 		return Offset;
 	}
 
-	// public static double TurnToRing_UNTESTED( double Speed ) {
-	// 	double Error = CamIntake.TX();
-	// 	return Error;
-	// }
-
 	public static void TransToRing() {
-		double X = ( CamIntake.TY() - -20 ) * -0.02;
-		double Y = ( CamIntake.TX() )  * -0.02;
+		double X = ( CamIntake.TY() - -2 ) * -0.02;
+		double Y = ( CamIntake.TX() )  * 0.02;
 
 		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
 		if ( X < -Auton.DriveSpeed ) { X = -Auton.DriveSpeed; }
@@ -45,10 +41,10 @@ public class Autopilot {
 //
 // 	ALTERNATE FORM FOR DRIVE CARTESIAN
 //
-	// public static void DriveStraight_UNTESTED ( double X, double Y ) {
-	// 	double angle = Math.atan2( Y, X ) * ToDeg;
-	// 	Drivetrain.vx = -X; Drivetrain.vy = Y; Drivetrain.vt = AdjustToHeading( angle );
-	// }
+	public static void DriveStraight_UNTESTED ( double X, double Y ) {
+		double angle = Math.atan2( Y, X ) * ToDeg;
+		Drivetrain.vx = -X; Drivetrain.vy = Y; Drivetrain.vt = AdjustToHeading( angle );
+	}
 
 //
 //
@@ -106,6 +102,35 @@ public class Autopilot {
 	public static void DriveSW_UNTESTED ( double S ) { Drivetrain.vx = +S*Cos45; Drivetrain.vy = +S*Sin45; Drivetrain.vt = AdjustToHeading( 225 ); }
 	public static void DriveNW_UNTESTED ( double S ) { Drivetrain.vx = -S*Cos45; Drivetrain.vy = +S*Sin45; Drivetrain.vt = AdjustToHeading( 315 ); }
 
+	public static void DriveAtBackardAtHeading( double Speed, double Heading ) {
+		double Error = ( Navigation.NavX.getAngle() + 540 - Heading ) % 360 - 180;
+		SmartDashboard.putNumber( "NAV ERROR", Error );
+
+		double Power = Error * 0.007;
+		if ( Power < -0.08 ) { Power = -0.10; }
+		if ( Power >  0.08 ) { Power =  0.10; }
+		SmartDashboard.putNumber( "NAV POWER", Power );
+
+		Drivetrain.vx = -Speed;
+		Drivetrain.vy = 0.00;
+		Drivetrain.vt = Power;
+	}
+
+	public static void DriveAtForwardAtHeading( double Speed, double Heading ) {
+		double Error = ( Navigation.NavX.getAngle() + 540 - Heading ) % 360 - 180;
+		SmartDashboard.putNumber( "NAV ERROR", Error );
+
+		double Power = Error * 0.007;
+		if ( Power < -0.08 ) { Power = -0.10; }
+		if ( Power >  0.08 ) { Power =  0.10; }
+		SmartDashboard.putNumber( "NAV POWER", Power );
+
+		Drivetrain.vx = Speed;
+		Drivetrain.vy = 0.00;
+		Drivetrain.vt = Power;
+	}
+	
+
 //
 // Stop sets the robot speed vector to zero. This is useful only in Autonomous
 // mode. It should not be used elsewhere.
@@ -119,4 +144,16 @@ public class Autopilot {
 //
 	public static void TurnLftAtSpeed ( double Speed ) { Drivetrain.vx = 0; Drivetrain.vy = 0; Drivetrain.vt = +Speed; }
 	public static void TurnRgtAtSpeed ( double Speed ) { Drivetrain.vx = 0; Drivetrain.vy = 0; Drivetrain.vt = -Speed; }
+
+	public static void TurnToHeading  ( double Heading ) {
+		Drivetrain.vx = 0;
+		Drivetrain.vy = 0;
+
+		double Error =  Navigation.GetError( 90 );
+		double Power = Error * -0.001;
+		if ( Power < -0.08 ) { Power = -0.08; }
+		if ( Power >  0.08 ) { Power =  0.08; }
+
+		Drivetrain.vt = Power;
+	}
 }

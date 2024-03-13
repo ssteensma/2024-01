@@ -2,7 +2,7 @@ package frc.robot.AutonRoutine;
 
 import frc.robot.System.*;
 
-public class LftShootCross {
+public class Path01 {
     public static void Periodic() {
         switch ( Stage.Number ) {
             case 0: break;
@@ -10,9 +10,7 @@ public class LftShootCross {
             case 1: Auton.PrepShooter(); break;
             case 2: Auton.ShootHi    (); break;
 
-            case 3: Auton.BackupLft  (); break;
-            case 4: Auton.TurnRgt60    (); break;
-            case 5: Auton.Backup ( 48 ); break;
+            case 3: Auton.Backup( 276 - 17 ); break;
 
             default: Stage.Last(); break;
         }

@@ -11,14 +11,14 @@ public class RgtShootTwice {
             case 2: Auton.ShootHi        (); break;
 
             case 3: Auton.BackupLft      (); break;
-            case 4: Auton.TurnRgt        (); break;
+            case 4: Auton.TurnRgt60        (); break;
             case 5: Auton.Backup     ( 48 ); break;
             
             case 6: Auton.TransToRing    (); break;
             case 7: Auton.CollectRing    (); break;
 
             case 8: Auton.Forward    ( 48 ); break;
-            case 9: Auton.TurnLft        (); break;
+            case 9: Auton.TurnLft60        (); break;
             case 10: Auton.TransToSpeaker(); break;
 
             case 11: Auton.PrepShooter   (); break;

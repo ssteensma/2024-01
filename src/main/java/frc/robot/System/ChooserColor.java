@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class ChooserColor {
 
     public static final String[] kColor = {
-        "Red",
-        "Blue"
+        "Red Alliance",
+        "Blue Alliance"
     };
 
     public static final SendableChooser<String>
@@ -16,9 +16,9 @@ public class ChooserColor {
         colorchooser.setDefaultOption( kColor[ 0], kColor[ 0] );
         colorchooser.setDefaultOption( kColor[ 1], kColor[ 1] );
 
-        Shuffle.CompTab.add( "Color Chooser", colorchooser )
-            .withPosition( 7, 2 )
-            .withSize( 2, 2 );
+        Shuffle.AutoTab.add( "ALLIANCE", colorchooser )
+            .withPosition( 0, 0 )
+            .withSize( 3, 2 );
     }
 
     public static void Periodic () {}

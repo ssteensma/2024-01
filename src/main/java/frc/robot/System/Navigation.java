@@ -23,6 +23,10 @@ public class Navigation {
         return ( GetYaw() + 360 ) % 360;
     }
 
+    public static double GetError( double Heading ) {
+        return ( Heading - NavX.getAngle() + 180 ) % 360 - 180;
+    }
+
     public static void Calibrate() { NavX.calibrate(); }
     public static void Reset    () { NavX.reset    (); }
 

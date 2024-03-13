@@ -11,7 +11,7 @@ public class RgtShootCross {
             case 2: Auton.ShootHi    (); break;
 
             case 3: Auton.BackupRgt  (); break;
-            case 4: Auton.TurnLft    (); break;
+            case 4: Auton.TurnLft60    (); break;
             case 5: Auton.Backup ( 48 ); break;
 
             default: Stage.Last(); break;
