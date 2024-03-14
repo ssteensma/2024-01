@@ -8,7 +8,11 @@ public class Auton {
         DriveSpeed   = 0.17,
         TurnSpeed    = 0.15,
 
-        RobotBase = 17.5,
+        toIn  = 5.30,
+
+        CameraRange = 36.0,
+        RobotLength = 17.5,
+
         DistA =  53,
         DistB = 276,
         DistC = 318,
@@ -59,16 +63,21 @@ public class Auton {
     public static void CollectRing() {
         Autopilot.TranslateS( Auton.DriveSpeed );
         Mechanism.Collect();
-        Stage.WaitForMinDistance( 24 );
+        Stage.WaitForMinDistance( 18 );
     }
 
     public static void TransToSpeaker() {
-        Autopilot.TransToAprilTag();
-        Stage.WaitForAprilTagY( 10, 1 );
+        Autopilot.TransToSpeakerNear();
+        Stage.WaitForAprilTagY( 13, 1 );
     }
 
     public static void Forward( double Distance ) {
         Autopilot.TranslateN( Auton.DriveSpeed );
+        Stage.WaitForMinDistance( Distance );
+    }
+
+    public static void Reverse( double Distance ) {
+        Autopilot.TranslateS( Auton.DriveSpeed );
         Stage.WaitForMinDistance( Distance );
     }
 

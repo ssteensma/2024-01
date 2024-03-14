@@ -8,7 +8,7 @@ public class LongShot {
             case 0: break;
         
             case 1:
-                Autopilot.DriveAtBackardAtHeading( 0.35, 0 );
+                Autopilot.ReverseAtHeading( 0.35, 0 );
                 Stage.WaitForMinDistance( 27*12 );
                 break;
 
@@ -16,7 +16,7 @@ public class LongShot {
             case 3: Auton.CollectRing(); break;
 
             case 4:
-                Autopilot.DriveAtForwardAtHeading( 0.35, 0 );
+                Autopilot.ForwardAtHeading( 0.35, 0 );
                 Stage.WaitForMinDistance( 30*12 );
                 break;
     

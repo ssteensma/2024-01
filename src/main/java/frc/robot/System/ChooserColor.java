@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class ChooserColor {
 
     public static final String[] kColor = {
-        "Red Alliance",
-        "Blue Alliance"
+        "Red",
+        "Blue"
     };
 
     public static final SendableChooser<String>

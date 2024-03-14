@@ -21,6 +21,10 @@ public class Aimer extends SubsystemBase {
         Reset();
     }
 
+    public static void Display() {
+        
+    }
+
     public static void Periodic() {
         Lft.set( State );
         Rgt.set( State );

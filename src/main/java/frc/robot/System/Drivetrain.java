@@ -133,15 +133,15 @@ public class Drivetrain extends SubsystemBase {
         RobotSpeed = Kinematics.toChassisSpeeds( ModuleStates );
 
         // UPDATE ODOMETRY
-        Pose = Odometry.update(
-            Navigation.NavX.getRotation2d(),
-            new SwerveModulePosition[] {
-                FL_module.GetPosition(),
-                FR_module.GetPosition(),
-                RL_module.GetPosition(),
-                RR_module.GetPosition()
-            }
-        );
+        // Pose = Odometry.update(
+        //     Navigation.NavX.getRotation2d(),
+        //     new SwerveModulePosition[] {
+        //         FL_module.GetPosition(),
+        //         FR_module.GetPosition(),
+        //         RL_module.GetPosition(),
+        //         RR_module.GetPosition()
+        //     }
+        // );
 
         // UPDATE EACH MODULE
         // Update Steer before Drive since steer may change the drive wheel direction

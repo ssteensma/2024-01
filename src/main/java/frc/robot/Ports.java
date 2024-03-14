@@ -15,6 +15,11 @@ public class Ports {
             CAN_Clmb = 19;
     }
 
+    public class pSensor {
+        public static int[]
+            DIO_Sonic = { 0, 1 };
+    }
+
     public class pStick {
         public static int
             USB_Drive = 0,

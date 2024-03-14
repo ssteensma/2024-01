@@ -8,11 +8,8 @@ public class Autonomous {
 
     public static String
         SelectedAuton = "n/a",
-        SelectedColor = "n/a";
-
-    public static double
-        LeaveAngle  =  60,
-        ReturnAngle = 300;
+        SelectedColor = "n/a",
+        SelectedStart = "n/a";
 
     public static void Initialize () {
         Autopilot   .Reset();
@@ -21,6 +18,7 @@ public class Autonomous {
 
         SelectedAuton = ChooserAuton.GetAuton();
         SelectedColor = ChooserColor.GetColor();
+        SelectedStart = ChooserStart.GetStart();
     }
 
     public static void Display() {}
@@ -31,24 +29,23 @@ public class Autonomous {
 
         SmartDashboard.putNumber( "STAGE NUMBER", Stage.Number );
 
-        SmartDashboard.putNumber( "Stage 1 Time",  Stage.GetStageTime( 1 ) );
-        SmartDashboard.putNumber( "Stage 2 Time",  Stage.GetStageTime( 2 ) );
-        SmartDashboard.putNumber( "Stage 3 Time",  Stage.GetStageTime( 3 ) );
-        SmartDashboard.putNumber( "Stage 4 Time",  Stage.GetStageTime( 4 ) );
-        SmartDashboard.putNumber( "Stage 5 Time",  Stage.GetStageTime( 5 ) );
- 
-        SmartDashboard.putNumber( "Stage 1 Dist",  Stage.GetStageDist( 1 ) );
-        SmartDashboard.putNumber( "Stage 2 Dist",  Stage.GetStageDist( 2 ) );
-        SmartDashboard.putNumber( "Stage 3 Dist",  Stage.GetStageDist( 3 ) );
-        SmartDashboard.putNumber( "Stage 4 Dist",  Stage.GetStageDist( 4 ) );
-        SmartDashboard.putNumber( "Stage 5 Dist",  Stage.GetStageDist( 5 ) );
- 
-        // for ( int i=6; i<=15; i++ ) {
-        //     SmartDashboard.putNumber( "Stage " + i + " Time",  Stage.GetStageTime( i ) );
-        //     SmartDashboard.putNumber( "Stage " + i + " Dist",  Stage.GetStageDist( i ) );
-        // }
+            for ( int i = 0; i<5; i++ ) {
+                SmartDashboard.putNumber( "Stage " + i + " Time",  Stage.GetStageTime( i ) );
+                SmartDashboard.putNumber( "Stage " + i + " Dist",  Stage.GetStageDist( i ) );
+            }
 
         switch ( SelectedAuton ) {
+            case "0"  : Path0  .Periodic(); break;
+            case "1"  : Path1  .Periodic(); break;
+
+            case "A"  : PathAB .Periodic(); break;
+            case "B"  : PathAB .Periodic(); break;
+            case "C"  : PathC  .Periodic(); break;
+            case "D"  : PathDE .Periodic(); break;
+            case "E"  : PathDE .Periodic(); break;
+
+            case "Long Shot" : LongShot.Periodic(); break;
+
             // case "Do Nothing"             : DoNothing           .Periodic(); break;
             // case "Wall Cross Line"        : WallCrossLine       .Periodic(); break;
             // case "Shoot Only"             : ShootOnly           .Periodic(); break;
@@ -61,11 +58,6 @@ public class Autonomous {
             // case "Lft Shoot Twice"        : LftShootTwice       .Periodic(); break;
             // case "Rgt Shoot Twice"        : RgtShootTwice       .Periodic(); break;
 
-            case "Long Shot"              : LongShot            .Periodic(); break;
-
-            // case "Ctr Shoot Three"        : CtrShootThree       .Periodic(); break;
-            // case "Nar Shoot Three"        : NarShootThree_PENDING       .Periodic(); break;
-            // case "Rgt Shoot Three"        : RgtShootThree       .Periodic(); break;
         }
 
         Stage.Next();

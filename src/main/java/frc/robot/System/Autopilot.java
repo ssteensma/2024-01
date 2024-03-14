@@ -27,7 +27,7 @@ public class Autopilot {
 	}
 
 	public static void TransToRing() {
-		double X = ( CamIntake.TY() - -2 ) * -0.02;
+		double X = ( CamIntake.TY() - -16 ) * -0.02;
 		double Y = ( CamIntake.TX() )  * 0.02;
 
 		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
@@ -48,14 +48,28 @@ public class Autopilot {
 
 //
 //
-	public static void TransToAprilTag() {
-		double X = ( 10 - CamShooter.TY() ) * 0.015;
+	public static void TransToSpeakerNear() {
+		double X = ( 14 - CamShooter.TY() ) * 0.015;
 		double Y = ( CamShooter.TX() ) * -0.01;
 		double Z = 0;
 
 		// MAXIMUM SPEED
 		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
 		if ( X < -Auton.DriveSpeed ) { X = -Auton.DriveSpeed; }
+
+		Drivetrain.vx = X;
+		Drivetrain.vy = Y;
+		Drivetrain.vt = Z;
+	}
+
+	public static void TransToSpeakerFar() {
+		double X = ( -13 - CamShooter.TY() ) * 0.015;
+		double Y = ( CamShooter.TX() ) * -0.01;
+		double Z = 0;
+
+		// MAXIMUM SPEED
+		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed * 2; }
+		if ( X < -Auton.DriveSpeed ) { X = -Auton.DriveSpeed * 2; }
 
 		Drivetrain.vx = X;
 		Drivetrain.vy = Y;
@@ -102,7 +116,7 @@ public class Autopilot {
 	public static void DriveSW_UNTESTED ( double S ) { Drivetrain.vx = +S*Cos45; Drivetrain.vy = +S*Sin45; Drivetrain.vt = AdjustToHeading( 225 ); }
 	public static void DriveNW_UNTESTED ( double S ) { Drivetrain.vx = -S*Cos45; Drivetrain.vy = +S*Sin45; Drivetrain.vt = AdjustToHeading( 315 ); }
 
-	public static void DriveAtBackardAtHeading( double Speed, double Heading ) {
+	public static void ReverseAtHeading( double Speed, double Heading ) {
 		double Error = ( Navigation.NavX.getAngle() + 540 - Heading ) % 360 - 180;
 		SmartDashboard.putNumber( "NAV ERROR", Error );
 
@@ -116,7 +130,7 @@ public class Autopilot {
 		Drivetrain.vt = Power;
 	}
 
-	public static void DriveAtForwardAtHeading( double Speed, double Heading ) {
+	public static void ForwardAtHeading( double Speed, double Heading ) {
 		double Error = ( Navigation.NavX.getAngle() + 540 - Heading ) % 360 - 180;
 		SmartDashboard.putNumber( "NAV ERROR", Error );
 

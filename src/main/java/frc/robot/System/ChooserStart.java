@@ -27,5 +27,5 @@ public class ChooserStart {
 
     public static void Periodic () {}
 
-    public static String GetColor() { return startchooser.getSelected(); }
+    public static String GetStart() { return startchooser.getSelected(); }
 }

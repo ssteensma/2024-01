@@ -1,8 +1,7 @@
 package frc.robot.System;
 
-import edu.wpi.first.wpilibj2.command.Command;
+// import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Mode.Teleop;
 
 public class Mechanism extends SubsystemBase {
 
@@ -15,7 +14,7 @@ public class Mechanism extends SubsystemBase {
         Shooter.Stop();
     }
 
-    public Command cCollect() { return this.runOnce( () -> Collect() ); }
+    // public Command cCollect() { return this.runOnce( () -> Collect() ); }
 
     public static void Ascend() {
         Aimer.Extend();
@@ -26,7 +25,7 @@ public class Mechanism extends SubsystemBase {
         Shooter.Stop();
     }
 
-    public Command cAutoAscend() { return this.runOnce( () -> Ascend() ); }
+    // public Command cAutoAscend() { return this.runOnce( () -> Ascend() ); }
 
     public static void Descend() {
         Aimer.Extend();
@@ -37,7 +36,7 @@ public class Mechanism extends SubsystemBase {
         Shooter.Stop();
     }
 
-    public Command cAutoDescend() { return this.runOnce( () -> Descend() ); }
+    // public Command cAutoDescend() { return this.runOnce( () -> Descend() ); }
 
     public static void Reset() {
         Aimer.Extend();
@@ -48,32 +47,28 @@ public class Mechanism extends SubsystemBase {
         Shooter.Stop();
     }
 
-    public Command cReset() { return this.runOnce( () -> Reset() ); }
+    // public Command cReset() { return this.runOnce( () -> Reset() ); }
 
     public static void ShootLo() {
         Aimer.Retract();
         Climber.Stop();
         Intake.Stop();
-        if ( System.currentTimeMillis() - Teleop.shooter_delay > 0.5 ) {
-            Mover.Forward();
-        }
+        Mover.Forward();
         Roller.Stop();
-        ShootLo();
+        Shooter.ShootLo();
     }
 
-    public Command cShootLo() { return this.runOnce( () -> ShootLo() ); }
+    // public Command cShootLo() { return this.runOnce( () -> ShootLo() ); }
 
     public static void ShootHi() {
         Aimer.Extend();
         Climber.Stop();
         Intake.Stop();
-        if ( System.currentTimeMillis() - Teleop.shooter_delay > 0.5 ) {
-           Mover.Forward();
-        }
+        Mover.Forward();
         Roller.Stop();
         Shooter.ShootHi();
     }
 
-    public Command cShootHi() { return this.runOnce( () -> ShootHi() ); }
+    // public Command cShootHi() { return this.runOnce( () -> ShootHi() ); }
 
 }
