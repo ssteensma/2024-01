@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -66,7 +67,7 @@ public class Wheel {
     }
 
     public double GetDirection() {
-        return SteerEncoder.getAbsolutePosition().getValueAsDouble() * 360;
+        return ( SteerEncoder.getAbsolutePosition().getValueAsDouble() * 360 ) % 360;
     }
 
     public double GetPower() { return DrvPwr; }
@@ -112,6 +113,12 @@ public class Wheel {
 
         if ( DrvSP == 0 ) { DrvPwr = 0; } 
 
+        SmartDashboard.putNumber( ModuleName + " Drive Error",    DrvErr   );
+        SmartDashboard.putNumber( ModuleName + " Drive Power",    DrvPwr  );
+        SmartDashboard.putNumber( ModuleName + " Drive PV",       DrvPV   );
+        SmartDashboard.putNumber( ModuleName + " Drive Reverse",  reverse );
+        SmartDashboard.putNumber( ModuleName + " Drive SP",       DrvSP   );
+
         DriveMotor.set( DrvPwr * reverse );
     }
 
@@ -135,6 +142,13 @@ public class Wheel {
 
         if ( StrPwr < -0.35 ) { StrPwr = -0.35;  }
         if ( StrPwr >  0.35 ) { StrPwr =  0.35;  }
+
+        SmartDashboard.putNumber( ModuleName + " Steer Reverse",  reverse );
+        SmartDashboard.putNumber( ModuleName + " Steer Power",    StrPwr  );
+        SmartDashboard.putNumber( ModuleName + " Steer PV",       StrPV   );
+        SmartDashboard.putNumber( ModuleName + " Steer SP",       StrSP   );
+        SmartDashboard.putNumber( ModuleName + " Turn Direction", TurnDir );
+        SmartDashboard.putNumber( ModuleName + " Turn Magnitude", TurnMag );
 
         SteerMotor.set( StrPwr * TurnDir );
     }

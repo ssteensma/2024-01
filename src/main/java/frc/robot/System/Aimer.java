@@ -2,6 +2,7 @@ package frc.robot.System;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Ports.pAimer;
@@ -22,7 +23,7 @@ public class Aimer extends SubsystemBase {
     }
 
     public static void Display() {
-        
+        SmartDashboard.putString( "Aimer State", GetState() );        
     }
 
     public static void Periodic() {

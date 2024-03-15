@@ -3,6 +3,7 @@ package frc.robot.System;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Ports.pIntake;
@@ -28,13 +29,17 @@ public class Intake extends SubsystemBase {
         Rgt.setSmartCurrentLimit( 25, 10 );
     }
 
-    public static double GetPower () { return Power; }
-    public static void   Reset    () { Power = 0;    }
+    public static void Display() {
+        SmartDashboard.putNumber( "Intake Power", Power );
+    }
 
     public static void Periodic() {
         Lft.set( Power );
         Rgt.set( Power );
     }
+
+    public static double GetPower () { return Power; }
+    public static void   Reset    () { Power = 0;    }
 
     public static void Suck() { Power =  0.50; }
     public static void Spit() { Power = -0.50; }

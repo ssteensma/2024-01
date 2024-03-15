@@ -21,6 +21,10 @@ public class Climber extends SubsystemBase {
         Mtr.setInverted( false );
     }
 
+    public static void Display() {
+        SmartDashboard.putNumber( "Climber Power", Power );
+    }
+
     public static void Periodic() {
         Mtr.set( Power );
         SmartDashboard.putNumber( "CLIMBER POSITION", GetDistance() );

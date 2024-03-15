@@ -2,6 +2,7 @@ package frc.robot.System;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Navigation {
     
@@ -15,6 +16,10 @@ public class Navigation {
             .withPosition( 5, 2 )
             .withSize( 3, 3 )
             .withWidget( BuiltInWidgets.kGyro );
+    }
+
+    public static void Display() {
+        SmartDashboard.putNumber( "Navigation Direction", GetDirection() );
     }
 
     public static void Periodic() {}

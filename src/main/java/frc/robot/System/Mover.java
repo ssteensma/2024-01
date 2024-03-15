@@ -3,6 +3,7 @@ package frc.robot.System;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Ports.pMover;
@@ -18,6 +19,10 @@ public class Mover extends SubsystemBase {
     public static void Initialize() {
         Mvr = new CANSparkMax( pMover.CAN_Mvr, MotorType.kBrushless );
         Reset();
+    }
+
+    public static void Display() {
+        SmartDashboard.putNumber( "Mover Power", Power );
     }
 
     public static void Periodic() {

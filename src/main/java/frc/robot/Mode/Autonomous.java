@@ -32,11 +32,8 @@ public class Autonomous {
         Stage.Begin();
 
         SmartDashboard.putNumber( "STAGE NUMBER", Stage.Number );
-
-            // for ( int i = 0; i<5; i++ ) {
-            //     SmartDashboard.putNumber( "Stage " + i + " Time",  Stage.GetStageTime( i ) );
-            //     SmartDashboard.putNumber( "Stage " + i + " Dist",  Stage.GetStageDist( i ) );
-            // }
+        SmartDashboard.putNumber( "Stage " + Stage.Number + " Time",  Stage.GetStageTime( Stage.Number ) );
+        SmartDashboard.putNumber( "Stage " + Stage.Number + " Dist",  Stage.GetStageDist( Stage.Number ) );
 
         switch ( SelectedTrack ) {
             case "0_Red"   : Path0      .Periodic(); break;
@@ -57,7 +54,9 @@ public class Autonomous {
             case "D_Red"   : PathD_Red  .Periodic(); break;
             case "D_Blue"  : PathD_Blue .Periodic(); break;
 
-            // case "E"  : PathDE .Periodic(); break;
+            // case "E_Red"   : PathE_Red  .Periodic(); break;
+            case "E_Blue"  : PathE_Blue .Periodic(); break;
+
 
             // case "Long Shot" : LongShot.Periodic(); break;
 

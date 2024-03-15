@@ -1,14 +1,14 @@
 package frc.robot.Mode;
 
-// import edu.wpi.first.wpilibj.DataLogManager;
-// import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.System.*;
 
 public class Onabot {
 
     public static void Initialize() {
-        // DataLogManager.start();
-        // DriverStation .startDataLog( DataLogManager.getLog() );
+        DataLogManager.start();
+        DriverStation .startDataLog( DataLogManager.getLog() );
 
         Navigation   .Initialize();
         Drivetrain   .Initialize();
@@ -24,17 +24,20 @@ public class Onabot {
         Climber      .Initialize();
         Mover        .Initialize();
         Roller       .Initialize();
-        // Sensor       .Initialize();
         Shooter      .Initialize();
     }
 
     public static void Periodic() {
         Aimer        .Display();
+        Climber      .Display();
+        Intake       .Display();
+        Mover        .Display();
+        Roller       .Display();
+        Shooter      .Display();
     }
 
     public static void UpdateMechanism() {
         Aimer        .Periodic();
-        ChooserAuton .Periodic();
         Intake       .Periodic();
         CamShooter   .Periodic();
         CamIntake    .Periodic();
@@ -42,7 +45,6 @@ public class Onabot {
         Mover        .Periodic();
         Navigation   .Periodic();
         Roller       .Periodic();
-        // Sensor       .Periodic();
         Shooter      .Periodic();
     }
 

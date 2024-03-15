@@ -2,6 +2,7 @@ package frc.robot.System;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Ports.pShooter;
@@ -19,6 +20,10 @@ public class Shooter extends SubsystemBase {
     public static void Initialize() {
         Lo = new TalonFX( pShooter.CAN_Lo );
         Hi = new TalonFX( pShooter.CAN_Hi );
+    }
+
+    public static void Display() {
+        SmartDashboard.putNumber( "Shooter Power", Power );
     }
 
     public static void Periodic() {
