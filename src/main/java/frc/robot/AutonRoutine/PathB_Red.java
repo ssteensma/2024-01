@@ -2,7 +2,7 @@ package frc.robot.AutonRoutine;
 
 import frc.robot.System.*;
 
-public class PathD_Blue {
+public class PathB_Red {
     public static void Periodic() {
         switch ( Stage.Number ) {
             case 0: break;

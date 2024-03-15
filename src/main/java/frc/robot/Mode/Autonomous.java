@@ -45,9 +45,11 @@ public class Autonomous {
             case "1_Red"   : Path1      .Periodic(); break;
             case "1_Blue"  : Path1      .Periodic(); break;
 
-            // case "A"  : PathAB .Periodic(); break;
+            case "2_Blue"  : Path2      .Periodic(); break;
+            case "2_Red"   : Path2      .Periodic(); break;
 
-            // case "B"  : PathAB .Periodic(); break;
+            case "B_Red"   : PathB_Red  .Periodic(); break;
+            case "B_Blue"  : PathB_Blue .Periodic(); break;
 
             case "C_Red"   : PathC      .Periodic(); break;
             case "C_Blue"  : PathC      .Periodic(); break;
@@ -59,8 +61,6 @@ public class Autonomous {
 
             // case "Long Shot" : LongShot.Periodic(); break;
 
-            // case "Wall Cross Line"        : WallCrossLine       .Periodic(); break;
-            // case "Shoot Only"             : ShootOnly           .Periodic(); break;
             // case "Ctr Shoot, Cross"       : CtrShootCross       .Periodic(); break;
             // case "Lft Shoot, Cross"       : LftShootCross       .Periodic(); break;
             // case "Rgt Shoot, Cross"       : RgtShootCross       .Periodic(); break;

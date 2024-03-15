@@ -2,7 +2,7 @@ package frc.robot.AutonRoutine;
 
 import frc.robot.System.*;
 
-public class PathD_Blue {
+public class PathB_Blue {
     public static void Periodic() {
         switch ( Stage.Number ) {
             case 0: break;
@@ -12,7 +12,7 @@ public class PathD_Blue {
             case 2: Auton.ShootHi        (); break;
 
             // TURN TOWARD NEXT RING
-            case 3: Auton.TurnLft    ( 60 ); break;
+            case 3: Auton.TurnRgt   ( 300 ); break;
 
             // COLLECT RING
             case 4: Auton.TransToRing    (); break;
