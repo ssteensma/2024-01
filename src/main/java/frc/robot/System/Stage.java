@@ -1,5 +1,7 @@
 package frc.robot.System;
 
+import frc.robot.Setting;
+
 public class Stage {
 
 	public static double
@@ -86,7 +88,7 @@ public class Stage {
 	}
 
 	public static void WaitForRing() {
-		if ( CamIntake.TY() > -13 ) { ReadyToAdvance = false; }
+		if ( CamIntake.TY() > Setting.Ring_1 ) { ReadyToAdvance = false; }
 	}
 
 }

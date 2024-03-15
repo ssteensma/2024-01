@@ -12,7 +12,7 @@ public class ChooserAuton {
         "C",
         "D",
         "E",
-        "Long Shot"
+        // "Long Shot"
    };
 
     public static final SendableChooser<String>
@@ -20,7 +20,7 @@ public class ChooserAuton {
 
     public static void Initialize() {
 
-        for ( int i = 0; i <= 7; i++ ) {
+        for ( int i = 0; i <= 6; i++ ) {
             autonchooser.setDefaultOption( kPath[ i ], kPath[ i ] );
         }
 

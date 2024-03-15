@@ -2,7 +2,7 @@ package frc.robot.Mode;
 
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Setting;
 import frc.robot.Ports.pStick;
 import frc.robot.System.*;
 
@@ -19,8 +19,8 @@ public class Teleop {
     public static XboxController
         MS;
 
-    public static CommandXboxController
-        cMS;
+    // public static CommandXboxController
+    //     cMS;
 
     public static void Initialize() {
         DS = new PS4Controller ( pStick.USB_Drive );
@@ -66,16 +66,18 @@ public class Teleop {
 
         // GET RING AUTOMATICALLY
         if ( DS.getR2Button() ) {
-            X = ( CamIntake.TY() - -16 ) * -0.04;
+            X = ( CamIntake.TY() - Setting.Ring_N ) * -0.04;
             Y = 0;
             Z = CamIntake.TX() * -0.02;
 
             if ( X >  0.20 ) { X =  0.20; }
             if ( X < -0.20 ) { X = -0.20; }
 
-            Mechanism.Collect();
+            Intake.Suck();
+            Roller.Suck();
+            Mover.Forward();
             
-            if ( CamIntake.TY() < -2 ) { X = -0.20; Z = 0.00; }
+            if ( CamIntake.TY() <= Setting.Ring_0 ) { X = -0.20; Z = 0.00; }
         }
 
         // SAVE VALUES FOR DRIVETRAIN

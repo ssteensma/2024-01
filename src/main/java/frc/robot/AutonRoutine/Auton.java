@@ -1,5 +1,6 @@
 package frc.robot.AutonRoutine;
 
+import frc.robot.Setting;
 import frc.robot.System.*;
 
 public class Auton {
@@ -68,7 +69,7 @@ public class Auton {
 
     public static void TransToSpeaker() {
         Autopilot.TransToSpeakerNear();
-        Stage.WaitForAprilTagY( 13, 1 );
+        Stage.WaitForAprilTagY( Setting.Speaker_0, 1 );
     }
 
     public static void Forward( double Distance ) {
@@ -78,6 +79,16 @@ public class Auton {
 
     public static void Reverse( double Distance ) {
         Autopilot.TranslateS( Auton.DriveSpeed );
+        Stage.WaitForMinDistance( Distance );
+    }
+
+    public static void ForHeading( double Speed, double Heading, double Distance ) {
+        Autopilot.ForwardAtHeading( Speed, Heading );
+        Stage.WaitForMinDistance( Distance );
+    }
+
+    public static void RevHeading( double Speed, double Heading, double Distance ) {
+        Autopilot.ReverseAtHeading( Speed, Heading );
         Stage.WaitForMinDistance( Distance );
     }
 

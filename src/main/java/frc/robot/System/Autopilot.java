@@ -1,6 +1,7 @@
 package frc.robot.System;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Setting;
 import frc.robot.AutonRoutine.Auton;
 
 public class Autopilot {
@@ -27,7 +28,7 @@ public class Autopilot {
 	}
 
 	public static void TransToRing() {
-		double X = ( CamIntake.TY() - -16 ) * -0.02;
+		double X = ( CamIntake.TY() - Setting.Ring_1 ) * -0.02;
 		double Y = ( CamIntake.TX() )  * 0.02;
 
 		if ( X >  Auton.DriveSpeed ) { X =  Auton.DriveSpeed; }
@@ -49,7 +50,7 @@ public class Autopilot {
 //
 //
 	public static void TransToSpeakerNear() {
-		double X = ( 14 - CamShooter.TY() ) * 0.015;
+		double X = ( Setting.Speaker_0 - CamShooter.TY() ) * 0.015;
 		double Y = ( CamShooter.TX() ) * -0.01;
 		double Z = 0;
 
@@ -63,7 +64,7 @@ public class Autopilot {
 	}
 
 	public static void TransToSpeakerFar() {
-		double X = ( -13 - CamShooter.TY() ) * 0.015;
+		double X = ( Setting.Speaker_2 - CamShooter.TY() ) * 0.015;
 		double Y = ( CamShooter.TX() ) * -0.01;
 		double Z = 0;
 
