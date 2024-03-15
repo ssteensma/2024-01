@@ -15,7 +15,7 @@ public class NarShootThree_PENDING {
             case  3: Auton.BackupRgt      (); break;
             case  4: Auton.TurnLft60      (); break;
             case  5: Auton.Backup     ( D1 ); break;
-            
+    
             case  6: Auton.TransToRing    (); break;
             case  7: Auton.CollectRing    (); break;
 

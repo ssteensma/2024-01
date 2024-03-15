@@ -99,7 +99,7 @@ public class Auton {
 
     public static void ShootHi() {
         Mechanism.ShootHi();
-        Stage.WaitForMinDuration( 2.00 );
+        Stage.WaitForMinDuration( 1.50 );
     }
 
     public static void TranslateS( double Distance ) {
