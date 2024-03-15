@@ -132,10 +132,11 @@ public class Wheel {
         TurnMag = Math.abs   ( TurnAng );
         TurnDir = Math.signum( TurnAng );
 
-        if      ( TurnMag >=   0 && TurnMag <   90 ) {                          reverse =  0; }
-        else if ( TurnMag >=  90 && TurnMag <= 180 ) { TurnMag = 180 - TurnMag; reverse = -1; }
-        else if ( TurnMag >= 180 && TurnMag <= 270 ) { TurnMag = TurnMag - 180; reverse = -1; }
-        else if ( TurnMag >= 270 && TurnMag <= 360 ) { TurnMag = 360 - TurnMag; reverse =  0; }
+        if      ( TurnMag >= -180 && TurnMag <  -90 ) { TurnMag = 180 - TurnMag; reverse = -1; TurnDir *= -1; }
+        else if ( TurnMag >=  -90 && TurnMag <=  90 ) {                          reverse =  1; }
+        else if ( TurnMag >=   90 && TurnMag <= 180 ) { TurnMag = 180 - TurnMag; reverse = -1; }
+        else if ( TurnMag >=  180 && TurnMag <= 270 ) { TurnMag = TurnMag - 180; reverse = -1; }
+        else if ( TurnMag >=  270 && TurnMag <= 360 ) { TurnMag = 360 - TurnMag; reverse =  1; }
 
         // PID CONTROLLER
         StrPwr = Math.abs( TurnMag ) * 0.01;
